@@ -3837,7 +3837,7 @@
             function animar() {
                 requestAnimationFrame(animar);
                 tempo += girando ? 0.02 : 0.01;
-                cap.rotation.y += girando ? 0.02 : 0.008;
+                cap.rotation.y += girando ? 0.02 : 0.010;
 
                 if (!girando) {
                     cap.position.y = Math.sin(tempo * 1.6) * 0.05;
