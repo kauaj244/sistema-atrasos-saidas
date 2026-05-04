@@ -2417,7 +2417,7 @@
                     Cursos</div>
 
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="administração">
+                    <button class="botao-curso" data-curso="administracao">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-chart-line"></i></span> Administração
                         </span>
@@ -2430,7 +2430,7 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="eletrotécnica">
+                    <button class="botao-curso" data-curso="eletrotecnica">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-bolt"></i></span> Eletrotécnica
                         </span>
@@ -2456,7 +2456,7 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="informática">
+                    <button class="botao-curso" data-curso="informatica">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-laptop-code"></i></span> Informática
                         </span>
@@ -3240,8 +3240,8 @@
                     botao.classList.add('ativo');
 
                     const classesAtuais = Array.from(document.body.classList);
-                    const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto');
-                    document.body.className = outrasClasses.join(' ') + ` tema-${cursoAtivo}` + (sistemaBloqueado ? ' sistema-bloqueado' : '');
+                    const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'menu-fechado');
+                    document.body.className = outrasClasses.join(' ') + ` tema-${cursoAtivo.normalize('NFD').replace(/[\u0300-\u036f]/g, "")}` + (sistemaBloqueado ? ' sistema-bloqueado' : '');
 
                     mostrarAreaDados();
 
