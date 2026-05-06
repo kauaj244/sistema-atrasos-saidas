@@ -61,8 +61,8 @@
             --cor-informatica-clara: #f87171;
             --cor-informatica-escura: #7f1d1d;
             --cor-informatica-gradiente: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            
-            /* Tema escuro */
+
+
             --fundo-escuro: #0f172a;
             --superficie-escuro: #1e293b;
             --borda-escuro: #334155;
@@ -71,7 +71,6 @@
             --texto-suave-escuro: #94a3b8;
         }
 
-        /* Tema escuro */
         body.tema-escuro {
             --fundo: var(--fundo-escuro);
             --superficie: var(--superficie-escuro);
@@ -705,9 +704,11 @@
                 transform: translateY(-20px) scale(0.95);
                 filter: blur(4px);
             }
+
             50% {
                 transform: translateY(5px) scale(1.02);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -716,10 +717,13 @@
         }
 
         @keyframes borderPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.6;
                 transform: scaleY(0.95);
             }
+
             50% {
                 opacity: 1;
                 transform: scaleY(1.05);
@@ -728,10 +732,13 @@
         }
 
         @keyframes borderGlow {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.3;
                 filter: blur(2px);
             }
+
             50% {
                 opacity: 0.7;
                 filter: blur(4px);
@@ -968,6 +975,7 @@
             0% {
                 transform: translateX(-100%);
             }
+
             100% {
                 transform: translateX(100%);
             }
@@ -1338,6 +1346,7 @@
                 opacity: 0;
                 transform: translateY(-10px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -1479,8 +1488,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .conteudo-modal {
@@ -1512,6 +1526,7 @@
                 transform: translateY(60px) scale(0.85);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0) scale(1);
                 opacity: 1;
@@ -1659,9 +1674,19 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
         }
 
         .toggle-senha {
@@ -1700,6 +1725,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1834,9 +1860,11 @@
                 transform: translate(-50%, -50%) scale(0.5);
                 opacity: 0;
             }
+
             50% {
                 transform: translate(-50%, -50%) scale(1.1);
             }
+
             100% {
                 transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
@@ -2016,6 +2044,7 @@
                 opacity: 0;
                 transform: translateX(-50%) scale(0.8);
             }
+
             to {
                 bottom: 40px;
                 opacity: 1;
@@ -2106,6 +2135,7 @@
             animation: fadeInUp 1.2s ease;
         }
 
+        /* Cores individuais dos cartões - Estado Normal */
         .cartao-curso[data-curso="administracao"] {
             border-color: rgba(0, 86, 167, 0.3);
         }
@@ -2507,8 +2537,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .pulse {
@@ -2628,14 +2665,30 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes progress {
-            0% { width: 0%; margin-left: 0%; }
-            50% { width: 60%; margin-left: 20%; }
-            100% { width: 0%; margin-left: 100%; }
+            0% {
+                width: 0%;
+                margin-left: 0%;
+            }
+
+            50% {
+                width: 60%;
+                margin-left: 20%;
+            }
+
+            100% {
+                width: 0%;
+                margin-left: 100%;
+            }
         }
     </style>
 </head>
@@ -2659,8 +2712,8 @@
 
         <aside class="barra-lateral" id="barraLateral">
             <div class="cabecalho-barra-lateral">
-                <img src="c:\Users\kauaj\Downloads\ChatGPT Image 28 de fev. de 2026, 17_04_54.png"
-                    class="logo-escola" alt="Logo EEEP">
+                <img src="c:\Users\kauaj\logo-eeep.png" class="logo-escola"
+                    alt="Logo EEEP">
                 <h3 style="font-size:18px; font-weight:700;">Gestão</h3>
                 <p style="font-size:11px; opacity:0.8; letter-spacing:0.5px;">controle · atrasos · saídas</p>
             </div>
@@ -2689,7 +2742,7 @@
                     Cursos</div>
 
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="administração">
+                    <button class="botao-curso" data-curso="administracao">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-chart-line"></i></span> Administração
                         </span>
@@ -2702,7 +2755,7 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="eletrotécnica">
+                    <button class="botao-curso" data-curso="eletrotecnica">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-bolt"></i></span> Eletrotécnica
                         </span>
@@ -2728,7 +2781,7 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="informática">
+                    <button class="botao-curso" data-curso="informatica">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-laptop-code"></i></span> Informática
                         </span>
@@ -2779,7 +2832,7 @@
                     </div>
                 </div>
                 <div class="cabecalho-direita">
-                    <img src="c:\Users\kauaj\Downloads\ChatGPT Image 28 de fev. de 2026, 17_04_54.png"
+                    <img src="c:\Users\kauaj\logo-eeep.png"
                         style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
                     <button class="botao-tema" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
                         <i class="fas fa-moon" id="iconeTema"></i>
@@ -2932,7 +2985,6 @@
         </main>
     </div>
 
-    <!-- Modais (mantidos iguais) -->
     <div class="modal" id="modalSenha">
         <div class="conteudo-modal senha-modal">
             <div class="cabecalho-modal">
@@ -3129,7 +3181,6 @@
         let filtroAtual = '';
         let alunosFiltrados = [];
 
-        // Funções de tema
         function alternarTema() {
             temaEscuroAtivo = !temaEscuroAtivo;
             localStorage.setItem('tema_escuro_eeep', temaEscuroAtivo.toString());
@@ -3159,7 +3210,6 @@
             botaoTema.style.display = 'none';
         }
 
-        // Dropdown de exportação
         function alternarDropdownExportacao(e) {
             e.stopPropagation();
             const dropdown = document.getElementById('dropdownExportacao');
@@ -3280,7 +3330,7 @@
             document.getElementById('areaDados').style.display = 'none';
             document.getElementById('botaoNovo').style.display = 'none';
             document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
-            
+
             if (temaEscuroAtivo && !sistemaBloqueado) {
                 document.body.classList.add('tema-escuro');
             }
@@ -3442,7 +3492,6 @@
             document.getElementById('dropdownExportacao').classList.remove('mostrar');
         }
 
-        // Inicialização
         window.addEventListener('load', () => {
             aplicarTema();
             inicializarMenu();
@@ -3459,13 +3508,11 @@
                 mostrarModalSenha();
             }, 500);
 
-            // Eventos de exportação
             document.getElementById('botaoExportar').addEventListener('click', alternarDropdownExportacao);
             document.getElementById('exportarPDF').addEventListener('click', exportarParaPDF);
             document.getElementById('exportarExcel').addEventListener('click', exportarParaExcel);
             document.addEventListener('click', fecharDropdownExportacao);
-            
-            // Evento do botão de tema
+
             document.getElementById('botaoAlternarTema').addEventListener('click', alternarTema);
         });
 
@@ -3543,7 +3590,7 @@
                     const classesAtuais = Array.from(document.body.classList);
                     const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'menu-fechado' && c !== 'tema-escuro');
                     document.body.className = outrasClasses.join(' ') + ` tema-${cursoAtivo.normalize('NFD').replace(/[\u0300-\u036f]/g, "")}` + (sistemaBloqueado ? ' sistema-bloqueado' : '');
-                    
+
                     if (temaEscuroAtivo && !sistemaBloqueado) { document.body.classList.add('tema-escuro'); }
 
                     mostrarAreaDados();
@@ -3934,20 +3981,24 @@
     <script>
         function criarCapUltra(escala = 1) {
             const grupo = new THREE.Group();
-            const materialTecido = new THREE.MeshStandardMaterial({ color: 0x0a1a2e, roughness: 0.8, metalness: 0.1 });
+            const materialTecido = new THREE.MeshStandardMaterial({ color: 0x1a4a2e, roughness: 0.8, metalness: 0.1 });
             const materialDourado = new THREE.MeshStandardMaterial({ color: 0xffd700, roughness: 0.2, metalness: 0.9, emissive: 0x221100 });
+
             const geometriaTopo = new THREE.BoxGeometry(0.65 * escala, 0.025 * escala, 0.65 * escala);
             const malhaTopo = new THREE.Mesh(geometriaTopo, materialTecido);
             malhaTopo.position.y = 0.18 * escala;
             grupo.add(malhaTopo);
+
             const geometriaBase = new THREE.CylinderGeometry(0.18 * escala, 0.24 * escala, 0.28 * escala, 64);
             const malhaBase = new THREE.Mesh(geometriaBase, materialTecido);
             malhaBase.position.y = 0.03 * escala;
             grupo.add(malhaBase);
+
             const geometriaBotao = new THREE.CylinderGeometry(0.025 * escala, 0.025 * escala, 0.02 * escala, 32);
             const malhaBotao = new THREE.Mesh(geometriaBotao, materialTecido);
             malhaBotao.position.y = 0.195 * escala;
             grupo.add(malhaBotao);
+
             const caminhoCordao = new THREE.CatmullRomCurve3([
                 new THREE.Vector3(0, 0.2 * escala, 0),
                 new THREE.Vector3(0.15 * escala, 0.2 * escala, 0.15 * escala),
@@ -3955,6 +4006,7 @@
             ]);
             const geometriaCordao = new THREE.TubeGeometry(caminhoCordao, 20, 0.006 * escala, 8, false);
             grupo.add(new THREE.Mesh(geometriaCordao, materialDourado));
+
             const pingente = new THREE.Group();
             pingente.position.set(0.32 * escala, 0.18 * escala, 0.32 * escala);
             pingente.add(new THREE.Mesh(new THREE.SphereGeometry(0.015 * escala, 16, 16), materialDourado));
@@ -3963,22 +4015,26 @@
             pingente.add(franja);
             grupo.add(pingente);
             grupo.pingente = pingente;
+
             return grupo;
         }
 
         function iniciarThreeAvancado(idContainer, escala = 1, girando = false) {
             const container = document.getElementById(idContainer);
             if (!container) return;
+
             const cena = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
             camera.position.set(0, 0.5, 1.4);
             camera.lookAt(0, 0.1, 0);
+
             const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             const tamanho = container.clientWidth || (girando ? 70 : 250);
             renderizador.setSize(tamanho, tamanho);
             renderizador.setPixelRatio(window.devicePixelRatio);
             renderizador.toneMapping = THREE.ReinhardToneMapping;
             container.appendChild(renderizador.domElement);
+
             cena.add(new THREE.AmbientLight(0xffffff, 0.5));
             const luzSolar = new THREE.DirectionalLight(0xffffff, 1);
             luzSolar.position.set(5, 5, 5);
@@ -3986,22 +4042,27 @@
             const luzContorno = new THREE.PointLight(0x008554, 0.6);
             luzContorno.position.set(-2, 1, -2);
             cena.add(luzContorno);
+
             const cap = criarCapUltra(escala);
             cena.add(cap);
+
             let tempo = 0;
             function animar() {
                 requestAnimationFrame(animar);
                 tempo += girando ? 0.02 : 0.01;
-                cap.rotation.y += girando ? 0.02 : 0.010;
+                cap.rotation.y += girando ? 0.02 : 0.006;
+                
                 if (!girando) {
-                    cap.position.y = Math.sin(tempo * 1.6) * 0.05;
+                    cap.position.y = Math.sin(tempo * 1.7) * 0.05;
                     cap.rotation.z = Math.sin(tempo * 0.5) * 0.04;
                     cap.rotation.x = -0.1 + Math.cos(tempo * 0.4) * 0.04;
                 }
+                
                 if (cap.pingente) {
                     cap.pingente.rotation.z = Math.sin(tempo * 2.5) * 0.15;
                     cap.pingente.rotation.x = Math.cos(tempo * 2) * 0.1;
                 }
+                
                 renderizador.render(cena, camera);
             }
             animar();
@@ -4021,4 +4082,6 @@
         }
     </script>
 </body>
+
 </html>
+
