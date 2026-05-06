@@ -9,6 +9,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -60,6 +61,205 @@
             --cor-informatica-clara: #f87171;
             --cor-informatica-escura: #7f1d1d;
             --cor-informatica-gradiente: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            
+            /* Tema escuro */
+            --fundo-escuro: #0f172a;
+            --superficie-escuro: #1e293b;
+            --borda-escuro: #334155;
+            --texto-primario-escuro: #f1f5f9;
+            --texto-secundario-escuro: #cbd5e1;
+            --texto-suave-escuro: #94a3b8;
+        }
+
+        /* Tema escuro */
+        body.tema-escuro {
+            --fundo: var(--fundo-escuro);
+            --superficie: var(--superficie-escuro);
+            --borda: var(--borda-escuro);
+            --texto-primario: var(--texto-primario-escuro);
+            --texto-secundario: var(--texto-secundario-escuro);
+            --texto-suave: var(--texto-suave-escuro);
+        }
+
+        body.tema-escuro .cabecalho {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+        }
+
+        body.tema-escuro .barra-lateral {
+            background: rgba(30, 41, 59, 0.95);
+            border-right: 1px solid var(--borda-escuro);
+        }
+
+        body.tema-escuro .container-tabela {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
+        body.tema-escuro th {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #e2e8f0;
+        }
+
+        body.tema-escuro td {
+            border-bottom: 1px solid #334155;
+        }
+
+        body.tema-escuro tr:hover td {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+        }
+
+        body.tema-escuro .campo-pesquisa {
+            background: var(--superficie-escuro);
+            color: var(--texto-primario-escuro);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .campo-pesquisa:focus {
+            border-color: var(--primaria);
+            box-shadow: 0 0 0 6px rgba(0, 133, 84, 0.2), 0 15px 30px -8px var(--primaria);
+        }
+
+        body.tema-escuro .botao-curso {
+            color: var(--texto-secundario-escuro);
+        }
+
+        body.tema-escuro .botao-curso:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        body.tema-escuro .botao-ano {
+            color: var(--texto-secundario-escuro);
+        }
+
+        body.tema-escuro .botao-ano:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        body.tema-escuro .submenu-ano.mostrar {
+            background: linear-gradient(95deg, rgba(30, 41, 59, 0.95) 0%, rgba(30, 41, 59, 0.98) 50%, rgba(30, 41, 59, 0.95) 100%);
+        }
+
+        body.tema-escuro .campo-grupo input,
+        body.tema-escuro .campo-grupo select,
+        body.tema-escuro .campo-grupo textarea {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        body.tema-escuro .campo-grupo input:focus,
+        body.tema-escuro .campo-grupo select:focus,
+        body.tema-escuro .campo-grupo textarea:focus {
+            background: #1e293b;
+            border-color: var(--primaria);
+        }
+
+        body.tema-escuro .botao-acao {
+            background: #334155;
+            border-color: #475569;
+            color: #cbd5e1;
+        }
+
+        body.tema-escuro .botao-acao:hover {
+            background: #475569;
+        }
+
+        body.tema-escuro .cartao-estatistica {
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        body.tema-escuro .secao-dicas {
+            background: rgba(30, 41, 59, 0.95);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .cartao-curso {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .info-senha {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: var(--texto-secundario-escuro);
+        }
+
+        body.tema-escuro .campo-senha input {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        body.tema-escuro .campo-senha input:focus {
+            background: #1e293b;
+        }
+
+        body.tema-escuro .botao-fechar-modal {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+            color: #e2e8f0;
+            border-color: rgba(71, 85, 105, 0.5);
+        }
+
+        body.tema-escuro .botao-fechar-modal:hover {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+        }
+
+        body.tema-escuro .card-observacao {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .rodape-modal {
+            background: rgba(30, 41, 59, 0.5);
+            border-top-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .barra-progresso-container {
+            background: #334155;
+        }
+
+        body.tema-escuro .porcentagem-texto {
+            background: rgba(30, 41, 59, 0.9);
+            color: #e2e8f0;
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .area-vazia-melhorada {
+            background: radial-gradient(circle at 80% 20%, rgba(0, 133, 84, 0.1) 0%, transparent 60%);
+        }
+
+        body.tema-escuro .conteudo-modal {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
+        body.tema-escuro .botao-tema {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(51, 65, 85, 0.5);
+            color: #fbbf24;
+        }
+
+        body.tema-escuro .botao-tema:hover {
+            background: rgba(51, 65, 85, 0.8);
+        }
+
+        body.tema-escuro .dropdown-exportacao {
+            background: rgba(30, 41, 59, 0.95);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .dropdown-exportacao .dropdown-item {
+            color: #e2e8f0;
+        }
+
+        body.tema-escuro .dropdown-exportacao .dropdown-item:hover {
+            background: rgba(51, 65, 85, 0.8);
+        }
+
+        body.tema-escuro .secao-dicas {
+            background: rgba(30, 41, 59, 0.95);
+            border-color: rgba(51, 65, 85, 0.5);
         }
 
         body.tema-administracao {
@@ -121,6 +321,10 @@
             display: none !important;
         }
 
+        body.sistema-bloqueado .botao-tema {
+            display: none !important;
+        }
+
         .container {
             display: flex;
             min-height: 100vh;
@@ -142,6 +346,10 @@
             box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.95);
+        }
+
+        body.tema-escuro .barra-lateral {
+            background: rgba(30, 41, 59, 0.95);
         }
 
         @media (min-width: 1024px) {
@@ -431,26 +639,15 @@
         .submenu-ano.mostrar {
             display: block;
             animation: slideDownFancy 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-
             border-left: 4px solid transparent;
             border-image: linear-gradient(180deg, var(--primaria-clara), var(--primaria-escura), var(--primaria-clara));
             border-image-slice: 1;
-
-            box-shadow:
-                inset 2px 0 10px rgba(0, 0, 0, 0.05),
-                4px 4px 12px rgba(0, 0, 0, 0.08);
-
-            background: linear-gradient(95deg,
-                    rgba(255, 255, 255, 0.95) 0%,
-                    rgba(250, 250, 255, 0.98) 50%,
-                    rgba(255, 255, 255, 0.95) 100%);
-
+            box-shadow: inset 2px 0 10px rgba(0, 0, 0, 0.05), 4px 4px 12px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(95deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 255, 0.98) 50%, rgba(255, 255, 255, 0.95) 100%);
             border-radius: 0 20px 20px 0;
-
             margin-top: 8px;
             margin-bottom: 12px;
             padding: 12px 16px 12px 20px;
-
             transform-origin: left;
             backdrop-filter: blur(5px);
         }
@@ -462,11 +659,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(135deg,
-                    var(--primaria-clara),
-                    transparent 30%,
-                    transparent 70%,
-                    var(--primaria-clara));
+            background: linear-gradient(135deg, var(--primaria-clara), transparent 30%, transparent 70%, var(--primaria-clara));
             border-radius: 22px;
             z-index: -1;
             opacity: 0.5;
@@ -480,10 +673,7 @@
             left: -4px;
             width: 8px;
             height: calc(100% - 20px);
-            background: linear-gradient(180deg,
-                    var(--primaria-clara),
-                    var(--primaria-escura),
-                    var(--primaria-clara));
+            background: linear-gradient(180deg, var(--primaria-clara), var(--primaria-escura), var(--primaria-clara));
             border-radius: 4px;
             box-shadow: 0 0 15px var(--primaria);
             animation: borderPulse 2s ease-in-out infinite;
@@ -509,122 +699,15 @@
             box-shadow: 0 0 20px var(--cor-informatica);
         }
 
-        .submenu-ano.mostrar .corner-decoration {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border: 2px solid var(--primaria);
-            opacity: 0.3;
-        }
-
-        .submenu-ano.mostrar .corner-tl {
-            top: -2px;
-            left: -2px;
-            border-right: none;
-            border-bottom: none;
-            border-radius: 12px 0 0 0;
-        }
-
-        .submenu-ano.mostrar .corner-br {
-            bottom: -2px;
-            right: -2px;
-            border-left: none;
-            border-top: none;
-            border-radius: 0 0 12px 0;
-        }
-
-        .submenu-ano.mostrar .botao-ano {
-            position: relative;
-            width: 100%;
-            padding: 14px 18px;
-            margin-bottom: 8px;
-            border: none;
-            background: transparent;
-            border-radius: 14px;
-            text-align: left;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--texto-primario);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-            border: 1px solid transparent;
-
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-        }
-
-        .submenu-ano.mostrar .botao-ano:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: var(--primaria-clara);
-            transform: translateX(8px) scale(1.02);
-            box-shadow:
-                0 8px 16px -8px var(--primaria),
-                0 0 0 2px rgba(255, 255, 255, 0.8);
-            padding-left: 24px;
-        }
-
-        .submenu-ano.mostrar .botao-ano:hover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primaria);
-            border-radius: 14px 0 0 14px;
-            animation: slideIn 0.3s ease;
-        }
-
-        .submenu-ano.mostrar .botao-ano.ativo {
-            background: linear-gradient(135deg, var(--primaria), var(--primaria-escura));
-            color: white;
-            border: none;
-            box-shadow:
-                0 10px 20px -10px var(--primaria),
-                inset 0 2px 4px rgba(255, 255, 255, 0.3);
-            transform: scale(1.02);
-        }
-
-        .submenu-ano.mostrar .botao-ano.ativo::after {
-            content: '✓';
-            position: absolute;
-            right: 16px;
-            font-size: 16px;
-            font-weight: bold;
-            opacity: 0.8;
-            animation: checkAppear 0.3s ease;
-        }
-
-        .botao-curso.ativo+.submenu-ano.mostrar {
-            position: relative;
-        }
-
-        .botao-curso.ativo+.submenu-ano.mostrar::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            width: 2px;
-            height: 25px;
-            background: linear-gradient(180deg,
-                    transparent,
-                    var(--primaria),
-                    var(--primaria));
-            animation: connectorGrow 0.4s ease;
-        }
-
-
         @keyframes slideDownFancy {
             0% {
                 opacity: 0;
                 transform: translateY(-20px) scale(0.95);
                 filter: blur(4px);
             }
-
             50% {
                 transform: translateY(5px) scale(1.02);
             }
-
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -633,13 +716,10 @@
         }
 
         @keyframes borderPulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 0.6;
                 transform: scaleY(0.95);
             }
-
             50% {
                 opacity: 1;
                 transform: scaleY(1.05);
@@ -648,91 +728,13 @@
         }
 
         @keyframes borderGlow {
-
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 0.3;
                 filter: blur(2px);
             }
-
             50% {
                 opacity: 0.7;
                 filter: blur(4px);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: scaleY(0);
-                opacity: 0;
-            }
-
-            to {
-                transform: scaleY(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes checkAppear {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-
-            to {
-                opacity: 0.8;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes connectorGrow {
-            from {
-                transform: scaleY(0);
-                opacity: 0;
-            }
-
-            to {
-                transform: scaleY(1);
-                opacity: 1;
-            }
-        }
-
-        .submenu-ano.mostrar {
-            overflow: hidden;
-        }
-
-        .submenu-ano.mostrar .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primaria-clara);
-            border-radius: 50%;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        @media (max-width: 768px) {
-            .submenu-ano.mostrar {
-                margin-left: 30px;
-                padding: 10px 12px;
-            }
-
-            .submenu-ano.mostrar .botao-ano {
-                padding: 12px 16px;
-                font-size: 13px;
-            }
-
-            .submenu-ano.mostrar::after {
-                width: 6px;
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .submenu-ano.mostrar {
-                background: linear-gradient(95deg,
-                        rgba(255, 255, 255, 0.95) 0%,
-                        rgba(254, 254, 255, 0.98) 50%,
-                        rgba(255, 255, 255, 0.95) 100%);
             }
         }
 
@@ -774,8 +776,13 @@
             background: var(--superficie);
             transition: var(--transicao);
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-            background: white;
             border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.tema-escuro .campo-pesquisa {
+            background: var(--superficie-escuro);
+            color: var(--texto-primario-escuro);
+            border: 1px solid rgba(51, 65, 85, 0.5);
         }
 
         .campo-pesquisa:focus {
@@ -814,33 +821,6 @@
             margin-bottom: 32px;
         }
 
-        .cabecalho-estatisticas {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .botao-pdf {
-            background: var(--gradiente);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transicao-suave);
-            box-shadow: 0 8px 16px -4px var(--primaria);
-        }
-
-        .botao-pdf:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 24px -4px var(--primaria);
-        }
-
         @media (max-width: 768px) {
             .grade-estatisticas {
                 grid-template-columns: 1fr 1fr;
@@ -865,6 +845,11 @@
             overflow: hidden;
             backdrop-filter: blur(4px);
             background: rgba(255, 255, 255, 0.9);
+        }
+
+        body.tema-escuro .cartao-estatistica {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(51, 65, 85, 0.5);
         }
 
         .cartao-estatistica:hover {
@@ -983,7 +968,6 @@
             0% {
                 transform: translateX(-100%);
             }
-
             100% {
                 transform: translateX(100%);
             }
@@ -1014,6 +998,10 @@
         }
 
         @media (max-width: 640px) {
+            .container-tabela {
+                overflow-x: visible;
+                padding: 0;
+            }
 
             table,
             thead,
@@ -1022,44 +1010,146 @@
             td,
             tr {
                 display: block;
+                width: 100%;
+            }
+
+            table {
+                min-width: 100%;
             }
 
             thead tr {
                 position: absolute;
                 top: -9999px;
                 left: -9999px;
+                height: 0;
+                overflow: hidden;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px;
             }
 
             tr {
-                border-bottom: 2px solid var(--borda);
-                padding: 20px 16px;
+                border: 1px solid var(--borda);
+                border-radius: 12px;
+                padding: 14px;
                 position: relative;
                 transition: var(--transicao);
+                background: var(--superficie);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                margin-bottom: 0;
+                page-break-inside: avoid;
+            }
+
+            body.tema-escuro tr {
+                border-color: #334155;
+                background: rgba(30, 41, 59, 0.7);
             }
 
             tr:hover {
-                background: #f8fafd;
+                background: #f9fcff;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+            }
+
+            body.tema-escuro tr:hover {
+                background: rgba(30, 41, 59, 0.9);
             }
 
             td {
                 border: none;
-                padding: 10px 8px 10px 140px;
+                padding: 10px 0;
                 position: relative;
-                min-height: 48px;
+                min-height: auto;
+                display: grid;
+                grid-template-columns: 110px 1fr;
+                gap: 12px;
+                align-items: center;
+                font-size: 0.95rem;
+                line-height: 1.4;
+                word-break: break-word;
+            }
+
+            td:first-child {
+                padding-top: 0;
+                font-weight: 700;
+                color: var(--primaria);
+                grid-column: 1 / -1;
+                margin-bottom: 8px;
+            }
+
+            td:last-child {
+                padding-bottom: 0;
+                grid-column: 1 / -1;
+                display: flex;
+                gap: 6px;
+                justify-content: flex-end;
+                padding-top: 10px;
+                border-top: 1px solid var(--borda);
+                margin-top: 8px;
+            }
+
+            body.tema-escuro td:last-child {
+                border-top-color: #334155;
             }
 
             td:before {
-                position: absolute;
-                left: 16px;
-                width: 120px;
-                padding-right: 10px;
-                white-space: nowrap;
+                content: attr(data-label);
+                position: static;
                 font-weight: 700;
                 color: var(--primaria);
-                font-size: 13px;
-                content: attr(data-label);
+                font-size: 11px;
                 text-transform: uppercase;
-                letter-spacing: 0.03em;
+                letter-spacing: 0.05em;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .distintivo-status {
+                padding: 4px 10px;
+                border-radius: 16px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                white-space: nowrap;
+                justify-self: start;
+            }
+
+            .observacao-celula {
+                grid-column: 1 / -1;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .observacao-celula:before {
+                content: 'OBSERVACAO';
+            }
+
+            .acoes-celula {
+                grid-column: 1 / -1;
+                display: flex;
+                gap: 6px;
+                justify-content: flex-end;
+                padding-top: 10px;
+                border-top: 1px solid var(--borda);
+                margin-top: 8px;
+            }
+
+            body.tema-escuro .acoes-celula {
+                border-top-color: #334155;
+            }
+
+            .acoes-celula:before {
+                display: none;
+            }
+
+            .botao-acao {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+                border-radius: 8px;
             }
         }
 
@@ -1148,6 +1238,156 @@
         .botao-flutuante:hover {
             transform: scale(1.15) rotate(180deg);
             box-shadow: 0 20px 40px -8px var(--primaria);
+        }
+
+        /* Botão de tema no cabeçalho */
+        .cabecalho-direita {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .botao-tema {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--borda);
+            color: var(--texto-secundario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transicao);
+            opacity: 0.7;
+        }
+
+        .botao-tema:hover {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.08);
+            transform: scale(1.1);
+        }
+
+        body.tema-escuro .botao-tema {
+            color: #fbbf24;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .botao-tema:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dropdown de exportação */
+        .cabecalho-estatisticas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .container-exportacao {
+            position: relative;
+            display: inline-block;
+        }
+
+        .botao-exportar-principal {
+            background: var(--gradiente);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transicao-suave);
+            box-shadow: 0 8px 16px -4px var(--primaria);
+            font-size: 16px;
+        }
+
+        .botao-exportar-principal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px -4px var(--primaria);
+        }
+
+        .dropdown-exportacao {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            min-width: 180px;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .dropdown-exportacao.mostrar {
+            display: block;
+            animation: dropdownIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes dropdownIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .dropdown-exportacao .dropdown-item {
+            padding: 14px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--texto-primario);
+            transition: var(--transicao);
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .dropdown-exportacao .dropdown-item:hover {
+            background: rgba(0, 0, 0, 0.04);
+            padding-left: 28px;
+        }
+
+        .dropdown-exportacao .dropdown-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .dropdown-exportacao .dropdown-item.pdf-item i {
+            color: #d32f2f;
+        }
+
+        .dropdown-exportacao .dropdown-item.excel-item i {
+            color: #217346;
+        }
+
+        body.tema-escuro .dropdown-exportacao {
+            background: rgba(30, 41, 59, 0.98);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        body.tema-escuro .dropdown-exportacao .dropdown-item {
+            color: #e2e8f0;
+        }
+
+        body.tema-escuro .dropdown-exportacao .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .acoes-celula {
@@ -1239,13 +1479,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .conteudo-modal {
@@ -1263,6 +1498,11 @@
             max-height: 90vh;
         }
 
+        body.tema-escuro .conteudo-modal {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+
         .conteudo-modal.senha-modal {
             max-width: 400px;
         }
@@ -1272,7 +1512,6 @@
                 transform: translateY(60px) scale(0.85);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0) scale(1);
                 opacity: 1;
@@ -1396,6 +1635,16 @@
             font-size: 1.2rem;
         }
 
+        body.tema-escuro .campo-senha input {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+
+        body.tema-escuro .campo-senha input:focus {
+            background: #1e293b;
+        }
+
         .campo-senha input:focus {
             outline: none;
             border-color: var(--primaria);
@@ -1410,19 +1659,9 @@
         }
 
         @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-5px);
-            }
-
-            75% {
-                transform: translateX(5px);
-            }
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
 
         .toggle-senha {
@@ -1461,7 +1700,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1596,11 +1834,9 @@
                 transform: translate(-50%, -50%) scale(0.5);
                 opacity: 0;
             }
-
             50% {
                 transform: translate(-50%, -50%) scale(1.1);
             }
-
             100% {
                 transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
@@ -1780,7 +2016,6 @@
                 opacity: 0;
                 transform: translateX(-50%) scale(0.8);
             }
-
             to {
                 bottom: 40px;
                 opacity: 1;
@@ -1799,6 +2034,10 @@
             background: radial-gradient(circle at 80% 20%, rgba(0, 133, 84, 0.05) 0%, transparent 60%);
         }
 
+        body.tema-escuro .area-vazia-melhorada {
+            background: radial-gradient(circle at 80% 20%, rgba(0, 133, 84, 0.1) 0%, transparent 60%);
+        }
+
         .secao-boas-vindas {
             max-width: 800px;
             margin-bottom: 80px;
@@ -1806,19 +2045,6 @@
             transform: none !important;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== CHAPÉU 3D ULTRA REALISTA (TAMANHO AJUSTADO) ===== */
         #canvas-container-principal {
             width: 220px;
             height: 220px;
@@ -1837,18 +2063,6 @@
 
         .icone-principal {
             display: none !important;
-        }
-
-        @keyframes flutuar {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
         }
 
         .titulo-principal {
@@ -1892,13 +2106,42 @@
             animation: fadeInUp 1.2s ease;
         }
 
-        .cartao-curso[data-curso="administracao"]:hover {
-            box-shadow: 0 40px 60px -15px var(--cor-adm);
-            border-color: var(--cor-adm);
+        /* Cores individuais dos cartões - Estado Normal */
+        .cartao-curso[data-curso="administracao"] {
+            border-color: rgba(0, 86, 167, 0.3);
         }
 
         .cartao-curso[data-curso="administracao"] .icone-cartao {
             color: var(--cor-adm);
+        }
+
+        .cartao-curso[data-curso="eletrotecnica"] {
+            border-color: rgba(217, 119, 6, 0.3);
+        }
+
+        .cartao-curso[data-curso="eletrotecnica"] .icone-cartao {
+            color: var(--cor-eletro);
+        }
+
+        .cartao-curso[data-curso="enfermagem"] {
+            border-color: rgba(5, 150, 105, 0.3);
+        }
+
+        .cartao-curso[data-curso="enfermagem"] .icone-cartao {
+            color: var(--cor-enfermagem);
+        }
+
+        .cartao-curso[data-curso="informatica"] {
+            border-color: rgba(211, 47, 47, 0.3);
+        }
+
+        .cartao-curso[data-curso="informatica"] .icone-cartao {
+            color: var(--cor-informatica);
+        }
+
+        .cartao-curso[data-curso="administracao"]:hover {
+            box-shadow: 0 40px 60px -15px var(--cor-adm);
+            border-color: var(--cor-adm);
         }
 
         .cartao-curso[data-curso="eletrotecnica"]:hover {
@@ -1906,26 +2149,14 @@
             border-color: var(--cor-eletro);
         }
 
-        .cartao-curso[data-curso="eletrotecnica"] .icone-cartao {
-            color: var(--cor-eletro);
-        }
-
         .cartao-curso[data-curso="enfermagem"]:hover {
             box-shadow: 0 40px 60px -15px var(--cor-enfermagem);
             border-color: var(--cor-enfermagem);
         }
 
-        .cartao-curso[data-curso="enfermagem"] .icone-cartao {
-            color: var(--cor-enfermagem);
-        }
-
         .cartao-curso[data-curso="informatica"]:hover {
             box-shadow: 0 40px 60px -15px var(--cor-informatica);
             border-color: var(--cor-informatica);
-        }
-
-        .cartao-curso[data-curso="informatica"] .icone-cartao {
-            color: var(--cor-informatica);
         }
 
         .cartao-curso {
@@ -2133,6 +2364,40 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .cabecalho {
+                padding: 10px 16px;
+            }
+
+            .titulo-cabecalho h2 {
+                font-size: 1.1rem;
+            }
+
+            .titulo-cabecalho p {
+                font-size: 0.75rem;
+            }
+
+            .botao-menu-hamburguer {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+                margin-right: 8px;
+            }
+
+            #miniLogo {
+                width: 38px;
+                height: 38px;
+            }
+
+            .botao-tema {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .cabecalho-direita {
+                gap: 8px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2185,18 +2450,66 @@
                 font-size: 0.95rem;
                 line-height: 1.6;
             }
+
+            .titulo-principal {
+                font-size: 2rem;
+            }
+
+            .subtitulo-principal {
+                font-size: 1rem;
+            }
+
+            .descricao-principal {
+                font-size: 0.9rem;
+            }
+
+            .grade-cursos {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cartao-curso {
+                padding: 30px 20px;
+                border-radius: 30px;
+            }
+
+            .secao-dicas {
+                padding: 32px 24px;
+                border-radius: 30px;
+            }
+
+            .titulo-dicas {
+                font-size: 1.4rem;
+            }
+
+            .texto-dica {
+                font-size: 1rem;
+            }
+
+            .titulo-cabecalho h2 {
+                font-size: 1rem;
+            }
+
+            #miniLogo {
+                width: 32px;
+                height: 32px;
+                border-width: 2px;
+            }
+
+            .botao-tema {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .cabecalho-direita {
+                gap: 6px;
+            }
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .pulse {
@@ -2277,14 +2590,6 @@
             overflow: hidden;
         }
 
-        .spinner-logo {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .spinner-logo canvas {
             max-width: 100%;
             max-height: 100%;
@@ -2324,44 +2629,14 @@
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.5;
-                transform: scale(0.98);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes progress {
-            0% {
-                width: 0%;
-                margin-left: 0%;
-            }
-
-            50% {
-                width: 60%;
-                margin-left: 20%;
-            }
-
-            100% {
-                width: 0%;
-                margin-left: 100%;
-            }
+            0% { width: 0%; margin-left: 0%; }
+            50% { width: 60%; margin-left: 20%; }
+            100% { width: 0%; margin-left: 100%; }
         }
     </style>
 </head>
@@ -2392,7 +2667,6 @@
             </div>
 
             <nav class="navegacao-barra-lateral">
-
                 <div
                     style="padding: 10px 16px; margin-bottom: 15px; background: rgba(0,0,0,0.03); border-radius: 12px; text-align: center;">
                     <div id="relogio-digital"
@@ -2402,7 +2676,6 @@
                         style="font-size: 11px; color: var(--texto-suave); text-transform: uppercase; font-weight: 600;">
                         -- de -- de ----</div>
                 </div>
-
 
                 <button class="botao-curso" onclick="voltarInicio()"
                     style="margin-bottom: 15px; background: var(--fundo); border: 1px solid var(--borda);">
@@ -2470,7 +2743,6 @@
                 </div>
 
                 <div style="margin-top: auto; padding: 15px 12px; border-top: 1px solid var(--borda);">
-
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
                         <div
                             style="background: #f0fdf4; padding: 10px; border-radius: 10px; border: 1px solid #dcfce7; text-align: center;">
@@ -2507,8 +2779,13 @@
                         <p id="textoSubtitulo">Selecione uma turma</p>
                     </div>
                 </div>
-                <img src="c:\Users\kauaj\Downloads\ChatGPT Image 28 de fev. de 2026, 17_04_54.png"
-                    style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
+                <div class="cabecalho-direita">
+                    <img src="c:\Users\kauaj\Downloads\ChatGPT Image 28 de fev. de 2026, 17_04_54.png"
+                        style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
+                    <button class="botao-tema" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
+                        <i class="fas fa-moon" id="iconeTema"></i>
+                    </button>
+                </div>
             </header>
 
             <div class="conteudo">
@@ -2569,7 +2846,7 @@
                             </li>
                             <li class="item-dica">
                                 <span class="numero-dica">4</span>
-                                <span class="texto-dica">Exporte relatórios em PDF com um clique.</span>
+                                <span class="texto-dica">Exporte relatórios em PDF ou Excel com um clique.</span>
                             </li>
                         </ul>
                     </div>
@@ -2615,9 +2892,20 @@
 
                     <div class="cabecalho-estatisticas">
                         <h3 style="font-size:1.5rem; font-weight:700;">Registros</h3>
-                        <button class="botao-pdf" id="botaoExportarPDF">
-                            <i class="fas fa-file-pdf"></i> Exportar PDF
-                        </button>
+                        <div class="container-exportacao">
+                            <button class="botao-exportar-principal" id="botaoExportar">
+                                <i class="fas fa-download"></i> Exportar
+                                <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                            </button>
+                            <div class="dropdown-exportacao" id="dropdownExportacao">
+                                <button class="dropdown-item pdf-item" id="exportarPDF">
+                                    <i class="fas fa-file-pdf"></i> Exportar PDF
+                                </button>
+                                <button class="dropdown-item excel-item" id="exportarExcel">
+                                    <i class="fas fa-file-excel"></i> Exportar Excel
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="container-tabela">
@@ -2645,6 +2933,7 @@
         </main>
     </div>
 
+    <!-- Modais (mantidos iguais) -->
     <div class="modal" id="modalSenha">
         <div class="conteudo-modal senha-modal">
             <div class="cabecalho-modal">
@@ -2827,12 +3116,11 @@
     </div>
 
     <script>
-
         const SENHA_CORRETA = "zelia@22";
         let sistemaBloqueado = true;
         let tentativasSenha = 0;
         const MAX_TENTATIVAS = 5;
-
+        let temaEscuroAtivo = localStorage.getItem('tema_escuro_eeep') === 'true';
 
         let alunos = JSON.parse(localStorage.getItem('alunos_eeep_pt')) || [];
         let cursoAtivo = null;
@@ -2842,6 +3130,50 @@
         let filtroAtual = '';
         let alunosFiltrados = [];
 
+        // Funções de tema
+        function alternarTema() {
+            temaEscuroAtivo = !temaEscuroAtivo;
+            localStorage.setItem('tema_escuro_eeep', temaEscuroAtivo.toString());
+            aplicarTema();
+        }
+
+        function aplicarTema() {
+            const iconeTema = document.getElementById('iconeTema');
+            if (temaEscuroAtivo) {
+                document.body.classList.add('tema-escuro');
+                if (iconeTema) iconeTema.className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('tema-escuro');
+                if (iconeTema) iconeTema.className = 'fas fa-moon';
+            }
+        }
+
+        function mostrarBotaoTema() {
+            const botaoTema = document.getElementById('botaoAlternarTema');
+            if (!sistemaBloqueado) {
+                botaoTema.style.display = 'flex';
+            }
+        }
+
+        function esconderBotaoTema() {
+            const botaoTema = document.getElementById('botaoAlternarTema');
+            botaoTema.style.display = 'none';
+        }
+
+        // Dropdown de exportação
+        function alternarDropdownExportacao(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('dropdownExportacao');
+            dropdown.classList.toggle('mostrar');
+        }
+
+        function fecharDropdownExportacao(e) {
+            const container = document.querySelector('.container-exportacao');
+            const dropdown = document.getElementById('dropdownExportacao');
+            if (container && !container.contains(e.target)) {
+                dropdown.classList.remove('mostrar');
+            }
+        }
 
         function mostrarModalSenha() {
             const modal = document.getElementById('modalSenha');
@@ -2855,7 +3187,6 @@
             const minutos = String(agora.getMinutes()).padStart(2, '0');
 
             document.getElementById('dataHoraSenha').textContent = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
-
             document.getElementById('campoSenha').value = '';
             document.getElementById('mensagemErroSenha').classList.remove('mostrar');
             document.getElementById('campoSenha').classList.remove('campo-invalido');
@@ -2863,19 +3194,6 @@
 
         function fecharModalSenha() {
             document.getElementById('modalSenha').classList.remove('mostrar');
-        }
-
-        function toggleMostrarSenha() {
-            const campoSenha = document.getElementById('campoSenha');
-            const icone = document.getElementById('iconeToggleSenha');
-
-            if (campoSenha.type === 'password') {
-                campoSenha.type = 'text';
-                icone.className = 'far fa-eye-slash';
-            } else {
-                campoSenha.type = 'password';
-                icone.className = 'far fa-eye';
-            }
         }
 
         function verificarSenha() {
@@ -2892,7 +3210,6 @@
 
             if (senhaDigitada !== SENHA_CORRETA) {
                 tentativasSenha++;
-
                 const tentativasRestantes = MAX_TENTATIVAS - tentativasSenha;
 
                 if (tentativasRestantes <= 0) {
@@ -2902,7 +3219,6 @@
                     mostrarErroSenha(`Senha incorreta. Tentativas restantes: ${tentativasRestantes}`);
                     campoSenha.classList.add('campo-invalido');
                 }
-
                 return false;
             }
 
@@ -2921,6 +3237,7 @@
                 sistemaBloqueado = false;
                 document.body.classList.remove('sistema-bloqueado');
                 fecharModalSenha();
+                mostrarBotaoTema();
                 mostrarNotificacao('Sistema desbloqueado com sucesso!', 'sucesso');
             }
         }
@@ -2928,9 +3245,9 @@
         function bloquearSistema() {
             sistemaBloqueado = true;
             document.body.classList.add('sistema-bloqueado');
+            esconderBotaoTema();
             mostrarModalSenha();
-            mostrarNotificacao('Sistema bloqueado!', 'aviso');
-
+            mostrarNotificacao('Sistema bloqueado!', 'info');
 
             if (window.innerWidth < 1024) {
                 alternarMenu();
@@ -2959,17 +3276,19 @@
             const areaVazia = document.getElementById('areaVazia');
             areaVazia.style.display = 'flex';
             areaVazia.style.opacity = '1';
-
             void areaVazia.offsetWidth;
 
             document.getElementById('areaDados').style.display = 'none';
             document.getElementById('botaoNovo').style.display = 'none';
             document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
+            
+            if (temaEscuroAtivo && !sistemaBloqueado) {
+                document.body.classList.add('tema-escuro');
+            }
 
             fecharMenu();
-
             atualizarEstatisticasMenu();
-
+            mostrarBotaoTema();
             mostrarNotificacao('Voltando ao início', 'info');
         }
 
@@ -2992,50 +3311,34 @@
         function atualizarEstatisticasMenu() {
             const hoje = new Date().toISOString().split('T')[0];
             const registrosHoje = alunos.filter(a => a.data === hoje);
-
             const atrasos = registrosHoje.filter(a => a.tipo === 'atraso').length;
             const saidas = registrosHoje.filter(a => a.tipo === 'saida').length;
 
             const statAtrasos = document.getElementById('stat-atrasos');
             const statSaidas = document.getElementById('stat-saidas');
-
             if (statAtrasos) statAtrasos.textContent = atrasos;
             if (statSaidas) statSaidas.textContent = saidas;
         }
 
-
         function exportarParaPDF() {
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
-            if (!cursoAtivo || !anoAtivo) {
-                mostrarNotificacao('Selecione um curso e ano primeiro', 'erro');
-                return;
-            }
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
+            if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione um curso e ano primeiro', 'erro'); return; }
 
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-
             const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
             const atrasos = lista.filter(a => a.tipo === 'atraso').length;
             const saidas = lista.filter(a => a.tipo === 'saida').length;
             const totalRegistros = lista.length;
-
             const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
             const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
-
 
             doc.setFontSize(20);
             doc.setTextColor(0, 74, 141);
             doc.text('Relatório de Frequência', 14, 20);
-
-
             doc.setFontSize(14);
             doc.setTextColor(60, 60, 60);
             doc.text(`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
-
 
             const dataAtual = new Date();
             const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
@@ -3043,12 +3346,9 @@
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
             doc.text(`Gerado em: ${dataFormatada} às ${horaFormatada}`, 14, 38);
-
-
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
             doc.text('Resumo Estatístico:', 14, 50);
-
             doc.setFontSize(11);
             doc.setTextColor(60, 60, 60);
             doc.text(`Total de Alunos: ${TOTAL_ALUNOS}`, 20, 60);
@@ -3059,12 +3359,7 @@
             if (lista.length > 0) {
                 const dadosTabela = lista.sort((a, b) => b.id - a.id).map(aluno => {
                     const dataFormatada = aluno.data.split('-').reverse().join('/');
-                    return [
-                        aluno.nome,
-                        aluno.tipo === 'atraso' ? 'Atraso' : 'Saída Antecipada',
-                        `${dataFormatada} ${aluno.hora}`,
-                        aluno.observacao || '-'
-                    ];
+                    return [aluno.nome, aluno.tipo === 'atraso' ? 'Atraso' : 'Saída Antecipada', `${dataFormatada} ${aluno.hora}`, aluno.observacao || '-'];
                 });
 
                 doc.autoTable({
@@ -3072,25 +3367,10 @@
                     head: [['Aluno', 'Status', 'Data/Hora', 'Observação']],
                     body: dadosTabela,
                     theme: 'striped',
-                    headStyles: {
-                        fillColor: [0, 74, 141],
-                        textColor: [255, 255, 255],
-                        fontStyle: 'bold',
-                        fontSize: 10
-                    },
-                    alternateRowStyles: {
-                        fillColor: [245, 245, 245]
-                    },
-                    styles: {
-                        fontSize: 9,
-                        cellPadding: 5
-                    },
-                    columnStyles: {
-                        0: { cellWidth: 60 },
-                        1: { cellWidth: 40 },
-                        2: { cellWidth: 45 },
-                        3: { cellWidth: 'auto' }
-                    }
+                    headStyles: { fillColor: [0, 74, 141], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 10 },
+                    alternateRowStyles: { fillColor: [245, 245, 245] },
+                    styles: { fontSize: 9, cellPadding: 5 },
+                    columnStyles: { 0: { cellWidth: 60 }, 1: { cellWidth: 40 }, 2: { cellWidth: 45 }, 3: { cellWidth: 'auto' } }
                 });
             } else {
                 doc.setFontSize(12);
@@ -3103,28 +3383,74 @@
                 doc.setPage(i);
                 doc.setFontSize(8);
                 doc.setTextColor(150, 150, 150);
-                doc.text(
-                    `Sistema de Controle EEEP - Página ${i} de ${pageCount}`,
-                    doc.internal.pageSize.width / 2,
-                    doc.internal.pageSize.height - 10,
-                    { align: 'center' }
-                );
+                doc.text(`Sistema de Controle EEEP - Página ${i} de ${pageCount}`, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
             }
 
             const nomeArquivo = `relatorio_${cursoAtivo}_${anoAtivo.replace('º', '')}_${dataAtual.toISOString().split('T')[0]}.pdf`;
             doc.save(nomeArquivo);
-
             mostrarNotificacao('PDF gerado com sucesso!', 'sucesso');
+            document.getElementById('dropdownExportacao').classList.remove('mostrar');
         }
 
+        function exportarParaExcel() {
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
+            if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione um curso e ano primeiro', 'erro'); return; }
 
+            const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
+            const atrasos = lista.filter(a => a.tipo === 'atraso').length;
+            const saidas = lista.filter(a => a.tipo === 'saida').length;
+            const totalRegistros = lista.length;
+            const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
+            const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
+
+            const dataAtual = new Date();
+            const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
+            const horaFormatada = dataAtual.toLocaleTimeString('pt-BR');
+
+            const dadosExcel = [
+                ['RELATÓRIO DE FREQUÊNCIA - EEEP ZÉLIA'],
+                [`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`],
+                [`Gerado em: ${dataFormatada} às ${horaFormatada}`],
+                [''],
+                ['RESUMO ESTATÍSTICO'],
+                ['Total de Alunos', TOTAL_ALUNOS],
+                ['Total de Atrasos', `${atrasos} (${porcentagemAtrasos}%)`],
+                ['Total de Saídas', `${saidas} (${porcentagemSaidas}%)`],
+                ['Total de Registros', totalRegistros],
+                [''],
+                ['LISTAGEM DE REGISTROS'],
+                ['Aluno', 'Status', 'Data/Hora', 'Observação']
+            ];
+
+            if (lista.length > 0) {
+                const listaOrdenada = [...lista].sort((a, b) => b.id - a.id);
+                listaOrdenada.forEach(aluno => {
+                    const dataFormatada = aluno.data.split('-').reverse().join('/');
+                    dadosExcel.push([aluno.nome, aluno.tipo === 'atraso' ? 'Atraso' : 'Saída Antecipada', `${dataFormatada} ${aluno.hora}`, aluno.observacao || '-']);
+                });
+            } else {
+                dadosExcel.push(['Nenhum registro encontrado para este período.', '', '', '']);
+            }
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(dadosExcel);
+            ws['!cols'] = [{ wch: 40 }, { wch: 20 }, { wch: 25 }, { wch: 50 }];
+            XLSX.utils.book_append_sheet(wb, ws, 'Relatório');
+
+            const nomeArquivo = `relatorio_${cursoAtivo}_${anoAtivo.replace('º', '')}_${dataAtual.toISOString().split('T')[0]}.xlsx`;
+            XLSX.writeFile(wb, nomeArquivo);
+            mostrarNotificacao('Excel gerado com sucesso!', 'sucesso');
+            document.getElementById('dropdownExportacao').classList.remove('mostrar');
+        }
+
+        // Inicialização
         window.addEventListener('load', () => {
+            aplicarTema();
             inicializarMenu();
             inicializarEventos();
             definirDataAtual();
             inicializarPesquisa();
             inicializarEventosSenha();
-
 
             atualizarRelogio();
             setInterval(atualizarRelogio, 1000);
@@ -3134,7 +3460,14 @@
                 mostrarModalSenha();
             }, 500);
 
-            document.getElementById('botaoExportarPDF').addEventListener('click', exportarParaPDF);
+            // Eventos de exportação
+            document.getElementById('botaoExportar').addEventListener('click', alternarDropdownExportacao);
+            document.getElementById('exportarPDF').addEventListener('click', exportarParaPDF);
+            document.getElementById('exportarExcel').addEventListener('click', exportarParaExcel);
+            document.addEventListener('click', fecharDropdownExportacao);
+            
+            // Evento do botão de tema
+            document.getElementById('botaoAlternarTema').addEventListener('click', alternarTema);
         });
 
         function inicializarEventosSenha() {
@@ -3153,41 +3486,27 @@
                 });
             }
             document.getElementById('botaoDesbloquear').addEventListener('click', desbloquearSistema);
-
             document.getElementById('campoSenha').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    desbloquearSistema();
-                }
+                if (e.key === 'Enter') { e.preventDefault(); desbloquearSistema(); }
             });
-
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && sistemaBloqueado) {
-                    e.preventDefault();
-                }
+                if (e.key === 'Escape' && sistemaBloqueado) { e.preventDefault(); }
             });
         }
 
         function alternarMenu() {
             const menu = document.getElementById('barraLateral');
             const sobreposicao = document.getElementById('sobreposicao');
-
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
 
             const estaAberto = menu.classList.contains('mostrar');
-
             if (estaAberto) {
                 menu.classList.remove('mostrar');
                 sobreposicao.classList.remove('mostrar');
                 document.body.classList.remove('menu-aberto');
             } else {
                 menu.classList.add('mostrar');
-                if (window.innerWidth < 1024) {
-                    sobreposicao.classList.add('mostrar');
-                }
+                if (window.innerWidth < 1024) { sobreposicao.classList.add('mostrar'); }
                 document.body.classList.add('menu-aberto');
             }
         }
@@ -3195,7 +3514,6 @@
         function inicializarMenu() {
             const menu = document.getElementById('barraLateral');
             const sobreposicao = document.getElementById('sobreposicao');
-
             menu.classList.remove('mostrar');
             sobreposicao.classList.remove('mostrar');
             document.body.classList.remove('menu-aberto');
@@ -3205,50 +3523,34 @@
 
             document.querySelectorAll('.botao-curso').forEach(botao => {
                 botao.addEventListener('click', () => {
-                    if (sistemaBloqueado) {
-                        mostrarModalSenha();
-                        return;
-                    }
-
+                    if (sistemaBloqueado) { mostrarModalSenha(); return; }
                     const submenu = botao.nextElementSibling;
                     const estaVisivel = submenu.classList.contains('mostrar');
-
                     document.querySelectorAll('.submenu-ano').forEach(s => s.classList.remove('mostrar'));
-
-                    if (!estaVisivel) {
-                        submenu.classList.add('mostrar');
-                    }
-
+                    if (!estaVisivel) { submenu.classList.add('mostrar'); }
                     document.querySelectorAll('.botao-curso').forEach(b => b.classList.remove('ativo'));
-                    if (!estaVisivel) {
-                        botao.classList.add('ativo');
-                    }
+                    if (!estaVisivel) { botao.classList.add('ativo'); }
                 });
             });
 
             document.querySelectorAll('.botao-ano').forEach(botao => {
                 botao.addEventListener('click', () => {
-                    if (sistemaBloqueado) {
-                        mostrarModalSenha();
-                        return;
-                    }
-
+                    if (sistemaBloqueado) { mostrarModalSenha(); return; }
                     cursoAtivo = botao.closest('.item-curso').querySelector('.botao-curso').dataset.curso;
                     anoAtivo = botao.dataset.ano;
-
                     document.querySelectorAll('.botao-ano').forEach(b => b.classList.remove('ativo'));
                     botao.classList.add('ativo');
 
                     const classesAtuais = Array.from(document.body.classList);
-                    const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'menu-fechado');
+                    const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'menu-fechado' && c !== 'tema-escuro');
                     document.body.className = outrasClasses.join(' ') + ` tema-${cursoAtivo.normalize('NFD').replace(/[\u0300-\u036f]/g, "")}` + (sistemaBloqueado ? ' sistema-bloqueado' : '');
+                    
+                    if (temaEscuroAtivo && !sistemaBloqueado) { document.body.classList.add('tema-escuro'); }
 
                     mostrarAreaDados();
-
                     menu.classList.remove('mostrar');
                     sobreposicao.classList.remove('mostrar');
                     document.body.classList.remove('menu-aberto');
-
                     renderizar();
                 });
             });
@@ -3256,13 +3558,9 @@
 
         function inicializarEventos() {
             document.getElementById('botaoNovo').addEventListener('click', () => {
-                if (sistemaBloqueado) {
-                    mostrarModalSenha();
-                    return;
-                }
+                if (sistemaBloqueado) { mostrarModalSenha(); return; }
                 abrirModalRegistro();
             });
-
             document.getElementById('botaoCancelar').addEventListener('click', fecharModalRegistro);
             document.getElementById('botaoCancelarEdicao').addEventListener('click', fecharModalEdicao);
             document.getElementById('botaoCancelarExclusao').addEventListener('click', fecharModalConfirmacao);
@@ -3270,18 +3568,15 @@
             document.getElementById('botaoFecharObservacao').addEventListener('click', fecharModalObservacao);
             document.getElementById('formularioRegistro').addEventListener('submit', salvarRegistro);
             document.getElementById('formularioEdicao').addEventListener('submit', salvarEdicao);
-
             document.getElementById('nomeAluno').addEventListener('blur', validarCampo);
             document.getElementById('dataRegistro').addEventListener('blur', validarCampo);
             document.getElementById('horaRegistro').addEventListener('blur', validarCampo);
-
             document.getElementById('editarNomeAluno').addEventListener('blur', validarCampoEdicao);
             document.getElementById('editarDataRegistro').addEventListener('blur', validarCampoEdicao);
             document.getElementById('editarHoraRegistro').addEventListener('blur', validarCampoEdicao);
 
             window.addEventListener('click', (evento) => {
                 if (sistemaBloqueado) return;
-
                 const modais = ['modalRegistro', 'modalConfirmacao', 'modalObservacao', 'modalEdicao'];
                 modais.forEach(modalId => {
                     const modal = document.getElementById(modalId);
@@ -3305,19 +3600,13 @@
 
         function aplicarFiltro() {
             if (!cursoAtivo || !anoAtivo) return;
-
             const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-
             if (filtroAtual) {
-                alunosFiltrados = lista.filter(aluno =>
-                    aluno.nome.toLowerCase().includes(filtroAtual)
-                );
+                alunosFiltrados = lista.filter(aluno => aluno.nome.toLowerCase().includes(filtroAtual));
             } else {
                 alunosFiltrados = [...lista];
             }
-
             renderizarTabela(alunosFiltrados);
-
             const semResultados = document.getElementById('semResultados');
             if (alunosFiltrados.length === 0 && lista.length > 0) {
                 semResultados.style.display = 'block';
@@ -3331,7 +3620,6 @@
             const dataFormatada = hoje.toISOString().split('T')[0];
             document.getElementById('dataRegistro').value = dataFormatada;
             document.getElementById('editarDataRegistro').value = dataFormatada;
-
             const horas = String(hoje.getHours()).padStart(2, '0');
             const minutos = String(hoje.getMinutes()).padStart(2, '0');
             document.getElementById('horaRegistro').value = `${horas}:${minutos}`;
@@ -3347,46 +3635,30 @@
         }
 
         function abrirModalEdicao(id) {
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
             const registro = alunos.find(aluno => aluno.id === id);
             if (!registro) return;
-
             document.getElementById('editarId').value = registro.id;
             document.getElementById('editarNomeAluno').value = registro.nome;
             document.getElementById('editarTipoRegistro').value = registro.tipo;
             document.getElementById('editarDataRegistro').value = registro.data;
             document.getElementById('editarHoraRegistro').value = registro.hora;
             document.getElementById('editarObservacaoRegistro').value = registro.observacao || '';
-
             document.getElementById('modalEdicao').classList.add('mostrar');
             limparValidacoesEdicao();
         }
 
         function abrirModalConfirmacao(id, nome) {
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
             registroParaExcluir = id;
-            document.getElementById('textoConfirmacao').textContent =
-                `Tem certeza que deseja excluir o registro de "${nome}"? Esta ação não pode ser desfeita.`;
+            document.getElementById('textoConfirmacao').textContent = `Tem certeza que deseja excluir o registro de "${nome}"? Esta ação não pode ser desfeita.`;
             document.getElementById('modalConfirmacao').classList.add('mostrar');
         }
 
         function abrirModalObservacao(observacao) {
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
             const conteudo = document.getElementById('conteudoObservacao');
             conteudo.textContent = observacao || 'Nenhuma observação registrada.';
-
             const agora = new Date();
             const dia = String(agora.getDate()).padStart(2, '0');
             const mes = String(agora.getMonth() + 1).padStart(2, '0');
@@ -3394,10 +3666,7 @@
             const horas = String(agora.getHours()).padStart(2, '0');
             const minutos = String(agora.getMinutes()).padStart(2, '0');
             const segundos = String(agora.getSeconds()).padStart(2, '0');
-
-            const dataHoraFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
-            document.getElementById('dataHoraObservacao').textContent = `Visualizado em ${dataHoraFormatada}`;
-
+            document.getElementById('dataHoraObservacao').textContent = `Visualizado em ${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
             document.getElementById('modalObservacao').classList.add('mostrar');
         }
 
@@ -3406,76 +3675,37 @@
             navigator.clipboard.writeText(conteudo).then(() => {
                 const botao = document.getElementById('botaoCopiarObservacao');
                 const textoOriginal = botao.innerHTML;
-
                 botao.classList.add('copiado');
                 botao.innerHTML = '<i class="fas fa-check"></i><span>Copiado!</span>';
-
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback-copia';
                 feedback.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 8px;"></i>Observação copiada com sucesso!';
                 document.body.appendChild(feedback);
-
-                setTimeout(() => {
-                    feedback.remove();
-                }, 2000);
-
-                setTimeout(() => {
-                    botao.classList.remove('copiado');
-                    botao.innerHTML = textoOriginal;
-                }, 2000);
-            }).catch(err => {
-                console.error('Erro ao copiar:', err);
-                alert('Erro ao copiar o texto.');
-            });
+                setTimeout(() => { feedback.remove(); }, 2000);
+                setTimeout(() => { botao.classList.remove('copiado'); botao.innerHTML = textoOriginal; }, 2000);
+            }).catch(err => { console.error('Erro ao copiar:', err); alert('Erro ao copiar o texto.'); });
         }
 
-        function fecharModalRegistro() {
-            document.getElementById('modalRegistro').classList.remove('mostrar');
-        }
-
-        function fecharModalEdicao() {
-            document.getElementById('modalEdicao').classList.remove('mostrar');
-        }
-
-        function fecharModalConfirmacao() {
-            document.getElementById('modalConfirmacao').classList.remove('mostrar');
-            registroParaExcluir = null;
-        }
-
-        function fecharModalObservacao() {
-            document.getElementById('modalObservacao').classList.remove('mostrar');
-        }
+        function fecharModalRegistro() { document.getElementById('modalRegistro').classList.remove('mostrar'); }
+        function fecharModalEdicao() { document.getElementById('modalEdicao').classList.remove('mostrar'); }
+        function fecharModalConfirmacao() { document.getElementById('modalConfirmacao').classList.remove('mostrar'); registroParaExcluir = null; }
+        function fecharModalObservacao() { document.getElementById('modalObservacao').classList.remove('mostrar'); }
 
         document.addEventListener('DOMContentLoaded', function () {
             const botaoFecharObservacao = document.getElementById('botaoFecharObservacao');
             const botaoFecharObservacaoRodape = document.getElementById('botaoFecharObservacaoRodape');
             const botaoCopiarObservacao = document.getElementById('botaoCopiarObservacao');
-
-            if (botaoFecharObservacao) {
-                botaoFecharObservacao.addEventListener('click', fecharModalObservacao);
-            }
-            if (botaoFecharObservacaoRodape) {
-                botaoFecharObservacaoRodape.addEventListener('click', fecharModalObservacao);
-            }
-            if (botaoCopiarObservacao) {
-                botaoCopiarObservacao.addEventListener('click', copiarObservacao);
-            }
+            if (botaoFecharObservacao) { botaoFecharObservacao.addEventListener('click', fecharModalObservacao); }
+            if (botaoFecharObservacaoRodape) { botaoFecharObservacaoRodape.addEventListener('click', fecharModalObservacao); }
+            if (botaoCopiarObservacao) { botaoCopiarObservacao.addEventListener('click', copiarObservacao); }
         });
 
         function validarCampo(evento) {
             const campo = evento.target;
             const mensagemId = 'mensagem' + campo.id.charAt(0).toUpperCase() + campo.id.slice(1);
             const mensagem = document.getElementById(mensagemId);
-
-            if (!campo.value.trim()) {
-                campo.classList.add('campo-invalido');
-                mensagem.style.display = 'block';
-                return false;
-            } else {
-                campo.classList.remove('campo-invalido');
-                mensagem.style.display = 'none';
-                return true;
-            }
+            if (!campo.value.trim()) { campo.classList.add('campo-invalido'); mensagem.style.display = 'block'; return false; }
+            else { campo.classList.remove('campo-invalido'); mensagem.style.display = 'none'; return true; }
         }
 
         function validarCampoEdicao(evento) {
@@ -3484,16 +3714,8 @@
             const nomeCampo = idCampo.replace('editar', '');
             const mensagemId = 'mensagemEditar' + nomeCampo.charAt(0).toUpperCase() + nomeCampo.slice(1);
             const mensagem = document.getElementById(mensagemId);
-
-            if (!campo.value.trim()) {
-                campo.classList.add('campo-invalido');
-                mensagem.style.display = 'block';
-                return false;
-            } else {
-                campo.classList.remove('campo-invalido');
-                mensagem.style.display = 'none';
-                return true;
-            }
+            if (!campo.value.trim()) { campo.classList.add('campo-invalido'); mensagem.style.display = 'block'; return false; }
+            else { campo.classList.remove('campo-invalido'); mensagem.style.display = 'none'; return true; }
         }
 
         function limparValidacoes() {
@@ -3508,60 +3730,38 @@
 
         function validarFormularioRegistro() {
             let valido = true;
-
             const campos = [
                 { id: 'nomeAluno', mensagem: 'mensagemNomeAluno' },
                 { id: 'dataRegistro', mensagem: 'mensagemDataRegistro' },
                 { id: 'horaRegistro', mensagem: 'mensagemHoraRegistro' }
             ];
-
             campos.forEach(campo => {
                 const elemento = document.getElementById(campo.id);
                 const mensagem = document.getElementById(campo.mensagem);
-
-                if (!elemento.value.trim()) {
-                    elemento.classList.add('campo-invalido');
-                    mensagem.style.display = 'block';
-                    valido = false;
-                }
+                if (!elemento.value.trim()) { elemento.classList.add('campo-invalido'); mensagem.style.display = 'block'; valido = false; }
             });
-
             return valido;
         }
 
         function validarFormularioEdicao() {
             let valido = true;
-
             const campos = [
                 { id: 'editarNomeAluno', mensagem: 'mensagemEditarNomeAluno' },
                 { id: 'editarDataRegistro', mensagem: 'mensagemEditarDataRegistro' },
                 { id: 'editarHoraRegistro', mensagem: 'mensagemEditarHoraRegistro' }
             ];
-
             campos.forEach(campo => {
                 const elemento = document.getElementById(campo.id);
                 const mensagem = document.getElementById(campo.mensagem);
-
-                if (!elemento.value.trim()) {
-                    elemento.classList.add('campo-invalido');
-                    mensagem.style.display = 'block';
-                    valido = false;
-                }
+                if (!elemento.value.trim()) { elemento.classList.add('campo-invalido'); mensagem.style.display = 'block'; valido = false; }
             });
-
             return valido;
         }
 
         function salvarRegistro(evento) {
             evento.preventDefault();
-
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!validarFormularioRegistro()) return;
-
             const novoRegistro = {
                 id: Date.now(),
                 nome: document.getElementById('nomeAluno').value.trim(),
@@ -3572,10 +3772,8 @@
                 curso: cursoAtivo,
                 ano: anoAtivo
             };
-
             alunos.push(novoRegistro);
             localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
-
             fecharModalRegistro();
             renderizar();
             atualizarEstatisticasMenu();
@@ -3584,17 +3782,10 @@
 
         function salvarEdicao(evento) {
             evento.preventDefault();
-
-            if (sistemaBloqueado) {
-                mostrarModalSenha();
-                return;
-            }
-
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!validarFormularioEdicao()) return;
-
             const id = parseInt(document.getElementById('editarId').value);
             const indice = alunos.findIndex(aluno => aluno.id === id);
-
             if (indice !== -1) {
                 alunos[indice] = {
                     ...alunos[indice],
@@ -3604,7 +3795,6 @@
                     hora: document.getElementById('editarHoraRegistro').value,
                     observacao: document.getElementById('editarObservacaoRegistro').value.trim()
                 };
-
                 localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
                 fecharModalEdicao();
                 renderizar();
@@ -3617,7 +3807,6 @@
             if (registroParaExcluir) {
                 alunos = alunos.filter(aluno => aluno.id !== registroParaExcluir);
                 localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
-
                 fecharModalConfirmacao();
                 renderizar();
                 atualizarEstatisticasMenu();
@@ -3627,40 +3816,26 @@
 
         function renderizar() {
             if (!cursoAtivo || !anoAtivo) return;
-
             const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-
             document.getElementById('numeroTotalAlunos').textContent = TOTAL_ALUNOS;
-
             const atrasos = lista.filter(a => a.tipo === 'atraso').length;
             const saidas = lista.filter(a => a.tipo === 'saida').length;
-
             document.getElementById('numeroAtrasos').textContent = atrasos;
             document.getElementById('numeroSaidas').textContent = saidas;
-
             const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
             const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
-
             document.getElementById('porcentagemAtrasos').textContent = porcentagemAtrasos + '%';
             document.getElementById('porcentagemSaidas').textContent = porcentagemSaidas + '%';
-
             document.getElementById('preencherAtrasos').style.width = porcentagemAtrasos + '%';
             document.getElementById('preencherSaidas').style.width = porcentagemSaidas + '%';
-
             aplicarFiltro();
         }
 
         function renderizarTabela(lista) {
             const corpoTabela = document.getElementById('corpoTabela');
-
             if (lista.length === 0) {
                 const temDados = alunos.some(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-
-                if (temDados && filtroAtual) {
-                    corpoTabela.innerHTML = '';
-                    return;
-                }
-
+                if (temDados && filtroAtual) { corpoTabela.innerHTML = ''; return; }
                 corpoTabela.innerHTML = `
                     <tr>
                         <td colspan="5" style="text-align:center; padding:48px; color:var(--texto-suave);">
@@ -3672,13 +3847,10 @@
                 `;
                 return;
             }
-
             const listaOrdenada = [...lista].sort((a, b) => b.id - a.id);
-
             corpoTabela.innerHTML = listaOrdenada.map(aluno => {
                 const dataFormatada = aluno.data.split('-').reverse().join('/');
                 const temObservacao = aluno.observacao && aluno.observacao.trim() !== '';
-
                 return `
                     <tr>
                         <td data-label="ALUNO" style="font-weight:600;">${aluno.nome}</td>
@@ -3718,19 +3890,17 @@
             document.getElementById('areaVazia').style.display = 'none';
             document.getElementById('areaDados').style.display = 'block';
             document.getElementById('botaoNovo').style.display = 'flex';
+            mostrarBotaoTema();
             document.getElementById('textoTitulo').innerText = cursoAtivo ? cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1) : 'Turma';
             document.getElementById('textoSubtitulo').innerText = anoAtivo ? anoAtivo + ' · ' + cursoAtivo : 'Selecione uma turma';
         }
 
         function mostrarNotificacao(mensagem, tipo) {
             document.querySelectorAll('.notificacao').forEach(n => n.remove());
-
             const notificacao = document.createElement('div');
             notificacao.textContent = mensagem;
             notificacao.className = `notificacao ${tipo}`;
-
             document.body.appendChild(notificacao);
-
             setTimeout(() => {
                 notificacao.style.animation = 'slideOut 0.3s ease-out';
                 setTimeout(() => notificacao.remove(), 300);
@@ -3740,14 +3910,11 @@
         setTimeout(() => {
             const tela = document.getElementById('tela-carregamento');
             tela.classList.add('esconder');
-            setTimeout(() => {
-                tela.style.display = 'none';
-            }, 600);
+            setTimeout(() => { tela.style.display = 'none'; }, 600);
         }, 6000);
 
         let segundosRestantes = 6;
         const contadorElement = document.getElementById('contador');
-
         const intervalo = setInterval(() => {
             segundosRestantes--;
             if (segundosRestantes > 0) {
@@ -3770,22 +3937,18 @@
             const grupo = new THREE.Group();
             const materialTecido = new THREE.MeshStandardMaterial({ color: 0x0a1a2e, roughness: 0.8, metalness: 0.1 });
             const materialDourado = new THREE.MeshStandardMaterial({ color: 0xffd700, roughness: 0.2, metalness: 0.9, emissive: 0x221100 });
-
             const geometriaTopo = new THREE.BoxGeometry(0.65 * escala, 0.025 * escala, 0.65 * escala);
             const malhaTopo = new THREE.Mesh(geometriaTopo, materialTecido);
             malhaTopo.position.y = 0.18 * escala;
             grupo.add(malhaTopo);
-
             const geometriaBase = new THREE.CylinderGeometry(0.18 * escala, 0.24 * escala, 0.28 * escala, 64);
             const malhaBase = new THREE.Mesh(geometriaBase, materialTecido);
             malhaBase.position.y = 0.03 * escala;
             grupo.add(malhaBase);
-
             const geometriaBotao = new THREE.CylinderGeometry(0.025 * escala, 0.025 * escala, 0.02 * escala, 32);
             const malhaBotao = new THREE.Mesh(geometriaBotao, materialTecido);
             malhaBotao.position.y = 0.195 * escala;
             grupo.add(malhaBotao);
-
             const caminhoCordao = new THREE.CatmullRomCurve3([
                 new THREE.Vector3(0, 0.2 * escala, 0),
                 new THREE.Vector3(0.15 * escala, 0.2 * escala, 0.15 * escala),
@@ -3793,7 +3956,6 @@
             ]);
             const geometriaCordao = new THREE.TubeGeometry(caminhoCordao, 20, 0.006 * escala, 8, false);
             grupo.add(new THREE.Mesh(geometriaCordao, materialDourado));
-
             const pingente = new THREE.Group();
             pingente.position.set(0.32 * escala, 0.18 * escala, 0.32 * escala);
             pingente.add(new THREE.Mesh(new THREE.SphereGeometry(0.015 * escala, 16, 16), materialDourado));
@@ -3802,26 +3964,22 @@
             pingente.add(franja);
             grupo.add(pingente);
             grupo.pingente = pingente;
-
             return grupo;
         }
 
         function iniciarThreeAvancado(idContainer, escala = 1, girando = false) {
             const container = document.getElementById(idContainer);
             if (!container) return;
-
             const cena = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
             camera.position.set(0, 0.5, 1.4);
             camera.lookAt(0, 0.1, 0);
-
             const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             const tamanho = container.clientWidth || (girando ? 70 : 250);
             renderizador.setSize(tamanho, tamanho);
             renderizador.setPixelRatio(window.devicePixelRatio);
             renderizador.toneMapping = THREE.ReinhardToneMapping;
             container.appendChild(renderizador.domElement);
-
             cena.add(new THREE.AmbientLight(0xffffff, 0.5));
             const luzSolar = new THREE.DirectionalLight(0xffffff, 1);
             luzSolar.position.set(5, 5, 5);
@@ -3829,27 +3987,22 @@
             const luzContorno = new THREE.PointLight(0x008554, 0.6);
             luzContorno.position.set(-2, 1, -2);
             cena.add(luzContorno);
-
             const cap = criarCapUltra(escala);
             cena.add(cap);
-
             let tempo = 0;
             function animar() {
                 requestAnimationFrame(animar);
                 tempo += girando ? 0.02 : 0.01;
                 cap.rotation.y += girando ? 0.02 : 0.010;
-
                 if (!girando) {
                     cap.position.y = Math.sin(tempo * 1.6) * 0.05;
                     cap.rotation.z = Math.sin(tempo * 0.5) * 0.04;
                     cap.rotation.x = -0.1 + Math.cos(tempo * 0.4) * 0.04;
                 }
-
                 if (cap.pingente) {
                     cap.pingente.rotation.z = Math.sin(tempo * 2.5) * 0.15;
                     cap.pingente.rotation.x = Math.cos(tempo * 2) * 0.1;
                 }
-
                 renderizador.render(cena, camera);
             }
             animar();
@@ -3869,6 +4022,4 @@
         }
     </script>
 </body>
-
 </html>
-
