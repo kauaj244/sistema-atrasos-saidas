@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEEP Zélia · Controle de Atrasos e Saídas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -61,7 +60,6 @@
             --cor-informatica-clara: #f87171;
             --cor-informatica-escura: #7f1d1d;
             --cor-informatica-gradiente: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-
 
             --fundo-escuro: #0f172a;
             --superficie-escuro: #1e293b;
@@ -256,19 +254,11 @@
             background: rgba(51, 65, 85, 0.8);
         }
 
-        body.tema-escuro .secao-dicas {
-            background: rgba(30, 41, 59, 0.95);
-            border-color: rgba(51, 65, 85, 0.5);
-        }
-
         body.tema-administracao {
             --primaria: var(--cor-adm);
             --primaria-clara: var(--cor-adm-clara);
             --primaria-escura: var(--cor-adm-escura);
             --gradiente: var(--cor-adm-gradiente);
-            --curso-cor: var(--cor-adm);
-            --curso-cor-clara: var(--cor-adm-clara);
-            --curso-cor-escura: var(--cor-adm-escura);
         }
 
         body.tema-eletrotecnica {
@@ -276,9 +266,6 @@
             --primaria-clara: var(--cor-eletro-clara);
             --primaria-escura: var(--cor-eletro-escura);
             --gradiente: var(--cor-eletro-gradiente);
-            --curso-cor: var(--cor-eletro);
-            --curso-cor-clara: var(--cor-eletro-clara);
-            --curso-cor-escura: var(--cor-eletro-escura);
         }
 
         body.tema-enfermagem {
@@ -286,9 +273,6 @@
             --primaria-clara: var(--cor-enfermagem-clara);
             --primaria-escura: var(--cor-enfermagem-escura);
             --gradiente: var(--cor-enfermagem-gradiente);
-            --curso-cor: var(--cor-enfermagem);
-            --curso-cor-clara: var(--cor-enfermagem-clara);
-            --curso-cor-escura: var(--cor-enfermagem-escura);
         }
 
         body.tema-informatica {
@@ -296,14 +280,11 @@
             --primaria-clara: var(--cor-informatica-clara);
             --primaria-escura: var(--cor-informatica-escura);
             --gradiente: var(--cor-informatica-gradiente);
-            --curso-cor: var(--cor-informatica);
-            --curso-cor-clara: var(--cor-informatica-clara);
-            --curso-cor-escura: var(--cor-informatica-escura);
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(145deg, var(--fundo) 0%, #ffffff 100%);
+            background: var(--fundo);
             color: var(--texto-primario);
             line-height: 1.5;
             overflow-x: hidden;
@@ -316,11 +297,9 @@
             user-select: none;
         }
 
-        body.sistema-bloqueado .botao-flutuante {
-            display: none !important;
-        }
-
-        body.sistema-bloqueado .botao-tema {
+        body.sistema-bloqueado .botao-flutuante,
+        body.sistema-bloqueado .botao-tema,
+        body.sistema-bloqueado .botao-menu-hamburguer {
             display: none !important;
         }
 
@@ -400,6 +379,10 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .cabecalho-barra-lateral::before {
@@ -414,16 +397,6 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        .cabecalho-barra-lateral::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-        }
-
         .logo-escola {
             width: 80px;
             height: 80px;
@@ -435,6 +408,8 @@
             transition: var(--transicao);
             position: relative;
             z-index: 2;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: inline-block;
         }
 
         .logo-escola:hover {
@@ -647,55 +622,6 @@
             margin-top: 8px;
             margin-bottom: 12px;
             padding: 12px 16px 12px 20px;
-            transform-origin: left;
-            backdrop-filter: blur(5px);
-        }
-
-        .submenu-ano.mostrar::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, var(--primaria-clara), transparent 30%, transparent 70%, var(--primaria-clara));
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0.5;
-            animation: borderGlow 2s ease-in-out infinite;
-        }
-
-        .submenu-ano.mostrar::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: -4px;
-            width: 8px;
-            height: calc(100% - 20px);
-            background: linear-gradient(180deg, var(--primaria-clara), var(--primaria-escura), var(--primaria-clara));
-            border-radius: 4px;
-            box-shadow: 0 0 15px var(--primaria);
-            animation: borderPulse 2s ease-in-out infinite;
-        }
-
-        body.tema-administracao .submenu-ano.mostrar::after {
-            background: linear-gradient(180deg, var(--cor-adm-clara), var(--cor-adm-escura), var(--cor-adm-clara));
-            box-shadow: 0 0 20px var(--cor-adm);
-        }
-
-        body.tema-eletrotecnica .submenu-ano.mostrar::after {
-            background: linear-gradient(180deg, var(--cor-eletro-clara), var(--cor-eletro-escura), var(--cor-eletro-clara));
-            box-shadow: 0 0 20px var(--cor-eletro);
-        }
-
-        body.tema-enfermagem .submenu-ano.mostrar::after {
-            background: linear-gradient(180deg, var(--cor-enfermagem-clara), var(--cor-enfermagem-escura), var(--cor-enfermagem-clara));
-            box-shadow: 0 0 20px var(--cor-enfermagem);
-        }
-
-        body.tema-informatica .submenu-ano.mostrar::after {
-            background: linear-gradient(180deg, var(--cor-informatica-clara), var(--cor-informatica-escura), var(--cor-informatica-clara));
-            box-shadow: 0 0 20px var(--cor-informatica);
         }
 
         @keyframes slideDownFancy {
@@ -713,35 +639,6 @@
                 opacity: 1;
                 transform: translateY(0) scale(1);
                 filter: blur(0);
-            }
-        }
-
-        @keyframes borderPulse {
-
-            0%,
-            100% {
-                opacity: 0.6;
-                transform: scaleY(0.95);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scaleY(1.05);
-                filter: brightness(1.2);
-            }
-        }
-
-        @keyframes borderGlow {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                filter: blur(2px);
-            }
-
-            50% {
-                opacity: 0.7;
-                filter: blur(4px);
             }
         }
 
@@ -777,19 +674,12 @@
         .campo-pesquisa {
             width: 100%;
             padding: 18px 24px 18px 60px;
-            border: 2px solid transparent;
             border-radius: 60px;
             font-size: 16px;
             background: var(--superficie);
             transition: var(--transicao);
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        body.tema-escuro .campo-pesquisa {
-            background: var(--superficie-escuro);
-            color: var(--texto-primario-escuro);
-            border: 1px solid rgba(51, 65, 85, 0.5);
         }
 
         .campo-pesquisa:focus {
@@ -852,11 +742,6 @@
             overflow: hidden;
             backdrop-filter: blur(4px);
             background: rgba(255, 255, 255, 0.9);
-        }
-
-        body.tema-escuro .cartao-estatistica {
-            background: rgba(30, 41, 59, 0.9);
-            border-color: rgba(51, 65, 85, 0.5);
         }
 
         .cartao-estatistica:hover {
@@ -938,22 +823,6 @@
 
         .barra-progresso-fill#preencherAtrasos {
             background: var(--primaria);
-        }
-
-        body.tema-administracao .barra-progresso-fill#preencherAtrasos {
-            background: var(--cor-adm);
-        }
-
-        body.tema-eletrotecnica .barra-progresso-fill#preencherAtrasos {
-            background: var(--cor-eletro);
-        }
-
-        body.tema-enfermagem .barra-progresso-fill#preencherAtrasos {
-            background: var(--cor-enfermagem);
-        }
-
-        body.tema-informatica .barra-progresso-fill#preencherAtrasos {
-            background: var(--cor-informatica);
         }
 
         .barra-progresso-fill#preencherSaidas {
@@ -1052,21 +921,6 @@
                 page-break-inside: avoid;
             }
 
-            body.tema-escuro tr {
-                border-color: #334155;
-                background: rgba(30, 41, 59, 0.7);
-            }
-
-            tr:hover {
-                background: #f9fcff;
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-                transform: translateY(-2px);
-            }
-
-            body.tema-escuro tr:hover {
-                background: rgba(30, 41, 59, 0.9);
-            }
-
             td {
                 border: none;
                 padding: 10px 0;
@@ -1100,10 +954,6 @@
                 margin-top: 8px;
             }
 
-            body.tema-escuro td:last-child {
-                border-top-color: #334155;
-            }
-
             td:before {
                 content: attr(data-label);
                 position: static;
@@ -1123,35 +973,6 @@
                 font-weight: 600;
                 white-space: nowrap;
                 justify-self: start;
-            }
-
-            .observacao-celula {
-                grid-column: 1 / -1;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .observacao-celula:before {
-                content: 'OBSERVACAO';
-            }
-
-            .acoes-celula {
-                grid-column: 1 / -1;
-                display: flex;
-                gap: 6px;
-                justify-content: flex-end;
-                padding-top: 10px;
-                border-top: 1px solid var(--borda);
-                margin-top: 8px;
-            }
-
-            body.tema-escuro .acoes-celula {
-                border-top-color: #334155;
-            }
-
-            .acoes-celula:before {
-                display: none;
             }
 
             .botao-acao {
@@ -1248,7 +1069,6 @@
             box-shadow: 0 20px 40px -8px var(--primaria);
         }
 
-        /* Botão de tema no cabeçalho */
         .cabecalho-direita {
             display: flex;
             align-items: center;
@@ -1287,7 +1107,6 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Dropdown de exportação */
         .cabecalho-estatisticas {
             display: flex;
             justify-content: space-between;
@@ -1378,25 +1197,12 @@
             text-align: center;
         }
 
-        .dropdown-exportacao .dropdown-item.pdf-item i {
+        .acao .dropdown-exportacao .dropdown-item.pdf-item i {
             color: #d32f2f;
         }
 
         .dropdown-exportacao .dropdown-item.excel-item i {
             color: #217346;
-        }
-
-        body.tema-escuro .dropdown-exportacao {
-            background: rgba(30, 41, 59, 0.98);
-            border-color: rgba(51, 65, 85, 0.5);
-        }
-
-        body.tema-escuro .dropdown-exportacao .dropdown-item {
-            color: #e2e8f0;
-        }
-
-        body.tema-escuro .dropdown-exportacao .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.05);
         }
 
         .acoes-celula {
@@ -1512,11 +1318,6 @@
             max-height: 90vh;
         }
 
-        body.tema-escuro .conteudo-modal {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(15, 23, 42, 0.95) 100%);
-            border: 1px solid rgba(51, 65, 85, 0.8);
-        }
-
         .conteudo-modal.senha-modal {
             max-width: 400px;
         }
@@ -1542,19 +1343,6 @@
             justify-content: space-between;
             gap: 16px;
             flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cabecalho-modal::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
         }
 
         .cabecalho-modal-conteudo {
@@ -1562,8 +1350,6 @@
             align-items: center;
             gap: 16px;
             flex: 1;
-            position: relative;
-            z-index: 1;
         }
 
         .icone-modal {
@@ -1619,16 +1405,6 @@
         .corpo-modal::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--primaria) 0%, var(--primaria-clara) 100%);
             border-radius: 10px;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .corpo-modal::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--primaria-clara) 0%, var(--primaria) 100%);
-        }
-
-        .corpo-modal {
-            scrollbar-color: var(--primaria) rgba(0, 0, 0, 0.02);
-            scrollbar-width: thin;
         }
 
         .campo-senha {
@@ -1648,16 +1424,6 @@
             text-align: center;
             letter-spacing: 2px;
             font-size: 1.2rem;
-        }
-
-        body.tema-escuro .campo-senha input {
-            background: #0f172a;
-            color: #e2e8f0;
-            border-color: #334155;
-        }
-
-        body.tema-escuro .campo-senha input:focus {
-            background: #1e293b;
         }
 
         .campo-senha input:focus {
@@ -1758,8 +1524,6 @@
             padding: 28px;
             margin-bottom: 24px;
             box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden;
         }
 
         .card-observacao::before {
@@ -1807,31 +1571,11 @@
             justify-content: center;
             gap: 8px;
             box-shadow: 0 8px 20px -4px var(--primaria);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .botao-copiar::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
         }
 
         .botao-copiar:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 28px -4px var(--primaria);
-        }
-
-        .botao-copiar:active::before {
-            width: 300px;
-            height: 300px;
         }
 
         .botao-copiar.copiado {
@@ -2063,10 +1807,6 @@
             background: radial-gradient(circle at 80% 20%, rgba(0, 133, 84, 0.05) 0%, transparent 60%);
         }
 
-        body.tema-escuro .area-vazia-melhorada {
-            background: radial-gradient(circle at 80% 20%, rgba(0, 133, 84, 0.1) 0%, transparent 60%);
-        }
-
         .secao-boas-vindas {
             max-width: 800px;
             margin-bottom: 80px;
@@ -2135,7 +1875,20 @@
             animation: fadeInUp 1.2s ease;
         }
 
-        /* Cores individuais dos cartões - Estado Normal */
+        .cartao-curso {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: var(--transicao-suave);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+        }
+
         .cartao-curso[data-curso="administracao"] {
             border-color: rgba(0, 86, 167, 0.3);
         }
@@ -2168,6 +1921,11 @@
             color: var(--cor-informatica);
         }
 
+        .cartao-curso:hover {
+            transform: translateY(-20px) scale(1.05);
+            background: white;
+        }
+
         .cartao-curso[data-curso="administracao"]:hover {
             box-shadow: 0 40px 60px -15px var(--cor-adm);
             border-color: var(--cor-adm);
@@ -2186,25 +1944,6 @@
         .cartao-curso[data-curso="informatica"]:hover {
             box-shadow: 0 40px 60px -15px var(--cor-informatica);
             border-color: var(--cor-informatica);
-        }
-
-        .cartao-curso {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px 24px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            transition: var(--transicao-suave);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(8px);
-        }
-
-        .cartao-curso:hover {
-            transform: translateY(-20px) scale(1.05);
-            background: white;
         }
 
         .icone-cartao {
@@ -2578,34 +2317,70 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #f0f2f5;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f5fa 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 10000;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        body.tema-escuro #tela-carregamento {
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
         }
 
         #tela-carregamento.esconder {
             opacity: 0;
             visibility: hidden;
+            transform: scale(1.1);
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 40px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 90%;
+            width: 350px;
+        }
+
+        body.tema-escuro .loader-content {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .spinner-container {
             position: relative;
-            width: 120px;
-            height: 120px;
-            margin-bottom: 32px;
+            width: 100px;
+            height: 100px;
         }
 
-        .spinner {
+        .spinner-ring {
+            position: absolute;
             width: 100%;
             height: 100%;
-            border: 5px solid rgba(0, 133, 84, 0.1);
-            border-top: 5px solid #008554;
+            border: 4px solid transparent;
+            border-top-color: var(--primaria);
             border-radius: 50%;
-            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .spinner-ring:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-top-color: var(--secundaria);
+            animation-delay: 0.2s;
+            animation-duration: 1.2s;
         }
 
         .spinner-logo {
@@ -2613,16 +2388,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            color: #008554;
-            font-size: 32px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -2632,63 +2405,80 @@
         }
 
         .texto-carregamento {
-            font-size: 20px;
-            font-weight: 700;
-            color: #006440;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: pulse 1.5s ease-in-out infinite;
-            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .texto-carregamento h2 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--texto-primario);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .texto-carregamento p {
+            font-size: 13px;
+            color: var(--texto-suave);
+            font-weight: 500;
+        }
+
+        .barra-carregamento-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
 
         .barra-carregamento-bg {
-            width: 250px;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 100px;
             overflow: hidden;
+            position: relative;
+        }
+
+        body.tema-escuro .barra-carregamento-bg {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .barra-carregamento-fill {
+            position: absolute;
             height: 100%;
-            width: 30%;
-            background: linear-gradient(90deg, #008554, #00a86b);
-            border-radius: 10px;
-            animation: progress 2s ease-in-out infinite;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primaria), var(--primaria-clara));
+            border-radius: 100px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 133, 84, 0.3);
         }
 
         .contador {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #65676b;
+            font-size: 12px;
             font-weight: 600;
+            color: var(--primaria);
+            font-variant-numeric: tabular-nums;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
+            to {
                 transform: rotate(360deg);
             }
         }
 
-        @keyframes progress {
-            0% {
-                width: 0%;
-                margin-left: 0%;
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
             }
 
             50% {
-                width: 60%;
-                margin-left: 20%;
+                opacity: 0.8;
+                transform: scale(0.98);
             }
-
-            100% {
-                width: 0%;
-                margin-left: 100%;
-            }
+        }
         }
     </style>
 </head>
@@ -2696,15 +2486,23 @@
 <body class="sistema-bloqueado">
 
     <div id="tela-carregamento">
-        <div class="spinner-container">
-            <div class="spinner"></div>
-            <div class="spinner-logo" id="spinner-logo-container"></div>
+        <div class="loader-content">
+            <div class="spinner-container">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-logo" id="spinner-logo-container"></div>
+            </div>
+            <div class="texto-carregamento">
+                <h2>EEEP Zélia</h2>
+                <p>Preparando ambiente de gestão...</p>
+            </div>
+            <div class="barra-carregamento-container">
+                <div class="barra-carregamento-bg">
+                    <div class="barra-carregamento-fill" id="barra-progresso"></div>
+                </div>
+                <div class="contador" id="contador">0%</div>
+            </div>
         </div>
-        <div class="texto-carregamento">Carregando Sistema</div>
-        <div class="barra-carregamento-bg">
-            <div class="barra-carregamento-fill"></div>
-        </div>
-        <div class="contador" id="contador">Aguarde 6 segundos...</div>
     </div>
 
     <div class="container">
@@ -2712,8 +2510,7 @@
 
         <aside class="barra-lateral" id="barraLateral">
             <div class="cabecalho-barra-lateral">
-                <img src="c:\Users\kauaj\logo-eeep.png" class="logo-escola"
-                    alt="Logo EEEP">
+                <img src="logo-eeep.png" class="logo-escola" alt="Logo EEEP">
                 <h3 style="font-size:18px; font-weight:700;">Gestão</h3>
                 <p style="font-size:11px; opacity:0.8; letter-spacing:0.5px;">controle · atrasos · saídas</p>
             </div>
@@ -2742,7 +2539,7 @@
                     Cursos</div>
 
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="administração">
+                    <button class="botao-curso" data-curso="administracao">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-chart-line"></i></span> Administração
                         </span>
@@ -2755,7 +2552,7 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="eletrotécnica">
+                    <button class="botao-curso" data-curso="eletrotecnica">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"><i class="fas fa-bolt"></i></span> Eletrotécnica
                         </span>
@@ -2781,9 +2578,9 @@
                     </div>
                 </div>
                 <div class="item-curso">
-                    <button class="botao-curso" data-curso="informática">
+                    <button class="botao-curso" data-curso="informatica">
                         <span style="display:flex; align-items:center;">
-                            <span class="icone-curso"><i class="fas fa-laptop-code"></i></span> Informáticas 
+                            <span class="icone-curso"><i class="fas fa-laptop-code"></i></span> Informática
                         </span>
                         <i class="fas fa-chevron-down" style="font-size:12px; opacity:0.6;"></i>
                     </button>
@@ -2832,8 +2629,7 @@
                     </div>
                 </div>
                 <div class="cabecalho-direita">
-                    <img src="c:\Users\kauaj\logo-eeep.png"
-                        style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
+                    <img src="logo-eeep.png" style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
                     <button class="botao-tema" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
                         <i class="fas fa-moon" id="iconeTema"></i>
                     </button>
@@ -2841,7 +2637,6 @@
             </header>
 
             <div class="conteudo">
-
                 <div id="areaVazia" class="area-vazia-melhorada">
                     <div class="secao-boas-vindas">
                         <div id="canvas-container-principal"></div>
@@ -2853,25 +2648,24 @@
 
                     <div class="grade-cursos">
                         <div class="cartao-curso" data-curso="administracao"
-                            onclick="document.querySelector('[data-curso=\'administracao\']').click(); setTimeout(()=>document.getElementById('botaoMenu').click(),100);">
+                            onclick="selecionarCursoInicio('administracao')">
                             <i class="fas fa-chart-line icone-cartao"></i>
                             <div class="nome-curso">Administração</div>
                             <div class="descricao-curso">Gestão e Planejamento</div>
                         </div>
                         <div class="cartao-curso" data-curso="eletrotecnica"
-                            onclick="document.querySelector('[data-curso=\'eletrotecnica\']').click(); setTimeout(()=>document.getElementById('botaoMenu').click(),100);">
+                            onclick="selecionarCursoInicio('eletrotecnica')">
                             <i class="fas fa-bolt icone-cartao"></i>
                             <div class="nome-curso">Eletrotécnica</div>
                             <div class="descricao-curso">Tecnologia e Inovação</div>
                         </div>
-                        <div class="cartao-curso" data-curso="enfermagem"
-                            onclick="document.querySelector('[data-curso=\'enfermagem\']').click(); setTimeout(()=>document.getElementById('botaoMenu').click(),100);">
+                        <div class="cartao-curso" data-curso="enfermagem" onclick="selecionarCursoInicio('enfermagem')">
                             <i class="fas fa-user-nurse icone-cartao"></i>
                             <div class="nome-curso">Enfermagem</div>
                             <div class="descricao-curso">Cuidado e Saúde</div>
                         </div>
                         <div class="cartao-curso" data-curso="informatica"
-                            onclick="document.querySelector('[data-curso=\'informatica\']').click(); setTimeout(()=>document.getElementById('botaoMenu').click(),100);">
+                            onclick="selecionarCursoInicio('informatica')">
                             <i class="fas fa-laptop-code icone-cartao"></i>
                             <div class="nome-curso">Informática</div>
                             <div class="descricao-curso">Desenvolvimento e Redes</div>
@@ -2971,9 +2765,7 @@
                                     <th>AÇÕES</th>
                                 </tr>
                             </thead>
-                            <tbody id="corpoTabela">
-
-                            </tbody>
+                            <tbody id="corpoTabela"></tbody>
                         </table>
                     </div>
                 </div>
@@ -2985,6 +2777,7 @@
         </main>
     </div>
 
+    <!-- Modal Senha -->
     <div class="modal" id="modalSenha">
         <div class="conteudo-modal senha-modal">
             <div class="cabecalho-modal">
@@ -3005,7 +2798,8 @@
                 </div>
 
                 <div class="campo-senha">
-                    <input type="password" id="campoSenha" placeholder="Digite a senha" maxlength="20">
+                    <input type="password" id="campoSenha" placeholder="Digite a senha" maxlength="20"
+                        autocomplete="off">
                     <button class="toggle-senha" type="button" id="toggleSenha" title="Mostrar/Esconder senha">
                         <i class="far fa-eye" id="iconeToggleSenha"></i>
                     </button>
@@ -3022,6 +2816,7 @@
         </div>
     </div>
 
+    <!-- Modal Registro -->
     <div class="modal" id="modalRegistro">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -3066,6 +2861,7 @@
         </div>
     </div>
 
+    <!-- Modal Confirmação -->
     <div class="modal" id="modalConfirmacao">
         <div class="conteudo-modal" style="max-width:400px;">
             <div class="corpo-modal" style="text-align:center; padding:36px 28px;">
@@ -3084,6 +2880,7 @@
         </div>
     </div>
 
+    <!-- Modal Observação -->
     <div class="modal" id="modalObservacao">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -3120,6 +2917,7 @@
         </div>
     </div>
 
+    <!-- Modal Edição -->
     <div class="modal" id="modalEdicao">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -3297,10 +3095,7 @@
             esconderBotaoTema();
             mostrarModalSenha();
             mostrarNotificacao('Sistema bloqueado!', 'info');
-
-            if (window.innerWidth < 1024) {
-                alternarMenu();
-            }
+            fecharMenu();
         }
 
         function fecharMenu() {
@@ -3322,15 +3117,11 @@
             document.getElementById('textoTitulo').textContent = 'Sistema EEEP Zélia';
             document.getElementById('textoSubtitulo').textContent = 'Selecione uma turma';
 
-            const areaVazia = document.getElementById('areaVazia');
-            areaVazia.style.display = 'flex';
-            areaVazia.style.opacity = '1';
-            void areaVazia.offsetWidth;
-
+            document.getElementById('areaVazia').style.display = 'flex';
             document.getElementById('areaDados').style.display = 'none';
             document.getElementById('botaoNovo').style.display = 'none';
-            document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
 
+            document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
             if (temaEscuroAtivo && !sistemaBloqueado) {
                 document.body.classList.add('tema-escuro');
             }
@@ -3339,6 +3130,49 @@
             atualizarEstatisticasMenu();
             mostrarBotaoTema();
             mostrarNotificacao('Voltando ao início', 'info');
+        }
+
+        function selecionarCursoInicio(curso) {
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
+
+            cursoAtivo = curso;
+
+            document.querySelectorAll('.botao-curso').forEach(b => b.classList.remove('ativo'));
+            document.querySelectorAll('.botao-ano').forEach(b => b.classList.remove('ativo'));
+            document.querySelectorAll('.submenu-ano').forEach(s => s.classList.remove('mostrar'));
+
+            const botaoCurso = document.querySelector(`.botao-curso[data-curso="${curso}"]`);
+            if (botaoCurso) {
+                botaoCurso.classList.add('ativo');
+                const submenu = botaoCurso.nextElementSibling;
+                if (submenu) submenu.classList.add('mostrar');
+            }
+
+            aplicarTemaCurso(curso);
+            document.getElementById('textoTitulo').textContent = curso.charAt(0).toUpperCase() + curso.slice(1);
+
+            const menu = document.getElementById('barraLateral');
+            if (window.innerWidth < 1024) {
+                menu.classList.remove('mostrar');
+                document.getElementById('sobreposicao').classList.remove('mostrar');
+                document.body.classList.remove('menu-aberto');
+            }
+
+            mostrarNotificacao(`Curso ${curso} selecionado. Escolha o ano.`, 'info');
+        }
+
+        function aplicarTemaCurso(curso) {
+            const classesAtuais = Array.from(document.body.classList);
+            const outrasClasses = classesAtuais.filter(c =>
+                !c.startsWith('tema-') &&
+                c !== 'sistema-bloqueado' &&
+                c !== 'menu-aberto' &&
+                c !== 'tema-escuro'
+            );
+            document.body.className = outrasClasses.join(' ') + ` tema-${curso}`;
+
+            if (sistemaBloqueado) document.body.classList.add('sistema-bloqueado');
+            if (temaEscuroAtivo && !sistemaBloqueado) document.body.classList.add('tema-escuro');
         }
 
         function atualizarRelogio() {
@@ -3352,7 +3186,7 @@
 
             const dataEl = document.getElementById('data-digital');
             if (dataEl) {
-                const opcoes = { day: 'numeric', month: 'long', year: 'numeric' };
+                const opcoes = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
                 dataEl.textContent = agora.toLocaleDateString('pt-BR', opcoes);
             }
         }
@@ -3584,19 +3418,18 @@
                     if (sistemaBloqueado) { mostrarModalSenha(); return; }
                     cursoAtivo = botao.closest('.item-curso').querySelector('.botao-curso').dataset.curso;
                     anoAtivo = botao.dataset.ano;
+
                     document.querySelectorAll('.botao-ano').forEach(b => b.classList.remove('ativo'));
                     botao.classList.add('ativo');
 
-                    const classesAtuais = Array.from(document.body.classList);
-                    const outrasClasses = classesAtuais.filter(c => !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'menu-fechado' && c !== 'tema-escuro');
-                    document.body.className = outrasClasses.join(' ') + ` tema-${cursoAtivo.normalize('NFD').replace(/[\u0300-\u036f]/g, "")}` + (sistemaBloqueado ? ' sistema-bloqueado' : '');
+                    const botaoCurso = botao.closest('.item-curso').querySelector('.botao-curso');
+                    document.querySelectorAll('.botao-curso').forEach(b => b.classList.remove('ativo'));
+                    if (botaoCurso) botaoCurso.classList.add('ativo');
 
-                    if (temaEscuroAtivo && !sistemaBloqueado) { document.body.classList.add('tema-escuro'); }
+                    aplicarTemaCurso(cursoAtivo);
 
                     mostrarAreaDados();
-                    menu.classList.remove('mostrar');
-                    sobreposicao.classList.remove('mostrar');
-                    document.body.classList.remove('menu-aberto');
+                    fecharMenu();
                     renderizar();
                 });
             });
@@ -3614,9 +3447,11 @@
             document.getElementById('botaoFecharObservacao').addEventListener('click', fecharModalObservacao);
             document.getElementById('formularioRegistro').addEventListener('submit', salvarRegistro);
             document.getElementById('formularioEdicao').addEventListener('submit', salvarEdicao);
+
             document.getElementById('nomeAluno').addEventListener('blur', validarCampo);
             document.getElementById('dataRegistro').addEventListener('blur', validarCampo);
             document.getElementById('horaRegistro').addEventListener('blur', validarCampo);
+
             document.getElementById('editarNomeAluno').addEventListener('blur', validarCampoEdicao);
             document.getElementById('editarDataRegistro').addEventListener('blur', validarCampoEdicao);
             document.getElementById('editarHoraRegistro').addEventListener('blur', validarCampoEdicao);
@@ -3628,9 +3463,9 @@
                     const modal = document.getElementById(modalId);
                     if (evento.target === modal) {
                         if (modalId === 'modalRegistro') fecharModalRegistro();
-                        if (modalId === 'modalConfirmacao') fecharModalConfirmacao();
-                        if (modalId === 'modalObservacao') fecharModalObservacao();
-                        if (modalId === 'modalEdicao') fecharModalEdicao();
+                        else if (modalId === 'modalConfirmacao') fecharModalConfirmacao();
+                        else if (modalId === 'modalObservacao') fecharModalObservacao();
+                        else if (modalId === 'modalEdicao') fecharModalEdicao();
                     }
                 });
             });
@@ -3654,11 +3489,7 @@
             }
             renderizarTabela(alunosFiltrados);
             const semResultados = document.getElementById('semResultados');
-            if (alunosFiltrados.length === 0 && lista.length > 0) {
-                semResultados.style.display = 'block';
-            } else {
-                semResultados.style.display = 'none';
-            }
+            semResultados.style.display = (alunosFiltrados.length === 0 && lista.length > 0) ? 'block' : 'none';
         }
 
         function definirDataAtual() {
@@ -3703,16 +3534,10 @@
 
         function abrirModalObservacao(observacao) {
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
-            const conteudo = document.getElementById('conteudoObservacao');
-            conteudo.textContent = observacao || 'Nenhuma observação registrada.';
+            document.getElementById('conteudoObservacao').textContent = observacao || 'Nenhuma observação registrada.';
             const agora = new Date();
-            const dia = String(agora.getDate()).padStart(2, '0');
-            const mes = String(agora.getMonth() + 1).padStart(2, '0');
-            const ano = agora.getFullYear();
-            const horas = String(agora.getHours()).padStart(2, '0');
-            const minutos = String(agora.getMinutes()).padStart(2, '0');
-            const segundos = String(agora.getSeconds()).padStart(2, '0');
-            document.getElementById('dataHoraObservacao').textContent = `Visualizado em ${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
+            document.getElementById('dataHoraObservacao').textContent =
+                `Visualizado em ${String(agora.getDate()).padStart(2, '0')}/${String(agora.getMonth() + 1).padStart(2, '0')}/${agora.getFullYear()} ${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}:${String(agora.getSeconds()).padStart(2, '0')}`;
             document.getElementById('modalObservacao').classList.add('mostrar');
         }
 
@@ -3729,7 +3554,7 @@
                 document.body.appendChild(feedback);
                 setTimeout(() => { feedback.remove(); }, 2000);
                 setTimeout(() => { botao.classList.remove('copiado'); botao.innerHTML = textoOriginal; }, 2000);
-            }).catch(err => { console.error('Erro ao copiar:', err); alert('Erro ao copiar o texto.'); });
+            }).catch(() => { mostrarNotificacao('Erro ao copiar o texto.', 'erro'); });
         }
 
         function fecharModalRegistro() { document.getElementById('modalRegistro').classList.remove('mostrar'); }
@@ -3738,68 +3563,64 @@
         function fecharModalObservacao() { document.getElementById('modalObservacao').classList.remove('mostrar'); }
 
         document.addEventListener('DOMContentLoaded', function () {
-            const botaoFecharObservacao = document.getElementById('botaoFecharObservacao');
-            const botaoFecharObservacaoRodape = document.getElementById('botaoFecharObservacaoRodape');
-            const botaoCopiarObservacao = document.getElementById('botaoCopiarObservacao');
-            if (botaoFecharObservacao) { botaoFecharObservacao.addEventListener('click', fecharModalObservacao); }
-            if (botaoFecharObservacaoRodape) { botaoFecharObservacaoRodape.addEventListener('click', fecharModalObservacao); }
-            if (botaoCopiarObservacao) { botaoCopiarObservacao.addEventListener('click', copiarObservacao); }
+            document.getElementById('botaoFecharObservacao').addEventListener('click', fecharModalObservacao);
+            document.getElementById('botaoFecharObservacaoRodape').addEventListener('click', fecharModalObservacao);
+            document.getElementById('botaoCopiarObservacao').addEventListener('click', copiarObservacao);
         });
 
         function validarCampo(evento) {
             const campo = evento.target;
             const mensagemId = 'mensagem' + campo.id.charAt(0).toUpperCase() + campo.id.slice(1);
             const mensagem = document.getElementById(mensagemId);
-            if (!campo.value.trim()) { campo.classList.add('campo-invalido'); mensagem.style.display = 'block'; return false; }
-            else { campo.classList.remove('campo-invalido'); mensagem.style.display = 'none'; return true; }
+            if (!campo.value.trim()) {
+                campo.classList.add('campo-invalido');
+                if (mensagem) mensagem.style.display = 'block';
+                return false;
+            } else {
+                campo.classList.remove('campo-invalido');
+                if (mensagem) mensagem.style.display = 'none';
+                return true;
+            }
         }
 
         function validarCampoEdicao(evento) {
             const campo = evento.target;
-            const idCampo = campo.id;
-            const nomeCampo = idCampo.replace('editar', '');
-            const mensagemId = 'mensagemEditar' + nomeCampo.charAt(0).toUpperCase() + nomeCampo.slice(1);
+            const nome = campo.id.replace('editar', '');
+            const mensagemId = 'mensagemEditar' + nome.charAt(0).toUpperCase() + nome.slice(1);
             const mensagem = document.getElementById(mensagemId);
-            if (!campo.value.trim()) { campo.classList.add('campo-invalido'); mensagem.style.display = 'block'; return false; }
-            else { campo.classList.remove('campo-invalido'); mensagem.style.display = 'none'; return true; }
+            if (!campo.value.trim()) {
+                campo.classList.add('campo-invalido');
+                if (mensagem) mensagem.style.display = 'block';
+                return false;
+            } else {
+                campo.classList.remove('campo-invalido');
+                if (mensagem) mensagem.style.display = 'none';
+                return true;
+            }
         }
 
         function limparValidacoes() {
-            document.querySelectorAll('#formularioRegistro .campo-invalido').forEach(campo => campo.classList.remove('campo-invalido'));
-            document.querySelectorAll('#formularioRegistro .mensagem-validacao').forEach(mensagem => mensagem.style.display = 'none');
+            document.querySelectorAll('#formularioRegistro .campo-invalido').forEach(c => c.classList.remove('campo-invalido'));
+            document.querySelectorAll('#formularioRegistro .mensagem-validacao').forEach(m => m.style.display = 'none');
         }
 
         function limparValidacoesEdicao() {
-            document.querySelectorAll('#formularioEdicao .campo-invalido').forEach(campo => campo.classList.remove('campo-invalido'));
-            document.querySelectorAll('#formularioEdicao .mensagem-validacao').forEach(mensagem => mensagem.style.display = 'none');
+            document.querySelectorAll('#formularioEdicao .campo-invalido').forEach(c => c.classList.remove('campo-invalido'));
+            document.querySelectorAll('#formularioEdicao .mensagem-validacao').forEach(m => m.style.display = 'none');
         }
 
-        function validarFormularioRegistro() {
+        function validarFormulario(prefixo) {
             let valido = true;
-            const campos = [
-                { id: 'nomeAluno', mensagem: 'mensagemNomeAluno' },
-                { id: 'dataRegistro', mensagem: 'mensagemDataRegistro' },
-                { id: 'horaRegistro', mensagem: 'mensagemHoraRegistro' }
-            ];
-            campos.forEach(campo => {
-                const elemento = document.getElementById(campo.id);
-                const mensagem = document.getElementById(campo.mensagem);
-                if (!elemento.value.trim()) { elemento.classList.add('campo-invalido'); mensagem.style.display = 'block'; valido = false; }
-            });
-            return valido;
-        }
-
-        function validarFormularioEdicao() {
-            let valido = true;
-            const campos = [
-                { id: 'editarNomeAluno', mensagem: 'mensagemEditarNomeAluno' },
-                { id: 'editarDataRegistro', mensagem: 'mensagemEditarDataRegistro' },
-                { id: 'editarHoraRegistro', mensagem: 'mensagemEditarHoraRegistro' }
-            ];
-            campos.forEach(campo => {
-                const elemento = document.getElementById(campo.id);
-                const mensagem = document.getElementById(campo.mensagem);
-                if (!elemento.value.trim()) { elemento.classList.add('campo-invalido'); mensagem.style.display = 'block'; valido = false; }
+            const nomes = ['nomeAluno', 'dataRegistro', 'horaRegistro'];
+            nomes.forEach(nome => {
+                const id = prefixo + nome.charAt(0).toUpperCase() + nome.slice(1);
+                const campo = document.getElementById(prefixo === 'editar' ? `editar${nome.charAt(0).toUpperCase() + nome.slice(1)}` : nome);
+                const mensagem = document.getElementById(`mensagem${prefixo === 'editar' ? 'Editar' : ''}${nome.charAt(0).toUpperCase() + nome.slice(1)}`);
+                if (campo && !campo.value.trim()) {
+                    campo.classList.add('campo-invalido');
+                    if (mensagem) mensagem.style.display = 'block';
+                    valido = false;
+                }
             });
             return valido;
         }
@@ -3807,7 +3628,8 @@
         function salvarRegistro(evento) {
             evento.preventDefault();
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
-            if (!validarFormularioRegistro()) return;
+            if (!validarFormulario('')) return;
+
             const novoRegistro = {
                 id: Date.now(),
                 nome: document.getElementById('nomeAluno').value.trim(),
@@ -3818,6 +3640,7 @@
                 curso: cursoAtivo,
                 ano: anoAtivo
             };
+
             alunos.push(novoRegistro);
             localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
             fecharModalRegistro();
@@ -3829,7 +3652,8 @@
         function salvarEdicao(evento) {
             evento.preventDefault();
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
-            if (!validarFormularioEdicao()) return;
+            if (!validarFormulario('editar')) return;
+
             const id = parseInt(document.getElementById('editarId').value);
             const indice = alunos.findIndex(aluno => aluno.id === id);
             if (indice !== -1) {
@@ -3868,12 +3692,10 @@
             const saidas = lista.filter(a => a.tipo === 'saida').length;
             document.getElementById('numeroAtrasos').textContent = atrasos;
             document.getElementById('numeroSaidas').textContent = saidas;
-            const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
-            const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
-            document.getElementById('porcentagemAtrasos').textContent = porcentagemAtrasos + '%';
-            document.getElementById('porcentagemSaidas').textContent = porcentagemSaidas + '%';
-            document.getElementById('preencherAtrasos').style.width = porcentagemAtrasos + '%';
-            document.getElementById('preencherSaidas').style.width = porcentagemSaidas + '%';
+            document.getElementById('porcentagemAtrasos').textContent = Math.round((atrasos / TOTAL_ALUNOS) * 100) + '%';
+            document.getElementById('porcentagemSaidas').textContent = Math.round((saidas / TOTAL_ALUNOS) * 100) + '%';
+            document.getElementById('preencherAtrasos').style.width = Math.round((atrasos / TOTAL_ALUNOS) * 100) + '%';
+            document.getElementById('preencherSaidas').style.width = Math.round((saidas / TOTAL_ALUNOS) * 100) + '%';
             aplicarFiltro();
         }
 
@@ -3881,7 +3703,10 @@
             const corpoTabela = document.getElementById('corpoTabela');
             if (lista.length === 0) {
                 const temDados = alunos.some(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-                if (temDados && filtroAtual) { corpoTabela.innerHTML = ''; return; }
+                if (temDados && filtroAtual) {
+                    corpoTabela.innerHTML = '';
+                    return;
+                }
                 corpoTabela.innerHTML = `
                     <tr>
                         <td colspan="5" style="text-align:center; padding:48px; color:var(--texto-suave);">
@@ -3889,17 +3714,17 @@
                             <h3 style="font-weight:500;">Nenhum registro encontrado</h3>
                             <p style="margin-top:4px;">Clique no botão + para adicionar</p>
                         </td>
-                    </tr>
-                `;
+                    </tr>`;
                 return;
             }
+
             const listaOrdenada = [...lista].sort((a, b) => b.id - a.id);
             corpoTabela.innerHTML = listaOrdenada.map(aluno => {
                 const dataFormatada = aluno.data.split('-').reverse().join('/');
                 const temObservacao = aluno.observacao && aluno.observacao.trim() !== '';
                 return `
                     <tr>
-                        <td data-label="ALUNO" style="font-weight:600;">${aluno.nome}</td>
+                        <td data-label="ALUNO" style="font-weight:600;">${escapeHtml(aluno.nome)}</td>
                         <td data-label="STATUS">
                             <span class="distintivo-status ${aluno.tipo === 'atraso' ? 'status-atrasado' : 'status-saida'}">
                                 ${aluno.tipo === 'atraso' ? 'Atraso' : 'Saída'}
@@ -3910,26 +3735,29 @@
                             ${temObservacao ? `
                                 <span style="display:flex; align-items:center; gap:4px;">
                                     <i class="fas fa-comment" style="color:var(--info);"></i>
-                                    ${aluno.observacao.substring(0, 30)}${aluno.observacao.length > 30 ? '…' : ''}
-                                </span>
-                            ` : '<span style="color:var(--texto-suave); font-size:0.9rem;">—</span>'}
-                         </td>
+                                    ${escapeHtml(aluno.observacao.substring(0, 30))}${aluno.observacao.length > 30 ? '…' : ''}
+                                </span>` : '<span style="color:var(--texto-suave); font-size:0.9rem;">—</span>'}
+                        </td>
                         <td data-label="AÇÕES" class="acoes-celula">
                             <button class="botao-acao botao-editar" onclick="abrirModalEdicao(${aluno.id})" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </button>
                             ${temObservacao ? `
-                                <button class="botao-acao botao-observacao" onclick="abrirModalObservacao('${aluno.observacao.replace(/'/g, "\\'").replace(/\\n/g, ' ').replace(/\\r/g, ' ')}')" title="Ver observação">
+                                <button class="botao-acao botao-observacao" onclick="abrirModalObservacao(\`${aluno.observacao.replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`)" title="Ver observação">
                                     <i class="fas fa-eye"></i>
-                                </button>
-                            ` : ''}
-                            <button class="botao-acao botao-excluir" onclick="abrirModalConfirmacao(${aluno.id}, '${aluno.nome.replace(/'/g, "\\'")}')" title="Excluir">
+                                </button>` : ''}
+                            <button class="botao-acao botao-excluir" onclick="abrirModalConfirmacao(${aluno.id}, \`${aluno.nome.replace(/`/g, '\\`')}\`)" title="Excluir">
                                 <i class="fas fa-trash"></i>
                             </button>
-                         </td>
-                    </tr>
-                `;
+                        </td>
+                    </tr>`;
             }).join('');
+        }
+
+        function escapeHtml(texto) {
+            const div = document.createElement('div');
+            div.textContent = texto;
+            return div.innerHTML;
         }
 
         function mostrarAreaDados() {
@@ -3937,8 +3765,8 @@
             document.getElementById('areaDados').style.display = 'block';
             document.getElementById('botaoNovo').style.display = 'flex';
             mostrarBotaoTema();
-            document.getElementById('textoTitulo').innerText = cursoAtivo ? cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1) : 'Turma';
-            document.getElementById('textoSubtitulo').innerText = anoAtivo ? anoAtivo + ' · ' + cursoAtivo : 'Selecione uma turma';
+            document.getElementById('textoTitulo').textContent = cursoAtivo ? cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1) : 'Turma';
+            document.getElementById('textoSubtitulo').textContent = anoAtivo ? anoAtivo + ' · ' + cursoAtivo : 'Selecione uma turma';
         }
 
         function mostrarNotificacao(mensagem, tipo) {
@@ -3953,28 +3781,43 @@
             }, 3000);
         }
 
-        setTimeout(() => {
-            const tela = document.getElementById('tela-carregamento');
-            tela.classList.add('esconder');
-            setTimeout(() => { tela.style.display = 'none'; }, 600);
-        }, 6000);
-
-        let segundosRestantes = 6;
+        // Tela de carregamento melhorada
+        const tempoTotal = 4000; // 4 segundos para carregar
+        const inicio = Date.now();
+        const barraProgresso = document.getElementById('barra-progresso');
         const contadorElement = document.getElementById('contador');
-        const intervalo = setInterval(() => {
-            segundosRestantes--;
-            if (segundosRestantes > 0) {
-                contadorElement.textContent = `Aguarde ${segundosRestantes} segundos...`;
+
+        const atualizarCarregamento = () => {
+            const agora = Date.now();
+            const decorrido = agora - inicio;
+            const progresso = Math.min((decorrido / tempoTotal) * 100, 100);
+
+            if (barraProgresso) barraProgresso.style.width = `${progresso}%`;
+            if (contadorElement) contadorElement.textContent = `${Math.floor(progresso)}%`;
+
+            if (progresso < 100) {
+                requestAnimationFrame(atualizarCarregamento);
             } else {
-                contadorElement.textContent = 'Carregamento concluído!';
-                clearInterval(intervalo);
+                setTimeout(() => {
+                    const tela = document.getElementById('tela-carregamento');
+                    if (tela) {
+                        tela.classList.add('esconder');
+                        setTimeout(() => { tela.style.display = 'none'; }, 800);
+                    }
+                }, 500);
             }
-        }, 1000);
+        };
+
+        requestAnimationFrame(atualizarCarregamento);
 
         window.abrirModalEdicao = abrirModalEdicao;
         window.abrirModalObservacao = abrirModalObservacao;
         window.copiarObservacao = copiarObservacao;
         window.abrirModalConfirmacao = abrirModalConfirmacao;
+        window.selecionarCursoInicio = selecionarCursoInicio;
+        window.voltarInicio = voltarInicio;
+        window.fecharModalRegistro = fecharModalRegistro;
+        window.fecharModalEdicao = fecharModalEdicao;
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -3993,11 +3836,6 @@
             const malhaBase = new THREE.Mesh(geometriaBase, materialTecido);
             malhaBase.position.y = 0.03 * escala;
             grupo.add(malhaBase);
-
-            const geometriaBotao = new THREE.CylinderGeometry(0.025 * escala, 0.025 * escala, 0.02 * escala, 32);
-            const malhaBotao = new THREE.Mesh(geometriaBotao, materialTecido);
-            malhaBotao.position.y = 0.195 * escala;
-            grupo.add(malhaBotao);
 
             const caminhoCordao = new THREE.CatmullRomCurve3([
                 new THREE.Vector3(0, 0.2 * escala, 0),
@@ -4029,7 +3867,7 @@
             camera.lookAt(0, 0.1, 0);
 
             const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            const tamanho = container.clientWidth || (girando ? 70 : 250);
+            const tamanho = container.clientWidth || 250;
             renderizador.setSize(tamanho, tamanho);
             renderizador.setPixelRatio(window.devicePixelRatio);
             renderizador.toneMapping = THREE.ReinhardToneMapping;
@@ -4051,18 +3889,18 @@
                 requestAnimationFrame(animar);
                 tempo += girando ? 0.02 : 0.01;
                 cap.rotation.y += girando ? 0.02 : 0.006;
-                
+
                 if (!girando) {
                     cap.position.y = Math.sin(tempo * 1.7) * 0.05;
                     cap.rotation.z = Math.sin(tempo * 0.5) * 0.04;
                     cap.rotation.x = -0.1 + Math.cos(tempo * 0.4) * 0.04;
                 }
-                
+
                 if (cap.pingente) {
                     cap.pingente.rotation.z = Math.sin(tempo * 2.5) * 0.15;
                     cap.pingente.rotation.x = Math.cos(tempo * 2) * 0.1;
                 }
-                
+
                 renderizador.render(cena, camera);
             }
             animar();
@@ -4084,4 +3922,3 @@
 </body>
 
 </html>
-
