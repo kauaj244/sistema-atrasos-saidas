@@ -2510,7 +2510,7 @@
 
         <aside class="barra-lateral" id="barraLateral">
             <div class="cabecalho-barra-lateral">
-                <img src="logo-eeep.png" class="logo-escola" alt="Logo EEEP">
+                <img src="logo-eeep.png" class="logo-escola" alt="Logo">
                 <h3 style="font-size:18px; font-weight:700;">Gestão</h3>
                 <p style="font-size:11px; opacity:0.8; letter-spacing:0.5px;">controle · atrasos · saídas</p>
             </div>
@@ -2629,7 +2629,7 @@
                     </div>
                 </div>
                 <div class="cabecalho-direita">
-                    <img src="logo-eeep.png" style="border-radius:50%;" id="miniLogo" alt="Logo EEEP">
+                    <img src="logo-eeep.png" style="border-radius:50%;" id="miniLogo" alt="Logo">
                     <button class="botao-tema" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
                         <i class="fas fa-moon" id="iconeTema"></i>
                     </button>
@@ -2777,7 +2777,6 @@
         </main>
     </div>
 
-    <!-- Modal Senha -->
     <div class="modal" id="modalSenha">
         <div class="conteudo-modal senha-modal">
             <div class="cabecalho-modal">
@@ -2816,7 +2815,6 @@
         </div>
     </div>
 
-    <!-- Modal Registro -->
     <div class="modal" id="modalRegistro">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -2861,7 +2859,6 @@
         </div>
     </div>
 
-    <!-- Modal Confirmação -->
     <div class="modal" id="modalConfirmacao">
         <div class="conteudo-modal" style="max-width:400px;">
             <div class="corpo-modal" style="text-align:center; padding:36px 28px;">
@@ -2880,7 +2877,6 @@
         </div>
     </div>
 
-    <!-- Modal Observação -->
     <div class="modal" id="modalObservacao">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -2917,7 +2913,6 @@
         </div>
     </div>
 
-    <!-- Modal Edição -->
     <div class="modal" id="modalEdicao">
         <div class="conteudo-modal">
             <div class="cabecalho-modal">
@@ -3780,9 +3775,8 @@
                 setTimeout(() => notificacao.remove(), 300);
             }, 3000);
         }
-
-        // Tela de carregamento melhorada
-        const tempoTotal = 4000; // 4 segundos para carregar
+        
+        const tempoTotal = 6000; 
         const inicio = Date.now();
         const barraProgresso = document.getElementById('barra-progresso');
         const contadorElement = document.getElementById('contador');
