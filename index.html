@@ -1796,6 +1796,206 @@
             }
         }
 
+        .modal-relatorio {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2500;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-relatorio.mostrar {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .conteudo-relatorio {
+            background: var(--superficie);
+            border-radius: 28px;
+            padding: 40px;
+            max-width: 800px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--sombra-forte);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .cabecalho-relatorio-executivo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--fundo);
+        }
+
+        .logo-relatorio {
+            height: 60px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .info-escola-relatorio {
+            text-align: right;
+        }
+
+        .info-escola-relatorio h3 {
+            font-size: 1.2rem;
+            color: var(--primaria);
+            margin-bottom: 4px;
+        }
+
+        .grid-indicadores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .card-indicador {
+            background: var(--fundo);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .card-indicador:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-media);
+        }
+
+        .card-indicador .valor {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primaria);
+            display: block;
+        }
+
+        .card-indicador .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--texto-suave);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .secao-graficos-relatorio {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .mini-grafico-barra {
+            height: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progresso-grafico {
+            height: 100%;
+            background: var(--gradiente);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        .lista-detalhada {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .lista-detalhada th {
+            text-align: left;
+            padding: 12px;
+            background: var(--fundo);
+            color: var(--texto-secundario);
+            font-weight: 700;
+        }
+
+        .lista-detalhada td {
+            padding: 12px;
+            border-bottom: 1px solid var(--fundo);
+        }
+
+        .carimbo-assinatura {
+            margin-top: 48px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .linha-assinatura {
+            width: 200px;
+            border-top: 1px solid var(--texto-suave);
+            padding-top: 8px;
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+        }
+
+        .painel-exportacao {
+            background: var(--fundo);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--borda);
+        }
+
+        .titulo-painel {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--texto-suave);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .grupo-botoes-export {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .botao-export-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicao);
+            width: 100%;
+            text-align: left;
+        }
+
+        .botao-export-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: var(--fundo);
+            transform: translateX(5px);
+        }
+
         .area-vazia-melhorada {
             display: flex;
             flex-direction: column;
@@ -2492,7 +2692,7 @@
                 <div class="spinner-logo" id="spinner-logo-container"></div>
             </div>
             <div class="texto-carregamento">
-                <h2>EEEP Zélia</h2>
+                <h2>Ana Zélia</h2>
                 <p>Preparando ambiente de gestão...</p>
             </div>
             <div class="barra-carregamento-container">
@@ -2509,7 +2709,7 @@
 
         <aside class="barra-lateral" id="barraLateral">
             <div class="cabecalho-barra-lateral">
-                <img src="logo-eeep.png" class="logo-escola" alt="Logo">
+                <img src="Logo_ep.png" class="logo-escola" alt="Logo">
                 <h3 style="font-size:18px; font-weight:700;">Gestão</h3>
                 <p style="font-size:11px; opacity:0.8; letter-spacing:0.5px;">controle · atrasos · saídas</p>
             </div>
@@ -2606,6 +2806,8 @@
                         </div>
                     </div>
 
+
+
                     <button class="botao-curso" onclick="bloquearSistema()"
                         style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #991b1b; border: 1px solid #f87171; transition: var(--transicao-suave);">
                         <span style="display:flex; align-items:center;">
@@ -2628,7 +2830,7 @@
                     </div>
                 </div>
                 <div class="cabecalho-direita">
-                    <img src="logo-eeep.png" style="border-radius:50%;" id="miniLogo" alt="Logo">
+                    <img src="Logo_ep.png" style="border-radius:50%;" id="miniLogo" alt="Logo">
                     <button class="botao-tema" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
                         <i class="fas fa-moon" id="iconeTema"></i>
                     </button>
@@ -2743,10 +2945,14 @@
                                 <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
                             </button>
                             <div class="dropdown-exportacao" id="dropdownExportacao">
-                                <button class="dropdown-item pdf-item" id="exportarPDF">
+                                <button class="dropdown-item" onclick="gerarRelatorio()"
+                                    style="color: #f59e0b; font-weight: 700;">
+                                    <i class="fas fa-file-invoice"></i> Relatório Profissional
+                                </button>
+                                <button class="dropdown-item pdf-item" onclick="exportarPDF()">
                                     <i class="fas fa-file-pdf"></i> Exportar PDF
                                 </button>
-                                <button class="dropdown-item excel-item" id="exportarExcel">
+                                <button class="dropdown-item excel-item" onclick="exportarCSV()">
                                     <i class="fas fa-file-excel"></i> Exportar Excel
                                 </button>
                             </div>
@@ -2955,6 +3161,35 @@
                     <button type="submit" class="botao botao-primario" style="flex:1;">Atualizar</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal-relatorio" id="modalRelatorio">
+        <div class="conteudo-relatorio">
+            <button class="botao-acao" onclick="fecharRelatorio()"
+                style="position: absolute; top: 20px; right: 20px; background: var(--fundo); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; color: var(--texto-secundario); transition: var(--transicao); z-index: 10;">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div id="conteudoRelatorio">
+
+            </div>
+
+            <div class="painel-exportacao" style="margin-top: 30px;">
+                <div class="titulo-painel">
+                    <i class="fas fa-share-nodes"></i> Opções de Exportação
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <button class="botao-export-item" onclick="exportarPDF()"
+                        style="background: #fee2e2; color: #dc2626;">
+                        <i class="fas fa-file-pdf"></i> Salvar como PDF
+                    </button>
+                    <button class="botao-export-item" onclick="window.print()"
+                        style="background: #e0f2fe; color: #0284c7;">
+                        <i class="fas fa-print"></i> Imprimir Relatório
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3197,126 +3432,172 @@
             if (statSaidas) statSaidas.textContent = saidas;
         }
 
-        function exportarParaPDF() {
+        function gerarRelatorio() {
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
+            if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione um curso e ano primeiro', 'erro'); return; }
+
+            const listaTurma = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
+            const totalAtrasos = listaTurma.filter(a => a.tipo === 'atraso').length;
+            const totalSaidas = listaTurma.filter(a => a.tipo === 'saida').length;
+
+            const percAtrasos = TOTAL_ALUNOS > 0 ? Math.round((totalAtrasos / TOTAL_ALUNOS) * 100) : 0;
+            const percSaidas = TOTAL_ALUNOS > 0 ? Math.round((totalSaidas / TOTAL_ALUNOS) * 100) : 0;
+            const frequenciaEstimada = 100 - (percAtrasos + percSaidas);
+
+            const agora = new Date();
+            const dataFormatada = agora.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+            const horaFormatada = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+            let conteudo = `
+                <div class="cabecalho-relatorio-executivo">
+                    <img src="https://eeep-irma-ana-zelia.netlify.app/img/logo-eeep.jpg" class="logo-relatorio" alt="Logo">
+                    <div class="info-escola-relatorio">
+                        <h3>Ana Zélia</h3>
+                        <p style="font-size: 0.8rem; color: var(--texto-suave);">Gestão de Frequência e Ocorrências</p>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                    <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--texto-primario); margin-bottom: 8px;">Relatório de Desempenho Disciplinar</h2>
+                    <p style="color: var(--texto-suave); font-weight: 500;">Turma: <span style="color: var(--primaria);">${anoAtivo} - ${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)}</span></p>
+                    <p style="font-size: 0.8rem; color: var(--texto-suave); margin-top: 4px;">Gerado em ${dataFormatada} às ${horaFormatada}</p>
+                </div>
+
+                <div class="grid-indicadores">
+                    <div class="card-indicador">
+                        <span class="valor">${TOTAL_ALUNOS}</span>
+                        <span class="label">Total Alunos</span>
+                    </div>
+                    <div class="card-indicador">
+                        <span class="valor" style="color: #f59e0b;">${totalAtrasos}</span>
+                        <span class="label">Atrasos</span>
+                    </div>
+                    <div class="card-indicador">
+                        <span class="valor" style="color: #7c3aed;">${totalSaidas}</span>
+                        <span class="label">Saídas</span>
+                    </div>
+                    <div class="card-indicador">
+                        <span class="valor" style="color: #10b981;">${Math.max(0, frequenciaEstimada)}%</span>
+                        <span class="label">Assiduidade</span>
+                    </div>
+                </div>
+
+                <div class="secao-graficos-relatorio">
+                    <div style="background: var(--fundo); padding: 20px; border-radius: 16px;">
+                        <h4 style="font-size: 0.9rem; margin-bottom: 10px;">Distribuição de Atrasos</h4>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #f59e0b;">${percAtrasos}% da turma</div>
+                        <div class="mini-grafico-barra">
+                            <div class="progresso-grafico" style="width: ${percAtrasos}%; background: #f59e0b;"></div>
+                        </div>
+                    </div>
+                    <div style="background: var(--fundo); padding: 20px; border-radius: 16px;">
+                        <h4 style="font-size: 0.9rem; margin-bottom: 10px;">Distribuição de Saídas</h4>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #7c3aed;">${percSaidas}% da turma</div>
+                        <div class="mini-grafico-barra">
+                            <div class="progresso-grafico" style="width: ${percSaidas}%; background: #7c3aed;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 32px;">
+                    <h4 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-list-ul" style="color: var(--primaria);"></i>
+                        Últimas Ocorrências Registradas
+                    </h4>
+                    <table class="lista-detalhada">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Tipo</th>
+                                <th>Data/Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${listaTurma.slice(0, 5).map(a => `
+                                <tr>
+                                    <td style="font-weight: 600;">${a.nome}</td>
+                                    <td><span style="color: ${a.tipo === 'atraso' ? '#f59e0b' : '#7c3aed'}; font-weight: 700;">${a.tipo.toUpperCase()}</span></td>
+                                    <td style="color: var(--texto-suave);">${a.data.split('-').reverse().join('/')} ${a.hora}</td>
+                                </tr>
+                            `).join('') || '<tr><td colspan="3" style="text-align: center; padding: 20px; color: var(--texto-suave);">Nenhuma ocorrência registrada.</td></tr>'}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="carimbo-assinatura">
+                    <div class="linha-assinatura">Coordenação de Curso</div>
+                    <div class="linha-assinatura">Direção de Ensino</div>
+                </div>
+            `;
+
+            const containerRelatorio = document.getElementById('conteudoRelatorio');
+            const modalRelatorio = document.getElementById('modalRelatorio');
+
+            if (containerRelatorio && modalRelatorio) {
+                containerRelatorio.innerHTML = conteudo;
+                modalRelatorio.classList.add('mostrar');
+                mostrarNotificacao('Relatório gerado com sucesso!', 'sucesso');
+            } else {
+                console.error('Elementos do modal de relatório não encontrados');
+                mostrarNotificacao('Erro ao exibir o relatório', 'erro');
+            }
+        }
+
+        function fecharRelatorio() {
+            document.getElementById('modalRelatorio').classList.remove('mostrar');
+        }
+
+        function exportarPDF() {
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione um curso e ano primeiro', 'erro'); return; }
 
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-            const atrasos = lista.filter(a => a.tipo === 'atraso').length;
-            const saidas = lista.filter(a => a.tipo === 'saida').length;
-            const totalRegistros = lista.length;
-            const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
-            const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
-
-            doc.setFontSize(20);
-            doc.setTextColor(0, 74, 141);
-            doc.text('Relatório de Frequência', 14, 20);
-            doc.setFontSize(14);
-            doc.setTextColor(60, 60, 60);
-            doc.text(`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
-
             const dataAtual = new Date();
             const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
-            const horaFormatada = dataAtual.toLocaleTimeString('pt-BR');
-            doc.setFontSize(10);
-            doc.setTextColor(100, 100, 100);
-            doc.text(`Gerado em: ${dataFormatada} às ${horaFormatada}`, 14, 38);
+
+            doc.setFontSize(18);
+            doc.setTextColor(0, 133, 84);
+            doc.text('RELATÓRIO DE FREQUÊNCIA - ANA ZÉLIA', 14, 20);
             doc.setFontSize(12);
-            doc.setTextColor(0, 0, 0);
-            doc.text('Resumo Estatístico:', 14, 50);
-            doc.setFontSize(11);
-            doc.setTextColor(60, 60, 60);
-            doc.text(`Total de Alunos: ${TOTAL_ALUNOS}`, 20, 60);
-            doc.text(`Total de Atrasos: ${atrasos} (${porcentagemAtrasos}%)`, 20, 68);
-            doc.text(`Total de Saídas: ${saidas} (${porcentagemSaidas}%)`, 20, 76);
-            doc.text(`Total de Registros: ${totalRegistros}`, 20, 84);
+            doc.setTextColor(80, 80, 80);
+            doc.text(`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
+            doc.text(`Gerado em: ${dataFormatada}`, 14, 38);
 
             if (lista.length > 0) {
-                const dadosTabela = lista.sort((a, b) => b.id - a.id).map(aluno => {
-                    const dataFormatada = aluno.data.split('-').reverse().join('/');
-                    return [aluno.nome, aluno.tipo === 'atraso' ? 'Atraso' : 'Saída Antecipada', `${dataFormatada} ${aluno.hora}`, aluno.observacao || '-'];
-                });
-
+                const dadosTabela = lista.map(a => [a.nome, a.tipo.toUpperCase(), a.data.split('-').reverse().join('/'), a.hora, a.observacao || '-']);
                 doc.autoTable({
-                    startY: 95,
-                    head: [['Aluno', 'Status', 'Data/Hora', 'Observação']],
+                    startY: 45,
+                    head: [['Aluno', 'Tipo', 'Data', 'Hora', 'Observação']],
                     body: dadosTabela,
                     theme: 'striped',
-                    headStyles: { fillColor: [0, 74, 141], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 10 },
-                    alternateRowStyles: { fillColor: [245, 245, 245] },
-                    styles: { fontSize: 9, cellPadding: 5 },
-                    columnStyles: { 0: { cellWidth: 60 }, 1: { cellWidth: 40 }, 2: { cellWidth: 45 }, 3: { cellWidth: 'auto' } }
+                    headStyles: { fillColor: [0, 133, 84] }
                 });
-            } else {
-                doc.setFontSize(12);
-                doc.setTextColor(150, 150, 150);
-                doc.text('Nenhum registro encontrado para este período.', 14, 100);
             }
-
-            const pageCount = doc.internal.getNumberOfPages();
-            for (let i = 1; i <= pageCount; i++) {
-                doc.setPage(i);
-                doc.setFontSize(8);
-                doc.setTextColor(150, 150, 150);
-                doc.text(`Sistema de Controle EEEP - Página ${i} de ${pageCount}`, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
-            }
-
-            const nomeArquivo = `relatorio_${cursoAtivo}_${anoAtivo.replace('º', '')}_${dataAtual.toISOString().split('T')[0]}.pdf`;
-            doc.save(nomeArquivo);
-            mostrarNotificacao('PDF gerado com sucesso!', 'sucesso');
-            document.getElementById('dropdownExportacao').classList.remove('mostrar');
+            doc.save(`relatorio_${cursoAtivo}_${anoAtivo}.pdf`);
+            mostrarNotificacao('PDF exportado com sucesso!', 'sucesso');
         }
 
-        function exportarParaExcel() {
+        function exportarCSV() {
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione um curso e ano primeiro', 'erro'); return; }
 
             const lista = alunos.filter(aluno => aluno.curso === cursoAtivo && aluno.ano === anoAtivo);
-            const atrasos = lista.filter(a => a.tipo === 'atraso').length;
-            const saidas = lista.filter(a => a.tipo === 'saida').length;
-            const totalRegistros = lista.length;
-            const porcentagemAtrasos = Math.round((atrasos / TOTAL_ALUNOS) * 100);
-            const porcentagemSaidas = Math.round((saidas / TOTAL_ALUNOS) * 100);
-
-            const dataAtual = new Date();
-            const dataFormatada = dataAtual.toLocaleDateString('pt-BR');
-            const horaFormatada = dataAtual.toLocaleTimeString('pt-BR');
-
-            const dadosExcel = [
-                ['RELATÓRIO DE FREQUÊNCIA - EEEP ZÉLIA'],
-                [`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`],
-                [`Gerado em: ${dataFormatada} às ${horaFormatada}`],
-                [''],
-                ['RESUMO ESTATÍSTICO'],
-                ['Total de Alunos', TOTAL_ALUNOS],
-                ['Total de Atrasos', `${atrasos} (${porcentagemAtrasos}%)`],
-                ['Total de Saídas', `${saidas} (${porcentagemSaidas}%)`],
-                ['Total de Registros', totalRegistros],
-                [''],
-                ['LISTAGEM DE REGISTROS'],
-                ['Aluno', 'Status', 'Data/Hora', 'Observação']
-            ];
-
-            if (lista.length > 0) {
-                const listaOrdenada = [...lista].sort((a, b) => b.id - a.id);
-                listaOrdenada.forEach(aluno => {
-                    const dataFormatada = aluno.data.split('-').reverse().join('/');
-                    dadosExcel.push([aluno.nome, aluno.tipo === 'atraso' ? 'Atraso' : 'Saída Antecipada', `${dataFormatada} ${aluno.hora}`, aluno.observacao || '-']);
-                });
-            } else {
-                dadosExcel.push(['Nenhum registro encontrado para este período.', '', '', '']);
-            }
-
+            const ws = XLSX.utils.json_to_sheet(lista);
             const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet(dadosExcel);
-            ws['!cols'] = [{ wch: 40 }, { wch: 20 }, { wch: 25 }, { wch: 50 }];
-            XLSX.utils.book_append_sheet(wb, ws, 'Relatório');
+            XLSX.utils.book_append_sheet(wb, ws, "Ocorrências");
+            XLSX.writeFile(wb, `relatorio_${cursoAtivo}_${anoAtivo}.xlsx`);
+            mostrarNotificacao('Excel exportado com sucesso!', 'sucesso');
+            document.getElementById('dropdownExportacao').classList.remove('mostrar');
+        }
 
-            const nomeArquivo = `relatorio_${cursoAtivo}_${anoAtivo.replace('º', '')}_${dataAtual.toISOString().split('T')[0]}.xlsx`;
-            XLSX.writeFile(wb, nomeArquivo);
-            mostrarNotificacao('Excel gerado com sucesso!', 'sucesso');
+        function alternarDropdownExportacao(e) {
+            e.stopPropagation();
+            document.getElementById('dropdownExportacao').classList.toggle('mostrar');
+        }
+
+        function fecharDropdownExportacao() {
             document.getElementById('dropdownExportacao').classList.remove('mostrar');
         }
 
@@ -3337,8 +3618,6 @@
             }, 500);
 
             document.getElementById('botaoExportar').addEventListener('click', alternarDropdownExportacao);
-            document.getElementById('exportarPDF').addEventListener('click', exportarParaPDF);
-            document.getElementById('exportarExcel').addEventListener('click', exportarParaExcel);
             document.addEventListener('click', fecharDropdownExportacao);
 
             document.getElementById('botaoAlternarTema').addEventListener('click', alternarTema);
@@ -3774,8 +4053,8 @@
                 setTimeout(() => notificacao.remove(), 300);
             }, 3000);
         }
-        
-        const tempoTotal = 6000; 
+
+        const tempoTotal = 6000;
         const inicio = Date.now();
         const barraProgresso = document.getElementById('barra-progresso');
         const contadorElement = document.getElementById('contador');
@@ -3813,105 +4092,110 @@
         window.fecharModalEdicao = fecharModalEdicao;
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        function criarCapUltra(escala = 1) {
-            const grupo = new THREE.Group();
-            const materialTecido = new THREE.MeshStandardMaterial({ color: 0x1a4a2e, roughness: 0.8, metalness: 0.1 });
-            const materialDourado = new THREE.MeshStandardMaterial({ color: 0xffd700, roughness: 0.2, metalness: 0.9, emissive: 0x221100 });
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    function criarCapUltra(escala = 1) {
+        const grupo = new THREE.Group();
+        const materialTecido = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.7, metalness: 0.05, emissive: 0x000000 });
+        const materialDourado = new THREE.MeshStandardMaterial({ color: 0xffd700, roughness: 0.2, metalness: 0.9, emissive: 0x442200 });
 
-            const geometriaTopo = new THREE.BoxGeometry(0.65 * escala, 0.025 * escala, 0.65 * escala);
-            const malhaTopo = new THREE.Mesh(geometriaTopo, materialTecido);
-            malhaTopo.position.y = 0.18 * escala;
-            grupo.add(malhaTopo);
+        const geometriaTopo = new THREE.BoxGeometry(0.65 * escala, 0.025 * escala, 0.65 * escala);
+        const malhaTopo = new THREE.Mesh(geometriaTopo, materialTecido);
+        malhaTopo.position.y = 0.18 * escala;
+        grupo.add(malhaTopo);
 
-            const geometriaBase = new THREE.CylinderGeometry(0.18 * escala, 0.24 * escala, 0.28 * escala, 64);
-            const malhaBase = new THREE.Mesh(geometriaBase, materialTecido);
-            malhaBase.position.y = 0.03 * escala;
-            grupo.add(malhaBase);
+        const geometriaBase = new THREE.CylinderGeometry(0.18 * escala, 0.24 * escala, 0.28 * escala, 64);
+        const malhaBase = new THREE.Mesh(geometriaBase, materialTecido);
+        malhaBase.position.y = 0.03 * escala;
+        grupo.add(malhaBase);
 
-            const caminhoCordao = new THREE.CatmullRomCurve3([
-                new THREE.Vector3(0, 0.2 * escala, 0),
-                new THREE.Vector3(0.15 * escala, 0.2 * escala, 0.15 * escala),
-                new THREE.Vector3(0.32 * escala, 0.18 * escala, 0.32 * escala)
-            ]);
-            const geometriaCordao = new THREE.TubeGeometry(caminhoCordao, 20, 0.006 * escala, 8, false);
-            grupo.add(new THREE.Mesh(geometriaCordao, materialDourado));
+        const caminhoCordao = new THREE.CatmullRomCurve3([
+            new THREE.Vector3(0, 0.2 * escala, 0),
+            new THREE.Vector3(0.15 * escala, 0.2 * escala, 0.15 * escala),
+            new THREE.Vector3(0.32 * escala, 0.18 * escala, 0.32 * escala)
+        ]);
+        const geometriaCordao = new THREE.TubeGeometry(caminhoCordao, 20, 0.006 * escala, 8, false);
+        grupo.add(new THREE.Mesh(geometriaCordao, materialDourado));
 
-            const pingente = new THREE.Group();
-            pingente.position.set(0.32 * escala, 0.18 * escala, 0.32 * escala);
-            pingente.add(new THREE.Mesh(new THREE.SphereGeometry(0.015 * escala, 16, 16), materialDourado));
-            const franja = new THREE.Mesh(new THREE.ConeGeometry(0.03 * escala, 0.15 * escala, 16), materialDourado);
-            franja.position.y = -0.08 * escala;
-            pingente.add(franja);
-            grupo.add(pingente);
-            grupo.pingente = pingente;
+        const pingente = new THREE.Group();
+        pingente.position.set(0.32 * escala, 0.18 * escala, 0.32 * escala);
+        pingente.add(new THREE.Mesh(new THREE.SphereGeometry(0.015 * escala, 16, 16), materialDourado));
+        const franja = new THREE.Mesh(new THREE.ConeGeometry(0.03 * escala, 0.15 * escala, 16), materialDourado);
+        franja.position.y = -0.08 * escala;
+        pingente.add(franja);
+        grupo.add(pingente);
+        grupo.pingente = pingente;
 
-            return grupo;
-        }
+        return grupo;
+    }
 
-        function iniciarThreeAvancado(idContainer, escala = 1, girando = false) {
-            const container = document.getElementById(idContainer);
-            if (!container) return;
+    function iniciarThreeAvancado(idContainer, escala = 1, girando = false) {
+        const container = document.getElementById(idContainer);
+        if (!container) return;
 
-            const cena = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
-            camera.position.set(0, 0.5, 1.4);
-            camera.lookAt(0, 0.1, 0);
+        const cena = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
+        camera.position.set(0, 0.5, 1.4);
+        camera.lookAt(0, 0.1, 0);
 
-            const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            const tamanho = container.clientWidth || 250;
-            renderizador.setSize(tamanho, tamanho);
-            renderizador.setPixelRatio(window.devicePixelRatio);
-            renderizador.toneMapping = THREE.ReinhardToneMapping;
-            container.appendChild(renderizador.domElement);
+        const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const tamanho = container.clientWidth || 250;
+        renderizador.setSize(tamanho, tamanho);
+        renderizador.setPixelRatio(window.devicePixelRatio);
+        renderizador.toneMapping = THREE.ReinhardToneMapping;
+        container.appendChild(renderizador.domElement);
 
-            cena.add(new THREE.AmbientLight(0xffffff, 0.5));
-            const luzSolar = new THREE.DirectionalLight(0xffffff, 1);
-            luzSolar.position.set(5, 5, 5);
-            cena.add(luzSolar);
-            const luzContorno = new THREE.PointLight(0x008554, 0.6);
-            luzContorno.position.set(-2, 1, -2);
-            cena.add(luzContorno);
+        cena.add(new THREE.AmbientLight(0x333333, 0.4));
+        const luzSolar = new THREE.DirectionalLight(0xffdd99, 1.2);
+        luzSolar.position.set(5, 5, 5);
+        cena.add(luzSolar);
+        const luzContorno = new THREE.PointLight(0xffaa33, 0.8);
+        luzContorno.position.set(-2, 1, -2);
+        cena.add(luzContorno);
+        
+        const luzDestaque = new THREE.PointLight(0xffcc66, 0.5);
+        luzDestaque.position.set(1, 2, 1);
+        cena.add(luzDestaque);
 
-            const cap = criarCapUltra(escala);
-            cena.add(cap);
+        const cap = criarCapUltra(escala);
+        cena.add(cap);
 
-            let tempo = 0;
-            function animar() {
-                requestAnimationFrame(animar);
-                tempo += girando ? 0.02 : 0.01;
-                cap.rotation.y += girando ? 0.02 : 0.006;
+        let tempo = 0;
+        function animar() {
+            requestAnimationFrame(animar);
+            tempo += girando ? 0.02 : 0.01;
+            cap.rotation.y += girando ? 0.02 : 0.006;
 
-                if (!girando) {
-                    cap.position.y = Math.sin(tempo * 1.7) * 0.05;
-                    cap.rotation.z = Math.sin(tempo * 0.5) * 0.04;
-                    cap.rotation.x = -0.1 + Math.cos(tempo * 0.4) * 0.04;
-                }
-
-                if (cap.pingente) {
-                    cap.pingente.rotation.z = Math.sin(tempo * 2.5) * 0.15;
-                    cap.pingente.rotation.x = Math.cos(tempo * 2) * 0.1;
-                }
-
-                renderizador.render(cena, camera);
+            if (!girando) {
+                cap.position.y = Math.sin(tempo * 1.7) * 0.05;
+                cap.rotation.z = Math.sin(tempo * 0.5) * 0.04;
+                cap.rotation.x = -0.1 + Math.cos(tempo * 0.4) * 0.04;
             }
-            animar();
-        }
 
-        function iniciarAnimacoes() {
-            setTimeout(() => {
-                iniciarThreeAvancado('canvas-container-principal', 1.0, false);
-                iniciarThreeAvancado('spinner-logo-container', 0.8, true);
-            }, 500);
-        }
+            if (cap.pingente) {
+                cap.pingente.rotation.z = Math.sin(tempo * 2.5) * 0.15;
+                cap.pingente.rotation.x = Math.cos(tempo * 2) * 0.1;
+            }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', iniciarAnimacoes);
-        } else {
-            iniciarAnimacoes();
+            renderizador.render(cena, camera);
         }
-    </script>
+        animar();
+    }
+
+    function iniciarAnimacoes() {
+        setTimeout(() => {
+            iniciarThreeAvancado('canvas-container-principal', 1.1, false);
+            iniciarThreeAvancado('spinner-logo-container', 0.8, true);
+        }, 500);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciarAnimacoes);
+    } else {
+        iniciarAnimacoes();
+    }
+</script>
 </body>
 
 </html>
+
