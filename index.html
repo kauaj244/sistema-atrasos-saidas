@@ -18,11 +18,11 @@
         }
 
         :root {
-            --primaria: #008554;
+            --primaria: #02b875;
             --primaria-clara: #00a86b;
             --primaria-escura: #006440;
             --secundaria: #ff6b00;
-            --acento: #00a86b;
+            --acento: #018051;
             --perigo: #d32f2f;
             --aviso: #ffa000;
             --fundo: #f0f5fa;
@@ -44,7 +44,7 @@
             --cor-adm: #0056a7;
             --cor-adm-clara: #3b82f6;
             --cor-adm-escura: #1e3a8a;
-            --cor-adm-gradiente: linear-gradient(135deg, #0056a7 0%, #1e40af 100%);
+            --cor-adm-gradiente: linear-gradient(135deg, #0568c5 0%, #1e40af 100%);
 
             --cor-eletro: #d97706;
             --cor-eletro-clara: #fbbf24;
@@ -54,12 +54,12 @@
             --cor-enfermagem: #059669;
             --cor-enfermagem-clara: #34d399;
             --cor-enfermagem-escura: #009970;
-            --cor-enfermagem-gradiente: linear-gradient(135deg, #059669 0%, #047857 100%);
+            --cor-enfermagem-gradiente: linear-gradient(135deg, #01c989 0%, #047857 100%);
 
             --cor-informatica: #d30000;
             --cor-informatica-clara: #f87171;
             --cor-informatica-escura: #7f1d1d;
-            --cor-informatica-gradiente: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            --cor-informatica-gradiente: linear-gradient(135deg, hsl(0, 95%, 50%) 0%, #b91c1c 100%);
 
             --fundo-escuro: #0f172a;
             --superficie-escuro: #1e293b;
@@ -2194,7 +2194,7 @@
 
         .icone-dicas {
             font-size: 42px;
-            background: linear-gradient(135deg, #eeff00);
+            background: linear-gradient(135deg, #f2ff00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -3921,7 +3921,7 @@
             atualizarEstatisticasMenu();
             mostrarNotificacao('Registro salvo com sucesso!', 'sucesso');
         }
-
+ 
         function salvarEdicao(evento) {
             evento.preventDefault();
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
@@ -4053,8 +4053,8 @@
                 setTimeout(() => notificacao.remove(), 300);
             }, 3000);
         }
-
-        const tempoTotal = 6000;
+        
+        const tempoTotal = 10000;
         const inicio = Date.now();
         const barraProgresso = document.getElementById('barra-progresso');
         const contadorElement = document.getElementById('contador');
