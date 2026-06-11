@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -2807,9 +2808,8 @@
                         style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); color: #991b1b; border: 1px solid #f87171; transition: var(--transicao-suave);">
                         <span style="display:flex; align-items:center;">
                             <span class="icone-curso"
-                                style="background: #ef4444; color: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><i
-                                    class="fas fa-lock"></i></span> Bloquear Sistema
-                        </span>
+                                style="background: #ff0000; color: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><i
+                                    class="fas fa-lock"></i></span> Bloquear Sistema </span>
                     </button>
                 </div>
             </nav>
@@ -2913,7 +2913,7 @@
                     <div id="secaoDashboard" style="display:none; margin-bottom: 32px;">
                         <div class="grade-estatisticas">
                             <div class="cartao-estatistica" style="grid-column: 1 / -1;">
-                                <h3 class="rotulo-estatistica">Faltas Mensais</h3>
+                                <h3 class="rotulo-estatistica">Faltas Mensal</h3>
                                 <div style="height: 250px; position: relative;">
                                     <canvas id="graficoEvolucao"></canvas>
                                 </div>
@@ -3215,6 +3215,19 @@
 
         let alunos = JSON.parse(localStorage.getItem('alunos_eeep_pt')) || [];
         let cursoAtivo = null;
+
+        const NOMES_CURSOS = {
+            'administracao': 'Administração',
+            'eletrotecnica': 'Eletrotécnica',
+            'enfermagem': 'Enfermagem',
+            'informatica': 'Informática'
+        };
+
+        function formatarNomeCurso(curso) {
+            if (!curso) return 'Turma';
+            return NOMES_CURSOS[curso.toLowerCase()] || (curso.charAt(0).toUpperCase() + curso.slice(1));
+        }
+
         let anoAtivo = null;
         const TOTAL_ALUNOS = 45;
         let registroParaExcluir = null;
@@ -3472,7 +3485,7 @@
 
                 <div style="margin-bottom: 32px;">
                     <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--texto-primario); margin-bottom: 8px;">Relatório de Desempenho Disciplinar</h2>
-                    <p style="color: var(--texto-suave); font-weight: 500;">Turma: <span style="color: var(--primaria);">${anoAtivo} - ${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)}</span></p>
+                    <p style="color: var(--texto-suave); font-weight: 500;">Turma: <span style="color: var(--primaria);">${anoAtivo} - ${formatarNomeCurso(cursoAtivo)}</span></p>
                     <p style="font-size: 0.8rem; color: var(--texto-suave); margin-top: 4px;">Gerado em ${dataFormatada} às ${horaFormatada}</p>
                 </div>
 
@@ -3575,7 +3588,7 @@
             doc.text('RELATÓRIO DE FREQUÊNCIA - ANA ZÉLIA', 14, 20);
             doc.setFontSize(12);
             doc.setTextColor(80, 80, 80);
-            doc.text(`${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
+            doc.text(`${formatarNomeCurso(cursoAtivo)} - ${anoAtivo}`, 14, 30);
             doc.text(`Gerado em: ${dataFormatada}`, 14, 38);
 
             if (lista.length > 0) {
@@ -4051,8 +4064,8 @@
             document.getElementById('areaDados').style.display = 'block';
             document.getElementById('botaoNovo').style.display = 'flex';
             mostrarBotaoTema();
-            document.getElementById('textoTitulo').textContent = cursoAtivo ? cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1) : 'Turma';
-            document.getElementById('textoSubtitulo').textContent = anoAtivo ? anoAtivo + ' · ' + cursoAtivo : 'Selecione uma turma';
+            document.getElementById('textoTitulo').textContent = formatarNomeCurso(cursoAtivo);
+            document.getElementById('textoSubtitulo').textContent = anoAtivo ? anoAtivo + ' · ' + formatarNomeCurso(cursoAtivo) : 'Selecione uma turma';
         }
 
         function mostrarNotificacao(mensagem, tipo) {
@@ -4174,10 +4187,7 @@
         window.voltarInicio = voltarInicio;
         window.fecharModalRegistro = fecharModalRegistro;
         window.fecharModalEdicao = fecharModalEdicao;
-    </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
         function criarCapUltra(escala = 1) {
             const grupo = new THREE.Group();
             const materialTecido = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.7, metalness: 0.05, emissive: 0x000000 });
