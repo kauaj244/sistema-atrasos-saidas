@@ -2713,6 +2713,28 @@
         }
 
         @media (max-width: 768px) {
+            .cabecalho-estatisticas {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .container-exportacao {
+                width: 100%;
+            }
+
+            .botao-exportar-principal {
+                width: 100%;
+                justify-content: center;
+                margin-right: 0 !important;
+            }
+
+            .dropdown-exportacao {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+
             .cabecalho {
                 padding: 10px 15px;
             }
@@ -3393,19 +3415,7 @@
             botaoTema.style.display = 'none';
         }
 
-        function alternarDropdownExportacao(e) {
-            e.stopPropagation();
-            const dropdown = document.getElementById('dropdownExportacao');
-            dropdown.classList.toggle('mostrar');
-        }
 
-        function fecharDropdownExportacao(e) {
-            const container = document.querySelector('.container-exportacao');
-            const dropdown = document.getElementById('dropdownExportacao');
-            if (container && !container.contains(e.target)) {
-                dropdown.classList.remove('mostrar');
-            }
-        }
 
         function mostrarModalSenha() {
             const modal = document.getElementById('modalSenha');
