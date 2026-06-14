@@ -2677,6 +2677,103 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Media Queries para Responsividade Mobile */
+        @media (max-width: 1024px) {
+            .barra-lateral {
+                transform: translateX(-100%);
+            }
+            .conteudo-principal {
+                margin-left: 0 !important;
+            }
+            .grade-estatisticas {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cabecalho {
+                padding: 10px 15px;
+            }
+            .titulo-cabecalho h2 {
+                font-size: 1.1rem;
+            }
+            .titulo-cabecalho p {
+                font-size: 0.75rem;
+            }
+            .grade-estatisticas {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .conteudo {
+                padding: 15px;
+            }
+            .container-tabela {
+                border-radius: 12px !important;
+            }
+            .cartao-estatistica {
+                padding: 15px;
+                border-radius: 20px;
+            }
+            .numero-estatistica {
+                font-size: 2rem;
+            }
+            .botao-flutuante {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+            .conteudo-modal {
+                width: 95%;
+                border-radius: 20px;
+            }
+            .cabecalho-modal {
+                padding: 20px;
+            }
+            .corpo-modal {
+                padding: 20px;
+            }
+            .rodape-modal {
+                padding: 15px 20px;
+            }
+            .barra-acoes-modal {
+                flex-direction: column;
+            }
+            .botao-copiar {
+                width: 100%;
+            }
+            
+            /* Ajustes para a tabela em mobile */
+            table {
+                min-width: 600px;
+            }
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-cabecalho {
+                display: none; /* Esconde o título longo em telas muito pequenas */
+            }
+            .cabecalho-direita {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .botao-menu-hamburguer {
+                margin-right: 0;
+            }
+            .cabecalho-modal h3 {
+                font-size: 1.2rem;
+            }
+            .icone-modal {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
@@ -4253,6 +4350,14 @@
 
             const cap = criarCapUltra(escala);
             cena.add(cap);
+
+            // Redimensionamento responsivo do canvas
+            window.addEventListener('resize', () => {
+                const novoTamanho = container.clientWidth || 250;
+                renderizador.setSize(novoTamanho, novoTamanho);
+                camera.aspect = 1;
+                camera.updateProjectionMatrix();
+            });
 
             let tempo = 0;
             function animar() {
