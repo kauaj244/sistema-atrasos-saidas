@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>EEEP Zélia · Controle de Atrasos e Saídas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -337,6 +337,20 @@
             flex-direction: column;
             min-height: 100vh;
             width: 100%;
+            transition: margin-left 0.3s ease;
+        }
+
+        @media (min-width: 1025px) {
+            .barra-lateral {
+                transform: translateX(0);
+                box-shadow: none;
+            }
+            .conteudo-principal {
+                margin-left: 280px;
+            }
+            .botao-menu-hamburguer {
+                display: none;
+            }
         }
 
         .barra-lateral {
@@ -1775,12 +1789,19 @@
 
         .grade-cursos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             width: 100%;
             max-width: 1200px;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
             animation: fadeInUp 1.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .grade-cursos {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
         }
 
         .cartao-curso {
@@ -2755,15 +2776,27 @@
         }
 
         @media (max-width: 480px) {
-            .titulo-cabecalho {
-                display: none; /* Esconde o título longo em telas muito pequenas */
+            .cabecalho {
+                padding: 10px 12px;
             }
-            .cabecalho-direita {
-                width: 100%;
-                justify-content: space-between;
+            .titulo-cabecalho h2 {
+                font-size: 0.9rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 150px;
+            }
+            .titulo-cabecalho p {
+                display: none;
+            }
+            #miniLogo {
+                width: 36px;
+                height: 36px;
             }
             .botao-menu-hamburguer {
-                margin-right: 0;
+                width: 38px;
+                height: 38px;
+                margin-right: 10px;
             }
             .cabecalho-modal h3 {
                 font-size: 1.2rem;
