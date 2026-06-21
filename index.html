@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEEP Zélia · Controle de Atrasos e Saídas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+    
     <style>
+        /* ===== TODOS OS ESTILOS PREMIUM ===== */
         :root {
             --primary: #006d3a;
             --primary-light: #008548;
@@ -31,21 +30,25 @@
             --success: #2e7d32;
             --info: #007b8a;
             --purple: #7b1fa2;
+            
             --bg: #f8fafc;
             --bg-alt: #f1f5f9;
             --surface: #ffffff;
             --surface-hover: #fafbfc;
             --border: #e2e8f0;
             --border-light: #f1f5f9;
+            
             --text: #0f172a;
             --text-secondary: #475569;
             --text-muted: #64748b;
+            
             --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
             --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.12);
+            
             --radius-xs: 6px;
             --radius-sm: 8px;
             --radius-md: 12px;
@@ -53,12 +56,15 @@
             --radius-xl: 24px;
             --radius-2xl: 32px;
             --radius-full: 9999px;
+            
             --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            
             --glass-bg: rgba(255, 255, 255, 0.95);
             --glass-border: rgba(255, 255, 255, 0.8);
             --glass-blur: 20px;
+            
             --admin: #0056a7;
             --admin-light: #3b82f6;
             --admin-dark: #1e3a8a;
@@ -71,6 +77,7 @@
             --informatica: #dc2626;
             --informatica-light: #f87171;
             --informatica-dark: #991b1b;
+            
             --dark-bg: #0f172a;
             --dark-surface: #1e293b;
             --dark-border: #334155;
@@ -105,7 +112,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background:
+            background: 
                 radial-gradient(circle at 20% 50%, var(--primary-glow) 0%, transparent 50%),
                 radial-gradient(circle at 80% 50%, rgba(232, 120, 10, 0.1) 0%, transparent 50%);
             pointer-events: none;
@@ -172,44 +179,19 @@
         }
 
         body.tema-escuro::before {
-            background:
+            background: 
                 radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 50%, rgba(232, 120, 10, 0.1) 0%, transparent 50%);
         }
 
-        body.modo-compacto .card-metrica {
-            padding: 12px 16px;
-        }
-
-        body.modo-compacto .card-metrica .valor-metrica {
-            font-size: 1.6rem;
-        }
-
-        body.modo-compacto .ranking-item {
-            padding: 6px 10px;
-        }
-
-        body.modo-compacto .stat-card {
-            padding: 1.25rem;
-        }
-
-        body.modo-compacto .stat-value {
-            font-size: 2.2rem;
-        }
-
-        body.modo-compacto .atalho-item {
-            padding: 6px 12px;
-            font-size: 0.75rem;
-        }
-
-        body.modo-compacto .dashboard-avancado {
-            gap: 12px;
-        }
-
-        body.modo-compacto .grafico-pizza-container {
-            height: 200px;
-            padding: 12px;
-        }
+        body.modo-compacto .card-metrica { padding: 12px 16px; }
+        body.modo-compacto .card-metrica .valor-metrica { font-size: 1.6rem; }
+        body.modo-compacto .ranking-item { padding: 6px 10px; }
+        body.modo-compacto .stat-card { padding: 1.25rem; }
+        body.modo-compacto .stat-value { font-size: 2.2rem; }
+        body.modo-compacto .atalho-item { padding: 6px 12px; font-size: 0.75rem; }
+        body.modo-compacto .dashboard-avancado { gap: 12px; }
+        body.modo-compacto .grafico-pizza-container { height: 200px; padding: 12px; }
 
         .container {
             display: flex;
@@ -227,6 +209,7 @@
             transition: margin-left var(--transition);
         }
 
+        /* Sidebar */
         .barra-lateral {
             width: 320px;
             background: var(--glass-bg);
@@ -245,9 +228,7 @@
             box-shadow: var(--shadow-2xl);
         }
 
-        .barra-lateral.mostrar {
-            transform: translateX(0);
-        }
+        .barra-lateral.mostrar { transform: translateX(0); }
 
         .sidebar-header {
             padding: 2.5rem 2rem 2rem;
@@ -262,7 +243,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background:
+            background: 
                 radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
         }
@@ -274,7 +255,10 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.5) 50%, 
+                rgba(255,255,255,0) 100%);
         }
 
         .sidebar-logo {
@@ -291,9 +275,7 @@
             transition: transform 0.3s ease;
         }
 
-        .sidebar-logo:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
+        .sidebar-logo:hover { transform: scale(1.05) rotate(5deg); }
 
         .sidebar-title {
             font-size: 1.35rem;
@@ -319,10 +301,7 @@
             overflow-y: auto;
         }
 
-        .sidebar-nav::-webkit-scrollbar {
-            width: 6px;
-        }
-
+        .sidebar-nav::-webkit-scrollbar { width: 6px; }
         .sidebar-nav::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--primary), var(--primary-light));
             border-radius: 10px;
@@ -376,9 +355,7 @@
             margin-top: 0.5rem;
         }
 
-        .curso-nav-item {
-            margin-bottom: 0.5rem;
-        }
+        .curso-nav-item { margin-bottom: 0.5rem; }
 
         .curso-btn {
             width: 100%;
@@ -407,19 +384,16 @@
             color: white;
             box-shadow: 0 8px 24px rgba(0, 86, 167, 0.4);
         }
-
         .curso-btn.ativo[data-curso="eletrotecnica"] {
             background: linear-gradient(135deg, var(--eletro), var(--eletro-light));
             color: white;
             box-shadow: 0 8px 24px rgba(217, 119, 6, 0.4);
         }
-
         .curso-btn.ativo[data-curso="enfermagem"] {
             background: linear-gradient(135deg, var(--enfermagem), var(--enfermagem-light));
             color: white;
             box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4);
         }
-
         .curso-btn.ativo[data-curso="informatica"] {
             background: linear-gradient(135deg, var(--informatica), var(--informatica-light));
             color: white;
@@ -450,10 +424,7 @@
             transition: transform var(--transition);
         }
 
-        .curso-btn.ativo .curso-chevron {
-            transform: rotate(180deg);
-            opacity: 1;
-        }
+        .curso-btn.ativo .curso-chevron { transform: rotate(180deg); opacity: 1; }
 
         .submenu-ano {
             margin-left: 3.5rem;
@@ -554,13 +525,8 @@
             margin-bottom: 0.25rem;
         }
 
-        .sidebar-stat-value.atrasos {
-            color: var(--warning);
-        }
-
-        .sidebar-stat-value.saidas {
-            color: var(--purple);
-        }
+        .sidebar-stat-value.atrasos { color: var(--warning); }
+        .sidebar-stat-value.saidas { color: var(--purple); }
 
         .sidebar-stat-label {
             font-size: 0.65rem;
@@ -617,15 +583,13 @@
             transition: opacity 0.4s ease;
         }
 
-        .sobreposicao.mostrar {
-            display: block;
-            opacity: 1;
-        }
+        .sobreposicao.mostrar { display: block; opacity: 1; }
 
+        /* ===== HEADER REORGANIZADO ===== */
         .cabecalho {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
-            padding: 1rem 2rem;
+            padding: 0.75rem 2rem;
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
@@ -634,17 +598,145 @@
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow-sm);
+            gap: 1rem;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1rem;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 2;
+            justify-content: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .header-title {
+            min-width: 0;
+        }
+
+        .header-title h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-title p {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-xs);
+            position: relative;
+        }
+
+        .header-btn:hover {
+            background: var(--bg-alt);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-btn.active-dashboard {
+            background: var(--primary) !important;
+            color: white !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .header-btn.active-ranking {
+            background: #ffd700 !important;
+            color: #1a1a1a !important;
+            border-color: #ffd700 !important;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .header-btn.active-backup {
+            background: var(--info) !important;
+            color: white !important;
+            border-color: var(--info) !important;
+            box-shadow: 0 4px 12px rgba(0, 123, 138, 0.3);
+        }
+
+        .header-btn.active-compacto {
+            background: var(--purple) !important;
+            color: white !important;
+            border-color: var(--purple) !important;
+            box-shadow: 0 4px 12px rgba(123, 31, 162, 0.3);
+        }
+
+        .header-btn.danger-btn {
+            border-color: #fecaca;
+        }
+
+        .header-btn.danger-btn:hover {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
+        }
+
+        .header-btn .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 800;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
         }
 
         .menu-btn {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border: none;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
@@ -656,6 +748,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .menu-btn:hover {
@@ -663,35 +756,15 @@
             box-shadow: 0 8px 24px var(--primary-glow);
         }
 
-        .header-title h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text);
-            margin: 0;
-        }
-
-        .header-title p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
         .header-logo {
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 3px solid var(--primary-light);
             object-fit: cover;
             box-shadow: 0 4px 16px var(--primary-glow);
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         .header-logo:hover {
@@ -700,8 +773,8 @@
         }
 
         .theme-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--surface);
             border: 2px solid var(--border);
@@ -710,7 +783,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
             box-shadow: var(--shadow-xs);
         }
@@ -726,14 +799,36 @@
             border-color: var(--dark-border);
         }
 
-        .conteudo {
-            padding: 2rem;
-            flex: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
+        .config-btn-header {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-xs);
         }
 
+        .config-btn-header:hover {
+            background: var(--bg-alt);
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 30px;
+            background: var(--border);
+            margin: 0 0.25rem;
+        }
+
+        /* ===== ATALHOS ===== */
         .atalhos-container {
             display: none;
             gap: 0.75rem;
@@ -780,6 +875,7 @@
             animation: pulseGlow 2s infinite;
         }
 
+        /* ===== DASHBOARD AVANÇADO ===== */
         .dashboard-avancado {
             display: none;
             grid-template-columns: 1fr 1fr 1fr;
@@ -808,18 +904,8 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .card-metrica .icone-metrica {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .card-metrica .valor-metrica {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--text);
-        }
-
+        .card-metrica .icone-metrica { font-size: 1.75rem; margin-bottom: 0.5rem; display: inline-block; }
+        .card-metrica .valor-metrica { font-size: 2.2rem; font-weight: 900; color: var(--text); }
         .card-metrica .label-metrica {
             font-size: 0.7rem;
             color: var(--text-muted);
@@ -839,15 +925,8 @@
             border-radius: var(--radius-full);
         }
 
-        .trend-up {
-            color: var(--success);
-            background: rgba(46, 125, 50, 0.1);
-        }
-
-        .trend-down {
-            color: var(--danger);
-            background: rgba(211, 47, 47, 0.1);
-        }
+        .trend-up { color: var(--success); background: rgba(46, 125, 50, 0.1); }
+        .trend-down { color: var(--danger); background: rgba(211, 47, 47, 0.1); }
 
         .estatisticas-avancadas {
             display: none;
@@ -893,33 +972,15 @@
             border: 2px solid var(--border-light);
         }
 
-        .alerta-item.alerta-info {
-            border-left-color: var(--info);
-        }
+        .alerta-item.alerta-info { border-left-color: var(--info); }
+        .alerta-item.alerta-perigo { border-left-color: var(--danger); }
+        .alerta-item.alerta-aviso { border-left-color: var(--warning); }
 
-        .alerta-item.alerta-perigo {
-            border-left-color: var(--danger);
-        }
+        .alerta-item .alerta-icone { font-size: 1.1rem; }
+        .alerta-item .alerta-texto { flex: 1; font-weight: 500; font-size: 0.9rem; }
+        .alerta-item .alerta-tempo { font-size: 0.7rem; color: var(--text-muted); }
 
-        .alerta-item.alerta-aviso {
-            border-left-color: var(--warning);
-        }
-
-        .alerta-item .alerta-icone {
-            font-size: 1.1rem;
-        }
-
-        .alerta-item .alerta-texto {
-            flex: 1;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .alerta-item .alerta-tempo {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
+        /* ===== RANKING ===== */
         .ranking-container {
             background: var(--surface);
             border-radius: var(--radius-lg);
@@ -944,9 +1005,7 @@
             border-bottom: 1px solid var(--border-light);
         }
 
-        .ranking-item:hover {
-            background: var(--surface-hover);
-        }
+        .ranking-item:hover { background: var(--surface-hover); }
 
         .ranking-item .posicao {
             font-weight: 800;
@@ -955,24 +1014,11 @@
             min-width: 30px;
         }
 
-        .ranking-item .posicao.ouro {
-            color: #ffd700;
-        }
+        .ranking-item .posicao.ouro { color: #ffd700; }
+        .ranking-item .posicao.prata { color: #c0c0c0; }
+        .ranking-item .posicao.bronze { color: #cd7f32; }
 
-        .ranking-item .posicao.prata {
-            color: #c0c0c0;
-        }
-
-        .ranking-item .posicao.bronze {
-            color: #cd7f32;
-        }
-
-        .ranking-item .nome-aluno-ranking {
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
+        .ranking-item .nome-aluno-ranking { flex: 1; font-weight: 600; font-size: 0.95rem; }
         .ranking-item .ocorrencias-ranking {
             font-weight: 700;
             color: var(--primary);
@@ -982,6 +1028,7 @@
             font-size: 0.8rem;
         }
 
+        /* ===== BACKUP ===== */
         .backup-container {
             background: var(--surface);
             border-radius: var(--radius-lg);
@@ -1002,11 +1049,9 @@
             flex-wrap: wrap;
         }
 
-        .backup-acoes .btn {
-            padding: 0.7rem 1.5rem;
-            font-size: 0.85rem;
-        }
+        .backup-acoes .btn { padding: 0.7rem 1.5rem; font-size: 0.85rem; }
 
+        /* ===== WELCOME ===== */
         .welcome-area {
             display: flex;
             flex-direction: column;
@@ -1079,50 +1124,16 @@
             border-color: var(--primary);
         }
 
-        .curso-card-icon {
-            font-size: 4rem;
-            margin-bottom: 1.25rem;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.5s ease;
-        }
+        .curso-card-icon { font-size: 4rem; margin-bottom: 1.25rem; position: relative; z-index: 1; transition: transform 0.5s ease; }
+        .curso-card:hover .curso-card-icon { transform: scale(1.2) rotate(10deg); }
 
-        .curso-card:hover .curso-card-icon {
-            transform: scale(1.2) rotate(10deg);
-        }
+        .curso-card[data-curso="administracao"] .curso-card-icon { color: var(--admin); }
+        .curso-card[data-curso="eletrotecnica"] .curso-card-icon { color: var(--eletro); }
+        .curso-card[data-curso="enfermagem"] .curso-card-icon { color: var(--enfermagem); }
+        .curso-card[data-curso="informatica"] .curso-card-icon { color: var(--informatica); }
 
-        .curso-card[data-curso="administracao"] .curso-card-icon {
-            color: var(--admin);
-        }
-
-        .curso-card[data-curso="eletrotecnica"] .curso-card-icon {
-            color: var(--eletro);
-        }
-
-        .curso-card[data-curso="enfermagem"] .curso-card-icon {
-            color: var(--enfermagem);
-        }
-
-        .curso-card[data-curso="informatica"] .curso-card-icon {
-            color: var(--informatica);
-        }
-
-        .curso-card-name {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .curso-card-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            position: relative;
-            z-index: 1;
-            font-weight: 500;
-        }
+        .curso-card-name { font-size: 1.4rem; font-weight: 800; color: var(--text); position: relative; z-index: 1; margin-bottom: 0.5rem; }
+        .curso-card-desc { font-size: 0.95rem; color: var(--text-muted); position: relative; z-index: 1; font-weight: 500; }
 
         .tips-section {
             background: var(--surface);
@@ -1169,9 +1180,7 @@
             transition: var(--transition);
         }
 
-        .tip-item:hover {
-            transform: translateX(8px);
-        }
+        .tip-item:hover { transform: translateX(8px); }
 
         .tip-number {
             width: 40px;
@@ -1188,14 +1197,9 @@
             box-shadow: 0 4px 12px var(--primary-glow);
         }
 
-        .tip-text {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            padding-top: 0.5rem;
-            font-weight: 500;
-        }
+        .tip-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; padding-top: 0.5rem; font-weight: 500; }
 
+        /* ===== STATS ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1230,13 +1234,8 @@
             border-radius: 5px 0 0 5px;
         }
 
-        .stat-card:nth-child(2)::after {
-            background: linear-gradient(180deg, var(--warning), #ffc107);
-        }
-
-        .stat-card:nth-child(3)::after {
-            background: linear-gradient(180deg, var(--purple), #ba68c8);
-        }
+        .stat-card:nth-child(2)::after { background: linear-gradient(180deg, var(--warning), #ffc107); }
+        .stat-card:nth-child(3)::after { background: linear-gradient(180deg, var(--purple), #ba68c8); }
 
         .stat-label {
             font-size: 0.75rem;
@@ -1254,13 +1253,8 @@
             color: var(--text);
         }
 
-        .stat-value.atrasos {
-            color: var(--warning);
-        }
-
-        .stat-value.saidas {
-            color: var(--purple);
-        }
+        .stat-value.atrasos { color: var(--warning); }
+        .stat-value.saidas { color: var(--purple); }
 
         .stat-percentage {
             font-size: 0.95rem;
@@ -1293,6 +1287,7 @@
             box-shadow: 0 0 10px rgba(123, 31, 162, 0.3);
         }
 
+        /* ===== TOOLBAR ===== */
         .toolbar {
             display: flex;
             justify-content: space-between;
@@ -1394,9 +1389,7 @@
             box-shadow: 0 8px 24px rgba(211, 47, 47, 0.3);
         }
 
-        .export-wrapper {
-            position: relative;
-        }
+        .export-wrapper { position: relative; }
 
         .export-dropdown {
             position: absolute;
@@ -1449,6 +1442,7 @@
             border: 2px solid var(--border-light);
         }
 
+        /* ===== TABLE ===== */
         .table-container {
             background: var(--surface);
             border-radius: var(--radius-lg);
@@ -1486,13 +1480,8 @@
             font-weight: 500;
         }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background: var(--surface-hover);
-        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: var(--surface-hover); }
 
         .status-badge {
             padding: 0.4rem 1rem;
@@ -1568,10 +1557,7 @@
             gap: 0.5rem;
         }
 
-        .obs-indicator {
-            color: var(--info);
-            font-size: 0.85rem;
-        }
+        .obs-indicator { color: var(--info); font-size: 0.85rem; }
 
         .fab {
             position: fixed;
@@ -1599,6 +1585,7 @@
             box-shadow: 0 12px 40px var(--primary-glow);
         }
 
+        /* ===== MODALS ===== */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1630,9 +1617,7 @@
             max-height: 90vh;
         }
 
-        .modal-content.senha-modal {
-            max-width: 450px;
-        }
+        .modal-content.senha-modal { max-width: 450px; }
 
         .modal-header {
             padding: 2rem;
@@ -1702,10 +1687,7 @@
             overflow-y: auto;
         }
 
-        .modal-body::-webkit-scrollbar {
-            width: 8px;
-        }
-
+        .modal-body::-webkit-scrollbar { width: 8px; }
         .modal-body::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--primary), var(--primary-light));
             border-radius: 10px;
@@ -1720,9 +1702,7 @@
             background: var(--bg-alt);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         .form-group label {
             display: block;
@@ -1758,10 +1738,7 @@
             background: var(--surface-hover);
         }
 
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
+        .form-group textarea { height: 120px; resize: vertical; }
 
         .form-row {
             display: grid;
@@ -1863,9 +1840,7 @@
             transition: var(--transition);
         }
 
-        .password-toggle:hover {
-            color: var(--primary);
-        }
+        .password-toggle:hover { color: var(--primary); }
 
         .password-error {
             color: var(--danger);
@@ -1929,9 +1904,7 @@
             backdrop-filter: blur(8px);
         }
 
-        .relatorio-overlay.mostrar {
-            display: flex;
-        }
+        .relatorio-overlay.mostrar { display: flex; }
 
         .relatorio-content {
             background: var(--surface);
@@ -1981,7 +1954,7 @@
 
         .relatorio-logo {
             height: 60px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
 
         .relatorio-grid {
@@ -2019,6 +1992,209 @@
             color: var(--text-muted);
         }
 
+        /* ===== CONFIGURAÇÕES ===== */
+        .config-modal-content {
+            max-width: 700px !important;
+        }
+
+        .config-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 2rem;
+            background: var(--bg-alt);
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .config-tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .config-tab:hover {
+            color: var(--text);
+            background: rgba(0,0,0,0.02);
+        }
+
+        .config-tab.ativo {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .config-panel {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .config-panel.mostrar {
+            display: block;
+        }
+
+        .config-group {
+            margin-bottom: 2rem;
+        }
+
+        .config-group-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .config-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-field {
+            margin-bottom: 1rem;
+        }
+
+        .config-field label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .config-field input,
+        .config-field select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            background: var(--surface);
+            color: var(--text);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .config-field input:focus,
+        .config-field select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+
+        .config-field .helper {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .config-field .toggle-switch {
+            position: relative;
+            width: 52px;
+            height: 28px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .config-field .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .config-field .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+
+        .config-field .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .config-field .toggle-switch input:checked + .toggle-slider {
+            background: var(--primary);
+        }
+
+        .config-field .toggle-switch input:checked + .toggle-slider::before {
+            transform: translateX(24px);
+        }
+
+        .config-field .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .config-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-light);
+            justify-content: flex-end;
+        }
+
+        .config-actions .btn {
+            padding: 0.8rem 2rem;
+        }
+
+        .config-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .config-badge.danger {
+            background: var(--danger);
+        }
+
+        .config-reset-btn {
+            color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .config-reset-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 2.5rem;
@@ -2036,17 +2212,9 @@
             max-width: 90vw;
         }
 
-        .toast.success {
-            background: linear-gradient(135deg, var(--success), #43a047);
-        }
-
-        .toast.error {
-            background: linear-gradient(135deg, var(--danger), var(--danger-light));
-        }
-
-        .toast.info {
-            background: linear-gradient(135deg, var(--info), #00a0b4);
-        }
+        .toast.success { background: linear-gradient(135deg, var(--success), #43a047); }
+        .toast.error { background: linear-gradient(135deg, var(--danger), var(--danger-light)); }
+        .toast.info { background: linear-gradient(135deg, var(--info), #00a0b4); }
 
         .copy-feedback {
             position: fixed;
@@ -2064,6 +2232,7 @@
             pointer-events: none;
         }
 
+        /* ===== LOADING ===== */
         #tela-carregamento {
             position: fixed;
             inset: 0;
@@ -2140,330 +2309,164 @@
             margin-top: 1rem;
         }
 
+        /* ===== ANIMAÇÕES ===== */
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes dropdownIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes modalIn {
-            from {
-                transform: translateY(50px) scale(0.9);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideUp {
-            from {
-                bottom: -60px;
-                opacity: 0;
-                transform: translateX(-50%) scale(0.8);
-            }
-
-            to {
-                bottom: 2.5rem;
-                opacity: 1;
-                transform: translateX(-50%) scale(1);
-            }
+            from { bottom: -60px; opacity: 0; transform: translateX(-50%) scale(0.8); }
+            to { bottom: 2.5rem; opacity: 1; transform: translateX(-50%) scale(1); }
         }
 
         @keyframes popIn {
-            0% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 0;
-            }
-
-            60% {
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            60% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-6px);
-            }
-
-            75% {
-                transform: translateX(6px);
-            }
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes pulseGlow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 109, 58, 0.4);
-            }
-
-            50% {
-                box-shadow: 0 0 0 8px rgba(0, 109, 58, 0);
-            }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 109, 58, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(0, 109, 58, 0); }
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (min-width: 1024px) {
-            .conteudo-principal {
-                margin-left: 0;
-            }
-
-            body.menu-aberto .conteudo-principal {
-                margin-left: 320px;
-            }
-
-            body.menu-aberto .sobreposicao {
-                display: none !important;
-            }
+            .conteudo-principal { margin-left: 0; }
+            body.menu-aberto .conteudo-principal { margin-left: 320px; }
+            body.menu-aberto .sobreposicao { display: none !important; }
         }
 
         @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
+            .cabecalho {
+                padding: 0.5rem 1rem;
             }
-
-            .dashboard-avancado {
-                grid-template-columns: 1fr 1fr;
+            .header-title h2 {
+                font-size: 1rem;
             }
-
-            .estatisticas-avancadas {
-                grid-template-columns: 1fr;
+            .header-title p {
+                font-size: 0.65rem;
             }
-
-            .conteudo {
-                padding: 1.5rem 1rem;
+            .header-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
             }
-
-            .welcome-title {
-                font-size: 2.2rem;
+            .menu-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
             }
-
-            .modal-content {
-                max-width: 95vw;
-                max-height: 85vh;
+            .header-logo {
+                width: 36px;
+                height: 36px;
             }
-
-            .form-row {
-                grid-template-columns: 1fr;
+            .header-divider {
+                display: none;
             }
-
-            .tips-grid {
-                grid-template-columns: 1fr;
-            }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .dashboard-avancado { grid-template-columns: 1fr 1fr; }
+            .estatisticas-avancadas { grid-template-columns: 1fr; }
+            .conteudo { padding: 1.5rem 1rem; }
+            .welcome-title { font-size: 2.2rem; }
+            .modal-content { max-width: 95vw; max-height: 85vh; }
+            .form-row { grid-template-columns: 1fr; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .config-row { grid-template-columns: 1fr; }
+            .config-tabs { padding: 0 1rem; }
+            .config-tab { font-size: 0.8rem; padding: 0.5rem 1rem; }
+            .config-panel { padding: 1rem; }
         }
 
         @media (max-width: 640px) {
-            .table-container {
-                overflow-x: visible;
-            }
-
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-            }
-
-            thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tbody {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            tr {
-                border: 2px solid var(--border);
-                border-radius: var(--radius-md);
-                padding: 1.25rem;
-                background: var(--surface);
-                transition: var(--transition);
-            }
-
-            tr:hover {
-                box-shadow: var(--shadow-md);
-                transform: translateY(-2px);
-            }
-
-            td {
-                border: none;
-                padding: 0.6rem 0;
-                display: grid;
-                grid-template-columns: 100px 1fr;
-                gap: 0.75rem;
-                align-items: center;
-            }
-
-            td:first-child {
-                font-weight: 700;
-                color: var(--primary);
-                grid-column: 1 / -1;
-                font-size: 1.1rem;
-            }
-
-            td:last-child {
-                grid-column: 1 / -1;
-                display: flex;
-                gap: 0.5rem;
-                justify-content: flex-end;
-                padding-top: 1rem;
-                border-top: 2px solid var(--border-light);
-                margin-top: 0.75rem;
-            }
-
-            td:before {
-                content: attr(data-label);
-                font-weight: 800;
-                color: var(--text-muted);
-                font-size: 0.7rem;
-                text-transform: uppercase;
-                letter-spacing: 0.8px;
-            }
-
-            .dashboard-avancado {
-                grid-template-columns: 1fr;
-            }
-
-            .backup-acoes {
-                flex-direction: column;
-            }
-
-            .backup-acoes .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .grafico-pizza-container {
-                height: 200px;
-            }
-
-            body.modo-compacto .dashboard-avancado {
-                grid-template-columns: 1fr;
-            }
-
-            body.modo-compacto .grafico-pizza-container {
-                height: 180px;
-            }
+            .table-container { overflow-x: visible; }
+            table, thead, tbody, th, td, tr { display: block; }
+            thead tr { position: absolute; top: -9999px; left: -9999px; }
+            tbody { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; }
+            tr { border: 2px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem; background: var(--surface); transition: var(--transition); }
+            tr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+            td { border: none; padding: 0.6rem 0; display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; align-items: center; }
+            td:first-child { font-weight: 700; color: var(--primary); grid-column: 1 / -1; font-size: 1.1rem; }
+            td:last-child { grid-column: 1 / -1; display: flex; gap: 0.5rem; justify-content: flex-end; padding-top: 1rem; border-top: 2px solid var(--border-light); margin-top: 0.75rem; }
+            td:before { content: attr(data-label); font-weight: 800; color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px; }
+            .dashboard-avancado { grid-template-columns: 1fr; }
+            .backup-acoes { flex-direction: column; }
+            .backup-acoes .btn { width: 100%; justify-content: center; }
+            .grafico-pizza-container { height: 200px; }
+            body.modo-compacto .dashboard-avancado { grid-template-columns: 1fr; }
+            body.modo-compacto .grafico-pizza-container { height: 180px; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .curso-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cabecalho {
-                padding: 1rem;
-            }
-
+            .stats-grid { grid-template-columns: 1fr; }
+            .curso-cards-grid { grid-template-columns: 1fr; }
             .header-title h2 {
-                font-size: 1.1rem;
+                font-size: 0.85rem;
             }
-
-            .toolbar-actions {
-                flex-direction: column;
-                width: 100%;
+            .header-title p {
+                display: none;
             }
-
-            .toolbar-actions .btn {
-                width: 100%;
-                justify-content: center;
+            .header-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
-
-            .export-wrapper {
-                width: 100%;
+            .menu-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
             }
-
-            .export-wrapper .btn {
-                width: 100%;
+            .header-logo {
+                width: 32px;
+                height: 32px;
             }
+            .header-btn-group .header-btn:not(.primary-btn):not(.theme-btn):not(.config-btn-header) {
+                display: none;
+            }
+            .toolbar-actions { flex-direction: column; width: 100%; }
+            .toolbar-actions .btn { width: 100%; justify-content: center; }
+            .export-wrapper { width: 100%; }
+            .export-wrapper .btn { width: 100%; }
         }
     </style>
 </head>
 
 <body class="sistema-bloqueado">
+    <!-- Loading Screen -->
     <div id="tela-carregamento">
         <div class="loader-card">
             <div class="spinner"></div>
@@ -2479,22 +2482,18 @@
     <div class="container">
         <div class="sobreposicao" id="sobreposicao"></div>
 
+        <!-- Sidebar -->
         <aside class="barra-lateral" id="barraLateral">
             <div class="sidebar-header">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6LUHjMswwRHKwoNtzzsA-Z4PPFEqGPKpNcwdhQoEHw&s=10" class="sidebar-logo" alt="Logo EEEP Zélia">
                 <div class="sidebar-title">Gestão Escolar</div>
                 <div class="sidebar-subtitle">Controle de Atrasos e Saídas</div>
             </div>
-
+            
             <nav class="sidebar-nav">
-                <div
-                    style="text-align:center; padding:1rem; margin-bottom:1.5rem; background:var(--bg-alt); border-radius:var(--radius-md); border:2px solid var(--border-light);">
-                    <div id="relogio-digital"
-                        style="font-size:1.75rem; font-weight:900; color:var(--primary); letter-spacing:2px;">00:00:00
-                    </div>
-                    <div id="data-digital"
-                        style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; letter-spacing:0.5px;">
-                        --</div>
+                <div style="text-align:center; padding:1rem; margin-bottom:1.5rem; background:var(--bg-alt); border-radius:var(--radius-md); border:2px solid var(--border-light);">
+                    <div id="relogio-digital" style="font-size:1.75rem; font-weight:900; color:var(--primary); letter-spacing:2px;">00:00:00</div>
+                    <div id="data-digital" style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; letter-spacing:0.5px;">--</div>
                 </div>
 
                 <button class="nav-home-btn" onclick="voltarInicio()">
@@ -2577,42 +2576,79 @@
             </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="conteudo-principal">
+            <!-- HEADER REORGANIZADO -->
             <header class="cabecalho">
                 <div class="header-left">
-                    <button class="menu-btn" id="botaoMenu"><i class="fas fa-bars"></i></button>
+                    <button class="menu-btn" id="botaoMenu" title="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
                     <div class="header-title">
                         <h2 id="textoTitulo">Sistema EEEP Zélia</h2>
                         <p id="textoSubtitulo">Selecione uma turma para começar</p>
                     </div>
                 </div>
+
+                <div class="header-center">
+                    <div class="header-btn-group">
+                        <button class="header-btn" id="btnDashboard" title="Dashboard" onclick="alternarDashboardAvancado()">
+                            <i class="fas fa-chart-pie"></i>
+                        </button>
+                        <button class="header-btn" id="btnRanking" title="Ranking" onclick="alternarRanking()">
+                            <i class="fas fa-trophy"></i>
+                        </button>
+                        <button class="header-btn" id="btnBackup" title="Backup" onclick="alternarBackup()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="header-right">
+                    <div class="header-btn-group">
+                        <button class="header-btn" id="btnCompacto" title="Modo Compacto" onclick="alternarModoCompacto()">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </button>
+                        
+                        <div class="header-divider"></div>
+                        
+                        <button class="theme-btn" id="botaoAlternarTema" title="Alternar tema" style="display:none;">
+                            <i class="fas fa-moon" id="iconeTema"></i>
+                        </button>
+                        
+                        <button class="config-btn-header" id="botaoConfig" title="Configurações">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        
+                        <button class="header-btn danger-btn" id="btnBloquear" title="Bloquear Sistema" onclick="bloquearSistema()">
+                            <i class="fas fa-lock"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="header-divider"></div>
+                    
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6LUHjMswwRHKwoNtzzsA-Z4PPFEqGPKpNcwdhQoEHw&s=10" class="header-logo" alt="Logo">
-                    <button class="theme-btn" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
-                        <i class="fas fa-moon" id="iconeTema"></i>
-                    </button>
                 </div>
             </header>
 
             <div class="conteudo">
+                <!-- Welcome Area -->
                 <div id="areaVazia" class="welcome-area">
                     <div class="three-canvas-container" id="canvas-container-principal"></div>
                     <h1 class="welcome-title">EEEP ANA ZÉLIA</h1>
                     <p class="welcome-subtitle">Tecnologia que Transforma a Gestão Escolar</p>
                     <p class="welcome-desc">
-                        Controle de atrasos e saídas antecipadas 100% digital.
+                        Controle de atrasos e saídas antecipadas 100% digital. 
                         Escolha um curso e ano no menu lateral para começar a gerenciar.
                     </p>
 
                     <div class="curso-cards-grid">
-                        <div class="curso-card" data-curso="administracao"
-                            onclick="selecionarCursoInicio('administracao')">
+                        <div class="curso-card" data-curso="administracao" onclick="selecionarCursoInicio('administracao')">
                             <i class="fas fa-chart-line curso-card-icon"></i>
                             <div class="curso-card-name">Administração</div>
                             <div class="curso-card-desc">Gestão e Planejamento</div>
                         </div>
-                        <div class="curso-card" data-curso="eletrotecnica"
-                            onclick="selecionarCursoInicio('eletrotecnica')">
+                        <div class="curso-card" data-curso="eletrotecnica" onclick="selecionarCursoInicio('eletrotecnica')">
                             <i class="fas fa-bolt curso-card-icon"></i>
                             <div class="curso-card-name">Eletrotécnica</div>
                             <div class="curso-card-desc">Tecnologia e Inovação</div>
@@ -2631,35 +2667,34 @@
 
                     <div class="tips-section">
                         <div class="tips-title">
-                            <i class="fas fa-lightbulb" style="color:#f59e0b;font-size:1.8rem;"></i>
+                            <i class="fas fa-lightbulb" style="color:#f59e0b;font-size:1.8rem;"></i> 
                             Como Começar
                         </div>
                         <div class="tips-grid">
                             <div class="tip-item">
                                 <span class="tip-number">1</span>
-                                <span class="tip-text">Clique no menu <strong>≡</strong> para abrir a barra
-                                    lateral.</span>
+                                <span class="tip-text">Clique no menu <strong>≡</strong> para abrir a barra lateral.</span>
                             </div>
                             <div class="tip-item">
                                 <span class="tip-number">2</span>
-                                <span class="tip-text">Selecione um <strong>curso</strong> e o <strong>ano</strong> da
-                                    turma.</span>
+                                <span class="tip-text">Selecione um <strong>curso</strong> e o <strong>ano</strong> da turma.</span>
                             </div>
                             <div class="tip-item">
                                 <span class="tip-number">3</span>
-                                <span class="tip-text">Use o botão <strong>+</strong> para registrar atrasos ou
-                                    saídas.</span>
+                                <span class="tip-text">Use o botão <strong>+</strong> para registrar atrasos ou saídas.</span>
                             </div>
                             <div class="tip-item">
                                 <span class="tip-number">4</span>
-                                <span class="tip-text">Exporte relatórios em <strong>PDF</strong> ou
-                                    <strong>Excel</strong> com um clique.</span>
+                                <span class="tip-text">Exporte relatórios em <strong>PDF</strong> ou <strong>Excel</strong> com um clique.</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Data Area -->
                 <div id="areaDados" style="display:none;">
+
+                    <!-- ===== ATALHOS ===== -->
                     <div class="atalhos-container" id="atalhosContainer">
                         <div class="atalho-item" onclick="alternarDashboardAvancado()">
                             <i class="fas fa-chart-pie" style="color: var(--secondary);"></i> Dashboard
@@ -2680,6 +2715,7 @@
                         </div>
                     </div>
 
+                    <!-- ===== DASHBOARD AVANÇADO ===== -->
                     <div class="dashboard-avancado" id="dashboardAvancado">
                         <div class="card-metrica">
                             <div class="icone-metrica">📊</div>
@@ -2701,6 +2737,7 @@
                         </div>
                     </div>
 
+                    <!-- ===== GRÁFICOS AVANÇADOS ===== -->
                     <div class="estatisticas-avancadas" id="estatisticasAvancadas">
                         <div class="grafico-pizza-container">
                             <canvas id="graficoPizzaOcorrencias"></canvas>
@@ -2710,22 +2747,22 @@
                         </div>
                     </div>
 
+                    <!-- ===== ALERTAS ===== -->
                     <div class="container-alertas" id="containerAlertas"></div>
 
+                    <!-- ===== RANKING ===== -->
                     <div class="ranking-container" id="rankingContainer">
-                        <h3
-                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; font-size:1.2rem;">
+                        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; font-size:1.2rem;">
                             <i class="fas fa-trophy" style="color: #ffd700;"></i>
                             Ranking de Ocorrências
-                            <span style="font-size:0.7rem; font-weight:400; color:var(--text-muted);">(alunos com mais
-                                registros)</span>
+                            <span style="font-size:0.7rem; font-weight:400; color:var(--text-muted);">(alunos com mais registros)</span>
                         </h3>
                         <div id="rankingLista"></div>
                     </div>
 
+                    <!-- ===== BACKUP ===== -->
                     <div class="backup-container" id="backupContainer">
-                        <h3
-                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; font-size:1.2rem;">
+                        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; font-size:1.2rem;">
                             <i class="fas fa-cloud-upload-alt" style="color: var(--info);"></i>
                             Backup e Restauração
                         </h3>
@@ -2733,22 +2770,20 @@
                             <button onclick="fazerBackup()" class="btn btn-primary">
                                 <i class="fas fa-download"></i> Fazer Backup
                             </button>
-                            <button onclick="document.getElementById('inputRestaurarBackup').click()"
-                                class="btn btn-outline">
+                            <button onclick="document.getElementById('inputRestaurarBackup').click()" class="btn btn-outline">
                                 <i class="fas fa-upload"></i> Restaurar Backup
                             </button>
-                            <input type="file" id="inputRestaurarBackup" accept=".json" style="display:none;"
-                                onchange="restaurarBackup(event)">
+                            <input type="file" id="inputRestaurarBackup" accept=".json" style="display:none;" onchange="restaurarBackup(event)">
                             <button onclick="exportarBackupCSV()" class="btn btn-outline" style="color:#217346;">
                                 <i class="fas fa-file-excel"></i> Exportar CSV
                             </button>
                         </div>
                         <div style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">
-                            <i class="fas fa-info-circle"></i> Último backup: <span id="ultimoBackupInfo">Nunca
-                                realizado</span>
+                            <i class="fas fa-info-circle"></i> Último backup: <span id="ultimoBackupInfo">Nunca realizado</span>
                         </div>
                     </div>
 
+                    <!-- ===== STATS ===== -->
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-label">Total de Alunos</div>
@@ -2772,21 +2807,19 @@
                         </div>
                     </div>
 
+                    <!-- ===== TOOLBAR ===== -->
                     <div class="toolbar">
                         <div class="search-wrapper">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Pesquisar aluno pelo nome..."
-                                id="campoPesquisa">
+                            <input type="text" class="search-input" placeholder="Pesquisar aluno pelo nome..." id="campoPesquisa">
                         </div>
                         <div class="toolbar-actions">
                             <div class="export-wrapper">
                                 <button class="btn btn-primary" id="botaoExportar">
-                                    <i class="fas fa-download"></i> Exportar <i class="fas fa-chevron-down"
-                                        style="font-size:0.7rem;"></i>
+                                    <i class="fas fa-download"></i> Exportar <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i>
                                 </button>
                                 <div class="export-dropdown" id="dropdownExportacao">
-                                    <button class="export-dropdown-item" onclick="gerarRelatorio()"
-                                        style="color:#f59e0b; font-weight:700;">
+                                    <button class="export-dropdown-item" onclick="gerarRelatorio()" style="color:#f59e0b; font-weight:700;">
                                         <i class="fas fa-file-invoice"></i> Relatório Profissional
                                     </button>
                                     <button class="export-dropdown-item" onclick="exportarPDF()">
@@ -2800,12 +2833,14 @@
                         </div>
                     </div>
 
+                    <!-- ===== NO RESULTS ===== -->
                     <div id="semResultados" class="no-results">
                         <i class="fas fa-search" style="font-size:3rem; margin-bottom:1rem; opacity:0.3;"></i>
                         <h3 style="font-weight:700;">Nenhum aluno encontrado</h3>
                         <p>Tente outro nome ou limpe a pesquisa</p>
                     </div>
 
+                    <!-- ===== TABLE ===== -->
                     <div class="table-container">
                         <table id="tabelaAlunos">
                             <thead>
@@ -2829,6 +2864,8 @@
         </main>
     </div>
 
+    <!-- ===== MODAIS ===== -->
+    <!-- Password Modal -->
     <div class="modal-overlay" id="modalSenha">
         <div class="modal-content senha-modal">
             <div class="modal-header">
@@ -2846,8 +2883,7 @@
                     <span>Digite a senha de acesso para desbloquear o sistema.</span>
                 </div>
                 <div class="password-field">
-                    <input type="password" id="campoSenha" placeholder="Digite a senha" maxlength="20"
-                        autocomplete="off">
+                    <input type="password" id="campoSenha" placeholder="Digite a senha" maxlength="20" autocomplete="off">
                     <button class="password-toggle" id="toggleSenha">
                         <i class="far fa-eye" id="iconeToggleSenha"></i>
                     </button>
@@ -2862,6 +2898,7 @@
         </div>
     </div>
 
+    <!-- Registration Modal -->
     <div class="modal-overlay" id="modalRegistro">
         <div class="modal-content">
             <div class="modal-header">
@@ -2908,23 +2945,22 @@
         </div>
     </div>
 
+    <!-- Confirmation Modal -->
     <div class="modal-overlay" id="modalConfirmacao">
         <div class="modal-content" style="max-width:450px;">
             <div class="modal-body" style="text-align:center; padding:3rem 2rem;">
-                <i class="fas fa-exclamation-triangle"
-                    style="font-size:3.5rem; color:var(--warning); margin-bottom:1.5rem;"></i>
+                <i class="fas fa-exclamation-triangle" style="font-size:3.5rem; color:var(--warning); margin-bottom:1.5rem;"></i>
                 <h3 style="margin-bottom:1rem; font-weight:800;">Excluir registro?</h3>
                 <p id="textoConfirmacao" style="color:var(--text-muted); margin-bottom:2rem; font-size:1rem;"></p>
                 <div style="display:flex; gap:1rem;">
                     <button class="btn btn-outline" style="flex:1;" id="botaoCancelarExclusao">Cancelar</button>
-                    <button class="btn"
-                        style="flex:1; background:linear-gradient(135deg, var(--danger), var(--danger-light)); color:white;"
-                        id="botaoConfirmarExclusao">Excluir</button>
+                    <button class="btn" style="flex:1; background:linear-gradient(135deg, var(--danger), var(--danger-light)); color:white;" id="botaoConfirmarExclusao">Excluir</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Observation Modal -->
     <div class="modal-overlay" id="modalObservacao">
         <div class="modal-content">
             <div class="modal-header">
@@ -2951,6 +2987,7 @@
         </div>
     </div>
 
+    <!-- Edit Modal -->
     <div class="modal-overlay" id="modalEdicao">
         <div class="modal-content">
             <div class="modal-header">
@@ -2991,14 +3028,14 @@
                     <textarea id="editarObservacaoRegistro"></textarea>
                 </div>
                 <div style="display:flex; gap:1rem; margin-top:2rem;">
-                    <button type="button" class="btn btn-outline" style="flex:1;"
-                        id="botaoCancelarEdicao">Cancelar</button>
+                    <button type="button" class="btn btn-outline" style="flex:1;" id="botaoCancelarEdicao">Cancelar</button>
                     <button type="submit" class="btn btn-primary" style="flex:1;">Atualizar Registro</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <!-- Report Modal -->
     <div class="relatorio-overlay" id="modalRelatorio">
         <div class="relatorio-content">
             <button class="relatorio-close" onclick="fecharRelatorio()"><i class="fas fa-times"></i></button>
@@ -3014,30 +3051,456 @@
         </div>
     </div>
 
+    <!-- ===== MODAL CONFIGURAÇÕES ===== -->
+    <div class="modal-overlay" id="modalConfiguracoes">
+        <div class="modal-content config-modal-content">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <div class="modal-header-icon"><i class="fas fa-cog"></i></div>
+                    <div>
+                        <h3>Configurações do Sistema</h3>
+                        <div class="datetime" id="dataHoraConfig"></div>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="fecharConfiguracoes()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="config-tabs">
+                <button class="config-tab ativo" data-tab="geral" onclick="mudarTabConfig('geral')">
+                    <i class="fas fa-sliders-h"></i> Geral
+                </button>
+                <button class="config-tab" data-tab="backup" onclick="mudarTabConfig('backup')">
+                    <i class="fas fa-cloud-upload-alt"></i> Backup
+                </button>
+                <button class="config-tab" data-tab="notificacoes" onclick="mudarTabConfig('notificacoes')">
+                    <i class="fas fa-bell"></i> Notificações
+                </button>
+                <button class="config-tab" data-tab="exibicao" onclick="mudarTabConfig('exibicao')">
+                    <i class="fas fa-eye"></i> Exibição
+                </button>
+                <button class="config-tab" data-tab="dados" onclick="mudarTabConfig('dados')">
+                    <i class="fas fa-database"></i> Dados
+                </button>
+            </div>
+
+            <!-- Painel Geral -->
+            <div class="config-panel mostrar" id="panel-geral">
+                <div class="config-group">
+                    <div class="config-group-title">Configurações Gerais</div>
+                    <div class="config-row">
+                        <div class="config-field">
+                            <label>Nome da Escola</label>
+                            <input type="text" id="configNomeEscola" placeholder="EEEP Ana Zélia">
+                            <div class="helper">Nome exibido no sistema</div>
+                        </div>
+                        <div class="config-field">
+                            <label>Senha de Acesso</label>
+                            <input type="password" id="configSenha" placeholder="••••••••">
+                            <div class="helper">Senha para desbloquear o sistema</div>
+                        </div>
+                    </div>
+                    <div class="config-row">
+                        <div class="config-field">
+                            <label>Total de Alunos por Turma</label>
+                            <input type="number" id="configTotalAlunos" min="1" max="100">
+                            <div class="helper">Usado para calcular porcentagens</div>
+                        </div>
+                        <div class="config-field">
+                            <label>Tema Padrão</label>
+                            <select id="configTemaPadrao">
+                                <option value="claro">Claro</option>
+                                <option value="escuro">Escuro</option>
+                            </select>
+                            <div class="helper">Tema ao iniciar o sistema</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn-primary" onclick="salvarConfigGeral()">
+                        <i class="fas fa-save"></i> Salvar Configurações
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel Backup -->
+            <div class="config-panel" id="panel-backup">
+                <div class="config-group">
+                    <div class="config-group-title">Configurações de Backup</div>
+                    <div class="config-field">
+                        <label>Backup Automático</label>
+                        <div class="toggle-label">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="configBackupAuto">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Ativar backup automático</span>
+                        </div>
+                        <div class="helper">Backup é salvo no localStorage do navegador</div>
+                    </div>
+                    <div class="config-field">
+                        <label>Intervalo (minutos)</label>
+                        <input type="number" id="configBackupIntervalo" min="1" max="60" value="30">
+                        <div class="helper">Tempo entre backups automáticos</div>
+                    </div>
+                    <div class="config-field">
+                        <label>Último Backup</label>
+                        <div id="configUltimoBackup" style="padding:0.5rem 0; color:var(--text-muted);">Nunca realizado</div>
+                    </div>
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn-primary" onclick="salvarConfigBackup()">
+                        <i class="fas fa-save"></i> Salvar Configurações
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel Notificações -->
+            <div class="config-panel" id="panel-notificacoes">
+                <div class="config-group">
+                    <div class="config-group-title">Configurações de Notificações</div>
+                    <div class="config-row">
+                        <div class="config-field">
+                            <label>Alerta de Atrasos</label>
+                            <input type="number" id="configLimiteAtrasos" min="1" max="20" value="5">
+                            <div class="helper">Número mínimo de atrasos para alerta</div>
+                        </div>
+                        <div class="config-field">
+                            <label>Alerta de Saídas</label>
+                            <input type="number" id="configLimiteSaidas" min="1" max="20" value="3">
+                            <div class="helper">Número mínimo de saídas para alerta</div>
+                        </div>
+                    </div>
+                    <div class="config-field">
+                        <label>Mostrar Alertas</label>
+                        <div class="toggle-label">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="configMostrarAlertas" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Exibir alertas no dashboard</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn-primary" onclick="salvarConfigNotificacoes()">
+                        <i class="fas fa-save"></i> Salvar Configurações
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel Exibição -->
+            <div class="config-panel" id="panel-exibicao">
+                <div class="config-group">
+                    <div class="config-group-title">Configurações de Exibição</div>
+                    <div class="config-field">
+                        <label>Modo Compacto</label>
+                        <div class="toggle-label">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="configModoCompacto">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Ativar modo compacto por padrão</span>
+                        </div>
+                        <div class="helper">Reduz espaçamentos para mais informações na tela</div>
+                    </div>
+                    <div class="config-field">
+                        <label>Mostrar Gráficos</label>
+                        <div class="toggle-label">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="configMostrarGraficos" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Exibir gráficos no dashboard</span>
+                        </div>
+                    </div>
+                    <div class="config-field">
+                        <label>Mostrar Ranking</label>
+                        <div class="toggle-label">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="configMostrarRanking" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Exibir ranking de ocorrências</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn-primary" onclick="salvarConfigExibicao()">
+                        <i class="fas fa-save"></i> Salvar Configurações
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel Dados -->
+            <div class="config-panel" id="panel-dados">
+                <div class="config-group">
+                    <div class="config-group-title">Gerenciamento de Dados</div>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+                        <button class="btn btn-primary" onclick="exportarBackupCSV()" style="flex:1;">
+                            <i class="fas fa-file-excel"></i> Exportar Todos os Dados
+                        </button>
+                        <button class="btn btn-outline" onclick="document.getElementById('configInputRestaurar').click()" style="flex:1;">
+                            <i class="fas fa-upload"></i> Importar Dados
+                        </button>
+                        <input type="file" id="configInputRestaurar" accept=".json" style="display:none;" onchange="restaurarBackupConfig(event)">
+                    </div>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <button class="btn btn-outline config-reset-btn" onclick="resetarConfiguracoes()" style="flex:1;">
+                            <i class="fas fa-undo"></i> Resetar Configurações
+                        </button>
+                        <button class="btn btn-danger" onclick="limparTodosDados()" style="flex:1;">
+                            <i class="fas fa-trash"></i> Limpar Todos os Dados
+                        </button>
+                    </div>
+                    <div style="margin-top:1rem; padding:1rem; background:var(--bg-alt); border-radius:var(--radius-md); border:2px solid var(--border-light);">
+                        <p style="font-size:0.9rem; color:var(--text-muted);">
+                            <i class="fas fa-info-circle" style="color:var(--info);"></i>
+                            <strong>Total de registros:</strong> <span id="configTotalRegistros">0</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const SENHA_CORRETA = "zelia@25";
+        // ============ CONSTANTS & STATE ============
+        let alunos = JSON.parse(localStorage.getItem('alunos_eeep_pt')) || [];
+        let cursoAtivo = null;
+        let anoAtivo = null;
+        let registroParaExcluir = null;
+        let filtroAtual = '';
+        let alunosFiltrados = [];
         let sistemaBloqueado = true;
         let tentativasSenha = 0;
         const MAX_TENTATIVAS = 5;
         let temaEscuroAtivo = localStorage.getItem('tema_escuro_eeep') === 'true';
-
-        let alunos = JSON.parse(localStorage.getItem('alunos_eeep_pt')) || [];
-        let cursoAtivo = null;
-        let anoAtivo = null;
-        const TOTAL_ALUNOS = 45;
-        let registroParaExcluir = null;
-        let filtroAtual = '';
-        let alunosFiltrados = [];
-
         let dashboardAvancadoVisivel = false;
         let rankingVisivel = false;
         let backupVisivel = false;
         let modoCompacto = false;
         let atalhosVisivel = false;
-
         let graficoPizza = null;
         let graficoBarrasMensal = null;
+        let intervaloBackup = null;
 
+        // ============ CONFIGURAÇÕES ============
+        const CONFIG_PADRAO = {
+            nomeEscola: 'EEEP Ana Zélia',
+            senha: 'zelia@25',
+            totalAlunos: 45,
+            temaPadrao: 'claro',
+            backupAuto: false,
+            backupIntervalo: 30,
+            limiteAtrasos: 5,
+            limiteSaidas: 3,
+            mostrarAlertas: true,
+            modoCompacto: false,
+            mostrarGraficos: true,
+            mostrarRanking: true
+        };
+
+        let configAtual = {};
+
+        function carregarConfiguracoes() {
+            const saved = localStorage.getItem('config_eeep_zelia');
+            if (saved) {
+                try {
+                    configAtual = { ...CONFIG_PADRAO, ...JSON.parse(saved) };
+                } catch {
+                    configAtual = { ...CONFIG_PADRAO };
+                }
+            } else {
+                configAtual = { ...CONFIG_PADRAO };
+            }
+            return configAtual;
+        }
+
+        function salvarConfiguracoes() {
+            localStorage.setItem('config_eeep_zelia', JSON.stringify(configAtual));
+            aplicarConfiguracoes();
+        }
+
+        function aplicarConfiguracoes() {
+            if (configAtual.temaPadrao === 'escuro') {
+                temaEscuroAtivo = true;
+                localStorage.setItem('tema_escuro_eeep', 'true');
+            } else {
+                temaEscuroAtivo = false;
+                localStorage.setItem('tema_escuro_eeep', 'false');
+            }
+            aplicarTema();
+
+            if (configAtual.modoCompacto) {
+                document.body.classList.add('modo-compacto');
+                modoCompacto = true;
+            } else {
+                document.body.classList.remove('modo-compacto');
+                modoCompacto = false;
+            }
+
+            document.getElementById('textoTitulo').textContent = configAtual.nomeEscola;
+
+            if (configAtual.backupAuto) {
+                iniciarBackupAutomatico();
+            } else {
+                pararBackupAutomatico();
+            }
+            
+            atualizarBotoesEstado();
+        }
+
+        function iniciarBackupAutomatico() {
+            pararBackupAutomatico();
+            const minutos = configAtual.backupIntervalo || 30;
+            intervaloBackup = setInterval(() => {
+                fazerBackupSilencioso();
+            }, minutos * 60 * 1000);
+        }
+
+        function pararBackupAutomatico() {
+            if (intervaloBackup) {
+                clearInterval(intervaloBackup);
+                intervaloBackup = null;
+            }
+        }
+
+        function fazerBackupSilencioso() {
+            const dados = { versao: '1.0', dataBackup: new Date().toISOString(), totalRegistros: alunos.length, registros: alunos };
+            localStorage.setItem('backup_automatico_eeep', JSON.stringify(dados));
+            localStorage.setItem('ultimo_backup_eeep', Date.now().toString());
+        }
+
+        // ============ MODAL CONFIGURAÇÕES ============
+        function abrirConfiguracoes() {
+            if (sistemaBloqueado) { mostrarModalSenha(); return; }
+            carregarConfiguracoes();
+            preencherConfiguracoes();
+            document.getElementById('modalConfiguracoes').classList.add('mostrar');
+            const agora = new Date();
+            document.getElementById('dataHoraConfig').textContent =
+                `${String(agora.getDate()).padStart(2, '0')}/${String(agora.getMonth()+1).padStart(2, '0')}/${agora.getFullYear()} ${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}`;
+            document.getElementById('configTotalRegistros').textContent = alunos.length;
+        }
+
+        function fecharConfiguracoes() {
+            document.getElementById('modalConfiguracoes').classList.remove('mostrar');
+        }
+
+        function mudarTabConfig(tab) {
+            document.querySelectorAll('.config-tab').forEach(t => t.classList.remove('ativo'));
+            document.querySelectorAll('.config-panel').forEach(p => p.classList.remove('mostrar'));
+            document.querySelector(`.config-tab[data-tab="${tab}"]`).classList.add('ativo');
+            document.getElementById(`panel-${tab}`).classList.add('mostrar');
+        }
+
+        function preencherConfiguracoes() {
+            document.getElementById('configNomeEscola').value = configAtual.nomeEscola || '';
+            document.getElementById('configSenha').value = configAtual.senha || '';
+            document.getElementById('configTotalAlunos').value = configAtual.totalAlunos || 45;
+            document.getElementById('configTemaPadrao').value = configAtual.temaPadrao || 'claro';
+            document.getElementById('configBackupAuto').checked = configAtual.backupAuto || false;
+            document.getElementById('configBackupIntervalo').value = configAtual.backupIntervalo || 30;
+            document.getElementById('configLimiteAtrasos').value = configAtual.limiteAtrasos || 5;
+            document.getElementById('configLimiteSaidas').value = configAtual.limiteSaidas || 3;
+            document.getElementById('configMostrarAlertas').checked = configAtual.mostrarAlertas !== false;
+            document.getElementById('configModoCompacto').checked = configAtual.modoCompacto || false;
+            document.getElementById('configMostrarGraficos').checked = configAtual.mostrarGraficos !== false;
+            document.getElementById('configMostrarRanking').checked = configAtual.mostrarRanking !== false;
+            
+            const ultimoBackup = localStorage.getItem('ultimo_backup_eeep');
+            if (ultimoBackup) {
+                const data = new Date(parseInt(ultimoBackup));
+                document.getElementById('configUltimoBackup').textContent =
+                    data.toLocaleDateString('pt-BR') + ' às ' + data.toLocaleTimeString('pt-BR');
+            } else {
+                document.getElementById('configUltimoBackup').textContent = 'Nunca realizado';
+            }
+        }
+
+        function salvarConfigGeral() {
+            configAtual.nomeEscola = document.getElementById('configNomeEscola').value || 'EEEP Ana Zélia';
+            configAtual.senha = document.getElementById('configSenha').value || 'zelia@25';
+            configAtual.totalAlunos = parseInt(document.getElementById('configTotalAlunos').value) || 45;
+            configAtual.temaPadrao = document.getElementById('configTemaPadrao').value || 'claro';
+            salvarConfiguracoes();
+            fecharConfiguracoes();
+            mostrarNotificacao('Configurações gerais salvas!', 'success');
+        }
+
+        function salvarConfigBackup() {
+            configAtual.backupAuto = document.getElementById('configBackupAuto').checked;
+            configAtual.backupIntervalo = parseInt(document.getElementById('configBackupIntervalo').value) || 30;
+            salvarConfiguracoes();
+            fecharConfiguracoes();
+            mostrarNotificacao('Configurações de backup salvas!', 'success');
+        }
+
+        function salvarConfigNotificacoes() {
+            configAtual.limiteAtrasos = parseInt(document.getElementById('configLimiteAtrasos').value) || 5;
+            configAtual.limiteSaidas = parseInt(document.getElementById('configLimiteSaidas').value) || 3;
+            configAtual.mostrarAlertas = document.getElementById('configMostrarAlertas').checked;
+            salvarConfiguracoes();
+            fecharConfiguracoes();
+            mostrarNotificacao('Configurações de notificações salvas!', 'success');
+        }
+
+        function salvarConfigExibicao() {
+            configAtual.modoCompacto = document.getElementById('configModoCompacto').checked;
+            configAtual.mostrarGraficos = document.getElementById('configMostrarGraficos').checked;
+            configAtual.mostrarRanking = document.getElementById('configMostrarRanking').checked;
+            salvarConfiguracoes();
+            fecharConfiguracoes();
+            mostrarNotificacao('Configurações de exibição salvas!', 'success');
+        }
+
+        function resetarConfiguracoes() {
+            if (!confirm('Tem certeza que deseja resetar todas as configurações para o padrão?')) return;
+            configAtual = { ...CONFIG_PADRAO };
+            salvarConfiguracoes();
+            preencherConfiguracoes();
+            mostrarNotificacao('Configurações resetadas!', 'success');
+        }
+
+        function limparTodosDados() {
+            if (!confirm('ATENÇÃO: Isso irá excluir TODOS os registros de TODOS os cursos. Continuar?')) return;
+            if (!confirm('Confirma a exclusão permanente de todos os dados?')) return;
+            alunos = [];
+            localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
+            localStorage.removeItem('ultimo_backup_eeep');
+            if (cursoAtivo && anoAtivo) renderizar();
+            atualizarEstatisticasMenu();
+            document.getElementById('configTotalRegistros').textContent = '0';
+            mostrarNotificacao('Todos os dados foram excluídos!', 'success');
+            fecharConfiguracoes();
+        }
+
+        function restaurarBackupConfig(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dados = JSON.parse(e.target.result);
+                    if (!dados.registros || !Array.isArray(dados.registros)) {
+                        mostrarNotificacao('Arquivo inválido!', 'error');
+                        return;
+                    }
+                    if (!confirm(`Deseja restaurar ${dados.registros.length} registros?`)) return;
+                    alunos = dados.registros;
+                    localStorage.setItem('alunos_eeep_pt', JSON.stringify(alunos));
+                    if (cursoAtivo && anoAtivo) renderizar();
+                    document.getElementById('configTotalRegistros').textContent = alunos.length;
+                    mostrarNotificacao(`${dados.registros.length} registros restaurados!`, 'success');
+                    event.target.value = '';
+                } catch (error) {
+                    mostrarNotificacao('Erro ao restaurar backup.', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // ============ THEME ============
         function alternarTema() {
             temaEscuroAtivo = !temaEscuroAtivo;
             localStorage.setItem('tema_escuro_eeep', temaEscuroAtivo.toString());
@@ -3062,12 +3525,51 @@
             document.getElementById('botaoAlternarTema').style.display = 'none';
         }
 
+        // ============ MODO COMPACTO ============
         function alternarModoCompacto() {
             modoCompacto = !modoCompacto;
             document.body.classList.toggle('modo-compacto');
+            atualizarBotoesEstado();
             mostrarNotificacao(modoCompacto ? 'Modo compacto ativado' : 'Modo compacto desativado', 'info');
         }
 
+        // ============ ATUALIZAR ESTADO DOS BOTÕES ============
+        function atualizarBotoesEstado() {
+            const btnDash = document.getElementById('btnDashboard');
+            const btnRank = document.getElementById('btnRanking');
+            const btnBackup = document.getElementById('btnBackup');
+            const btnCompacto = document.getElementById('btnCompacto');
+
+            // Dashboard
+            if (dashboardAvancadoVisivel) {
+                btnDash.className = 'header-btn active-dashboard';
+            } else {
+                btnDash.className = 'header-btn';
+            }
+
+            // Ranking
+            if (rankingVisivel) {
+                btnRank.className = 'header-btn active-ranking';
+            } else {
+                btnRank.className = 'header-btn';
+            }
+
+            // Backup
+            if (backupVisivel) {
+                btnBackup.className = 'header-btn active-backup';
+            } else {
+                btnBackup.className = 'header-btn';
+            }
+
+            // Compacto
+            if (modoCompacto) {
+                btnCompacto.className = 'header-btn active-compacto';
+            } else {
+                btnCompacto.className = 'header-btn';
+            }
+        }
+
+        // ============ SIDEBAR & MENU ============
         function alternarMenu() {
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             const menu = document.getElementById('barraLateral');
@@ -3096,12 +3598,12 @@
             document.querySelectorAll('.curso-btn').forEach(b => b.classList.remove('ativo'));
             document.querySelectorAll('.ano-btn').forEach(b => b.classList.remove('ativo'));
             document.querySelectorAll('.submenu-ano').forEach(s => s.classList.remove('mostrar'));
-            document.getElementById('textoTitulo').textContent = 'Sistema EEEP Zélia';
+            document.getElementById('textoTitulo').textContent = configAtual.nomeEscola || 'Sistema EEEP Zélia';
             document.getElementById('textoSubtitulo').textContent = 'Selecione uma turma para começar';
             document.getElementById('areaVazia').style.display = 'flex';
             document.getElementById('areaDados').style.display = 'none';
             document.getElementById('botaoNovo').style.display = 'none';
-
+            
             document.getElementById('atalhosContainer').classList.remove('mostrar');
             document.getElementById('dashboardAvancado').classList.remove('mostrar');
             document.getElementById('estatisticasAvancadas').classList.remove('mostrar');
@@ -3112,13 +3614,14 @@
             rankingVisivel = false;
             backupVisivel = false;
             atalhosVisivel = false;
-
+            
             document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
             if (temaEscuroAtivo && !sistemaBloqueado) document.body.classList.add('tema-escuro');
             if (modoCompacto) document.body.classList.add('modo-compacto');
             fecharMenu();
             atualizarEstatisticasMenu();
             mostrarBotaoTema();
+            atualizarBotoesEstado();
             mostrarNotificacao('Voltando ao início', 'info');
         }
 
@@ -3173,6 +3676,7 @@
             if (ss) ss.textContent = saidas;
         }
 
+        // ============ PASSWORD / LOCK ============
         function mostrarModalSenha() {
             document.getElementById('modalSenha').classList.add('mostrar');
             const agora = new Date();
@@ -3193,12 +3697,13 @@
             const msgErro = document.getElementById('mensagemErroSenha');
             const campo = document.getElementById('campoSenha');
             campo.classList.remove('input-error');
+            const senhaCorreta = configAtual.senha || 'zelia@25';
             if (senha === '') {
                 msgErro.textContent = 'Digite a senha de acesso';
                 msgErro.classList.add('mostrar');
                 return false;
             }
-            if (senha !== SENHA_CORRETA) {
+            if (senha !== senhaCorreta) {
                 tentativasSenha++;
                 const restantes = MAX_TENTATIVAS - tentativasSenha;
                 if (restantes <= 0) {
@@ -3235,6 +3740,7 @@
             fecharMenu();
         }
 
+        // ============ EXPORT DROPDOWN ============
         function alternarDropdownExportacao(e) {
             e.stopPropagation();
             document.getElementById('dropdownExportacao').classList.toggle('mostrar');
@@ -3245,6 +3751,7 @@
             }
         });
 
+        // ============ MODALS ============
         function fecharModalRegistro() { document.getElementById('modalRegistro').classList.remove('mostrar'); }
         function fecharModalEdicao() { document.getElementById('modalEdicao').classList.remove('mostrar'); }
         function fecharModalConfirmacao() {
@@ -3312,6 +3819,7 @@
             }).catch(() => mostrarNotificacao('Erro ao copiar.', 'error'));
         }
 
+        // ============ VALIDATION ============
         function definirDataAtual() {
             const hoje = new Date();
             const data = hoje.toISOString().split('T')[0];
@@ -3374,6 +3882,7 @@
             return valido;
         }
 
+        // ============ CRUD ============
         function salvarRegistro(e) {
             e.preventDefault();
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
@@ -3439,29 +3948,31 @@
             }
         }
 
+        // ============ RENDER ============
         function renderizar() {
             if (!cursoAtivo || !anoAtivo) return;
             const lista = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
-            document.getElementById('numeroTotalAlunos').textContent = TOTAL_ALUNOS;
+            const totalAlunos = configAtual.totalAlunos || 45;
+            document.getElementById('numeroTotalAlunos').textContent = totalAlunos;
             const atrasos = lista.filter(a => a.tipo === 'atraso').length;
             const saidas = lista.filter(a => a.tipo === 'saida').length;
             document.getElementById('numeroAtrasos').textContent = atrasos;
             document.getElementById('numeroSaidas').textContent = saidas;
-            document.getElementById('porcentagemAtrasos').textContent = Math.round((atrasos / TOTAL_ALUNOS) * 100) + '%';
-            document.getElementById('porcentagemSaidas').textContent = Math.round((saidas / TOTAL_ALUNOS) * 100) + '%';
-            document.getElementById('preencherAtrasos').style.width = Math.round((atrasos / TOTAL_ALUNOS) * 100) + '%';
-            document.getElementById('preencherSaidas').style.width = Math.round((saidas / TOTAL_ALUNOS) * 100) + '%';
-
+            document.getElementById('porcentagemAtrasos').textContent = Math.round((atrasos / totalAlunos) * 100) + '%';
+            document.getElementById('porcentagemSaidas').textContent = Math.round((saidas / totalAlunos) * 100) + '%';
+            document.getElementById('preencherAtrasos').style.width = Math.round((atrasos / totalAlunos) * 100) + '%';
+            document.getElementById('preencherSaidas').style.width = Math.round((saidas / totalAlunos) * 100) + '%';
+            
             atualizarMetricasDashboard(lista);
             atualizarRanking(lista);
             gerarAlertas(lista);
             atualizarGraficosPizzaBarras(lista);
-
+            
             if (lista.length > 0 && !atalhosVisivel) {
                 document.getElementById('atalhosContainer').classList.add('mostrar');
                 atalhosVisivel = true;
             }
-
+            
             aplicarFiltro();
         }
 
@@ -3516,7 +4027,7 @@
             mostrarBotaoTema();
             document.getElementById('textoTitulo').textContent = cursoAtivo ? cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1) : 'Turma';
             document.getElementById('textoSubtitulo').textContent = anoAtivo ? anoAtivo + ' · ' + cursoAtivo : 'Selecione uma turma';
-
+            
             document.getElementById('atalhosContainer').classList.remove('mostrar');
             document.getElementById('dashboardAvancado').classList.remove('mostrar');
             document.getElementById('estatisticasAvancadas').classList.remove('mostrar');
@@ -3527,16 +4038,18 @@
             rankingVisivel = false;
             backupVisivel = false;
             atalhosVisivel = false;
-
+            
             setTimeout(() => {
                 const lista = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
                 if (lista.length > 0) {
                     document.getElementById('atalhosContainer').classList.add('mostrar');
                     atalhosVisivel = true;
                 }
+                atualizarBotoesEstado();
             }, 100);
         }
 
+        // ============ NOVAS FUNCIONALIDADES ============
         function mostrarAtalhos() {
             const container = document.getElementById('atalhosContainer');
             if (!container.classList.contains('mostrar')) {
@@ -3555,9 +4068,10 @@
             document.getElementById('dashboardAvancado').classList.toggle('mostrar');
             document.getElementById('estatisticasAvancadas').classList.toggle('mostrar');
             document.getElementById('containerAlertas').classList.toggle('mostrar');
-
+            
             mostrarAtalhos();
-
+            atualizarBotoesEstado();
+            
             if (dashboardAvancadoVisivel) {
                 const lista = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
                 atualizarMetricasDashboard(lista);
@@ -3701,12 +4215,15 @@
             if (!container) return;
             const alertas = [];
             const hoje = new Date().toISOString().split('T')[0];
+            const limiteAtrasos = configAtual.limiteAtrasos || 5;
+            const limiteSaidas = configAtual.limiteSaidas || 3;
+            
             const atrasosHoje = lista.filter(a => a.tipo === 'atraso' && a.data === hoje).length;
-            if (atrasosHoje > 5) {
+            if (atrasosHoje > limiteAtrasos) {
                 alertas.push({ tipo: 'perigo', icone: '⚠️', texto: `${atrasosHoje} atrasos registrados hoje!`, tempo: 'Agora' });
             }
             const saidasHoje = lista.filter(a => a.tipo === 'saida' && a.data === hoje).length;
-            if (saidasHoje > 3) {
+            if (saidasHoje > limiteSaidas) {
                 alertas.push({ tipo: 'aviso', icone: '🔔', texto: `${saidasHoje} saídas antecipadas hoje.`, tempo: 'Agora' });
             }
             const alunosPorNome = {};
@@ -3720,13 +4237,18 @@
             if (alertas.length === 0) {
                 alertas.push({ tipo: 'info', icone: '📊', texto: 'Tudo dentro da normalidade.', tempo: 'Atualizado' });
             }
-            container.innerHTML = alertas.map(alerta => `
-                <div class="alerta-item alerta-${alerta.tipo}">
-                    <span class="alerta-icone">${alerta.icone}</span>
-                    <span class="alerta-texto">${alerta.texto}</span>
-                    <span class="alerta-tempo">${alerta.tempo}</span>
-                </div>
-            `).join('');
+            
+            if (configAtual.mostrarAlertas !== false) {
+                container.innerHTML = alertas.map(alerta => `
+                    <div class="alerta-item alerta-${alerta.tipo}">
+                        <span class="alerta-icone">${alerta.icone}</span>
+                        <span class="alerta-texto">${alerta.texto}</span>
+                        <span class="alerta-tempo">${alerta.tempo}</span>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = '';
+            }
         }
 
         function alternarRanking() {
@@ -3737,9 +4259,9 @@
             }
             rankingVisivel = !rankingVisivel;
             document.getElementById('rankingContainer').classList.toggle('mostrar');
-
             mostrarAtalhos();
-
+            atualizarBotoesEstado();
+            
             if (rankingVisivel) {
                 const lista = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
                 atualizarRanking(lista);
@@ -3782,9 +4304,9 @@
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             backupVisivel = !backupVisivel;
             document.getElementById('backupContainer').classList.toggle('mostrar');
-
             mostrarAtalhos();
-
+            atualizarBotoesEstado();
+            
             const ultimoBackup = localStorage.getItem('ultimo_backup_eeep');
             if (ultimoBackup) {
                 const data = new Date(parseInt(ultimoBackup));
@@ -3816,7 +4338,7 @@
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 try {
                     const dados = JSON.parse(e.target.result);
                     if (!dados.registros || !Array.isArray(dados.registros)) {
@@ -3868,8 +4390,10 @@
             dashboardAvancadoVisivel = false;
             rankingVisivel = false;
             backupVisivel = false;
+            atualizarBotoesEstado();
         }
 
+        // ============ EXPORT ============
         function exportarPDF() {
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione curso e ano', 'error'); return; }
@@ -3881,7 +4405,7 @@
             doc.text('RELATÓRIO DE FREQUÊNCIA', 14, 22);
             doc.setFontSize(11);
             doc.setTextColor(80, 80, 80);
-            doc.text(`EEEP Ana Zélia - ${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
+            doc.text(`${configAtual.nomeEscola} - ${cursoAtivo.charAt(0).toUpperCase() + cursoAtivo.slice(1)} - ${anoAtivo}`, 14, 30);
             doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 14, 37);
             if (lista.length > 0) {
                 doc.autoTable({
@@ -3914,16 +4438,17 @@
             if (sistemaBloqueado) { mostrarModalSenha(); return; }
             if (!cursoAtivo || !anoAtivo) { mostrarNotificacao('Selecione curso e ano', 'error'); return; }
             const lista = alunos.filter(a => a.curso === cursoAtivo && a.ano === anoAtivo);
+            const totalAlunos = configAtual.totalAlunos || 45;
             const totalAtrasos = lista.filter(a => a.tipo === 'atraso').length;
             const totalSaidas = lista.filter(a => a.tipo === 'saida').length;
-            const percAtrasos = Math.round((totalAtrasos / TOTAL_ALUNOS) * 100);
-            const percSaidas = Math.round((totalSaidas / TOTAL_ALUNOS) * 100);
+            const percAtrasos = Math.round((totalAtrasos / totalAlunos) * 100);
+            const percSaidas = Math.round((totalSaidas / totalAlunos) * 100);
             const agora = new Date();
             const conteudo = `
                 <div class="relatorio-header">
-                    <img src="Logo_ep.png" class="relatorio-logo" alt="Logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6LUHjMswwRHKwoNtzzsA-Z4PPFEqGPKpNcwdhQoEHw&s=10" class="relatorio-logo" alt="Logo">
                     <div class="relatorio-escola-info">
-                        <h3 style="color:var(--primary);font-size:1.5rem;">EEEP Ana Zélia</h3>
+                        <h3 style="color:var(--primary);font-size:1.5rem;">${configAtual.nomeEscola}</h3>
                         <p style="font-size:0.85rem;color:var(--text-muted);">Sistema de Gestão de Frequência</p>
                     </div>
                 </div>
@@ -3932,7 +4457,7 @@
                 <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Gerado em ${agora.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })} às ${agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</p>
                 <div class="relatorio-grid" style="margin-top:2rem;">
                     <div class="relatorio-card">
-                        <span class="value">${TOTAL_ALUNOS}</span>
+                        <span class="value">${totalAlunos}</span>
                         <span class="label">Total Alunos</span>
                     </div>
                     <div class="relatorio-card">
@@ -3958,6 +4483,7 @@
             document.getElementById('modalRelatorio').classList.remove('mostrar');
         }
 
+        // ============ NOTIFICATION ============
         function mostrarNotificacao(msg, tipo) {
             document.querySelectorAll('.toast').forEach(t => t.remove());
             const toast = document.createElement('div');
@@ -3972,6 +4498,7 @@
             }, 3500);
         }
 
+        // ============ THREE.JS ============
         function criarCap(escala = 1) {
             const grupo = new THREE.Group();
             const matTecido = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.5, metalness: 0.1 });
@@ -4035,6 +4562,18 @@
             animar();
         }
 
+        // ============ FECHAR TODOS OS MODAIS ============
+        function fecharTodosModais() {
+            fecharModalRegistro();
+            fecharModalEdicao();
+            fecharModalConfirmacao();
+            fecharModalObservacao();
+            fecharConfiguracoes();
+            fecharRelatorio();
+            document.getElementById('dropdownExportacao').classList.remove('mostrar');
+        }
+
+        // ============ LOADING ============
         const tempoTotal = 8000;
         const inicio = Date.now();
         const loaderProgress = document.getElementById('loader-progress');
@@ -4058,7 +4597,10 @@
             }
         }
 
-        window.addEventListener('load', () => {
+        // ============ INIT ============
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarConfiguracoes();
+            aplicarConfiguracoes();
             aplicarTema();
             atualizarRelogio();
             setInterval(atualizarRelogio, 1000);
@@ -4067,6 +4609,7 @@
 
             document.getElementById('botaoMenu').addEventListener('click', alternarMenu);
             document.getElementById('sobreposicao').addEventListener('click', alternarMenu);
+            document.getElementById('botaoConfig').addEventListener('click', abrirConfiguracoes);
 
             document.querySelectorAll('.curso-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -4141,15 +4684,26 @@
 
             window.addEventListener('click', (e) => {
                 if (sistemaBloqueado) return;
-                ['modalRegistro', 'modalConfirmacao', 'modalObservacao', 'modalEdicao'].forEach(mid => {
+                ['modalRegistro', 'modalConfirmacao', 'modalObservacao', 'modalEdicao', 'modalConfiguracoes'].forEach(mid => {
                     const modal = document.getElementById(mid);
                     if (e.target === modal) {
                         if (mid === 'modalRegistro') fecharModalRegistro();
                         else if (mid === 'modalConfirmacao') fecharModalConfirmacao();
                         else if (mid === 'modalObservacao') fecharModalObservacao();
                         else if (mid === 'modalEdicao') fecharModalEdicao();
+                        else if (mid === 'modalConfiguracoes') fecharConfiguracoes();
                     }
                 });
+            });
+
+            // Atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'd') { e.preventDefault(); alternarDashboardAvancado(); }
+                if (e.ctrlKey && e.key === 'r') { e.preventDefault(); alternarRanking(); }
+                if (e.ctrlKey && e.key === 'b') { e.preventDefault(); alternarBackup(); }
+                if (e.ctrlKey && e.key === 'c') { e.preventDefault(); alternarModoCompacto(); }
+                if (e.ctrlKey && e.key === ',') { e.preventDefault(); abrirConfiguracoes(); }
+                if (e.key === 'Escape') { fecharTodosModais(); }
             });
 
             document.getElementById('inputRestaurarBackup').addEventListener('change', restaurarBackup);
@@ -4161,6 +4715,7 @@
             setTimeout(() => mostrarModalSenha(), 900);
         });
 
+        // Expor funções globalmente
         window.abrirModalEdicao = abrirModalEdicao;
         window.abrirModalObservacao = abrirModalObservacao;
         window.copiarObservacao = copiarObservacao;
@@ -4182,7 +4737,18 @@
         window.restaurarBackup = restaurarBackup;
         window.exportarBackupCSV = exportarBackupCSV;
         window.limparTodosRegistros = limparTodosRegistros;
+        window.abrirConfiguracoes = abrirConfiguracoes;
+        window.fecharConfiguracoes = fecharConfiguracoes;
+        window.mudarTabConfig = mudarTabConfig;
+        window.salvarConfigGeral = salvarConfigGeral;
+        window.salvarConfigBackup = salvarConfigBackup;
+        window.salvarConfigNotificacoes = salvarConfigNotificacoes;
+        window.salvarConfigExibicao = salvarConfigExibicao;
+        window.resetarConfiguracoes = resetarConfiguracoes;
+        window.limparTodosDados = limparTodosDados;
+        window.restaurarBackupConfig = restaurarBackupConfig;
+        window.fecharTodosModais = fecharTodosModais;
+        window.atualizarBotoesEstado = atualizarBotoesEstado;
     </script>
 </body>
-
 </html>
