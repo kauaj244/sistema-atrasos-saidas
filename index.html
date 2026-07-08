@@ -173,397 +173,6 @@
             display: none !important;
         }
 
-        body.modo-apresentacao {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%) !important;
-        }
-
-        body.modo-apresentacao::before {
-            background:
-                radial-gradient(circle at 20% 50%, rgba(0, 109, 58, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(232, 120, 10, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(123, 31, 162, 0.1) 0%, transparent 50%) !important;
-        }
-
-        body.modo-apresentacao::after {
-            background:
-                repeating-linear-gradient(90deg,
-                    transparent 0px,
-                    rgba(255, 255, 255, 0.02) 3px,
-                    transparent 6px,
-                    rgba(255, 215, 0, 0.01) 9px,
-                    transparent 12px);
-            animation: fundoOndas 30s linear infinite;
-        }
-
-        body.modo-apresentacao .cabecalho {
-            background: rgba(10, 10, 30, 0.85);
-            backdrop-filter: blur(30px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        body.modo-apresentacao .cabecalho .header-title h2 {
-            color: #ffffff;
-            text-shadow: 0 0 30px rgba(0, 109, 58, 0.3);
-        }
-
-        body.modo-apresentacao .cabecalho .header-title p {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.modo-apresentacao .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao .stat-card .stat-value {
-            color: #ffffff;
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-        }
-
-        body.modo-apresentacao .stat-card .stat-label {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.modo-apresentacao .table-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao th {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.6);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao td {
-            color: rgba(255, 255, 255, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        body.modo-apresentacao tr:hover td {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .card-metrica {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao .card-metrica .valor-metrica {
-            color: #ffffff;
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-        }
-
-        body.modo-apresentacao .card-metrica .label-metrica {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.modo-apresentacao .grafico-pizza-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao .ranking-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao .ranking-container h3 {
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .ranking-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        body.modo-apresentacao .ranking-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .ranking-item .nome-aluno-ranking {
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .alerta-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .alerta-item .alerta-texto {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        body.modo-apresentacao .search-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .search-input:focus {
-            border-color: var(--primaria);
-            box-shadow: 0 0 0 4px rgba(0, 109, 58, 0.2);
-        }
-
-        body.modo-apresentacao .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        body.modo-apresentacao .search-icon {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        body.modo-apresentacao .btn-outline {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        body.modo-apresentacao .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primaria);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .atalho-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        body.modo-apresentacao .atalho-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primaria);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .filtro-tipo-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        body.modo-apresentacao .filtro-tipo-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        body.modo-apresentacao .filtro-tipo-btn.ativo-todos {
-            background: var(--primaria);
-            border-color: var(--primaria);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .filtro-tipo-btn.ativo-atrasos {
-            background: var(--aviso);
-            border-color: var(--aviso);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .filtro-tipo-btn.ativo-saidas {
-            background: var(--roxo);
-            border-color: var(--roxo);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .backup-container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        body.modo-apresentacao .backup-container h3 {
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .status-badge.atraso {
-            background: rgba(237, 108, 2, 0.2);
-            color: #ff9800;
-            border: 1px solid rgba(237, 108, 2, 0.3);
-        }
-
-        body.modo-apresentacao .status-badge.saida {
-            background: rgba(123, 31, 162, 0.2);
-            color: #ce93d8;
-            border: 1px solid rgba(123, 31, 162, 0.3);
-        }
-
-        body.modo-apresentacao .fab {
-            background: linear-gradient(135deg, var(--primaria), var(--primaria-clara));
-            box-shadow: 0 8px 32px rgba(0, 109, 58, 0.4);
-        }
-
-        body.modo-apresentacao .fab:hover {
-            box-shadow: 0 12px 48px rgba(0, 109, 58, 0.6);
-        }
-
-        body.modo-apresentacao .btn-sair-apresentacao {
-            display: flex !important;
-        }
-
-        body.modo-apresentacao .modal-content {
-            background: rgba(20, 20, 40, 0.95);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .modal-body {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        body.modo-apresentacao .form-group label {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.modo-apresentacao .form-group input,
-        body.modo-apresentacao .form-group select,
-        body.modo-apresentacao .form-group textarea {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .form-group input:focus,
-        body.modo-apresentacao .form-group select:focus,
-        body.modo-apresentacao .form-group textarea:focus {
-            border-color: var(--primaria);
-            box-shadow: 0 0 0 4px rgba(0, 109, 58, 0.2);
-        }
-
-        body.modo-apresentacao .obs-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .obs-content {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        body.modo-apresentacao .relatorio-content {
-            background: rgba(20, 20, 40, 0.95);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .relatorio-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        body.modo-apresentacao .relatorio-card .value {
-            color: #ffffff;
-        }
-
-        body.modo-apresentacao .relatorio-card .label {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .btn-sair-apresentacao {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 9999;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--perigo), var(--perigo-claro));
-            color: white;
-            border: none;
-            border-radius: var(--raio-completo);
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.4);
-            display: none;
-            animation: fadeInUp 0.4s ease;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-            transition: var(--transicao);
-        }
-
-        .btn-sair-apresentacao:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 48px rgba(211, 47, 47, 0.6);
-        }
-
-        body.modo-apresentacao .btn-sair-apresentacao {
-            display: flex;
-        }
-
-        .particulas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .particula {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            animation: flutuarParticula linear infinite;
-        }
-
-        @keyframes flutuarParticula {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-10vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        body.modo-apresentacao .card-metrica::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg,
-                    transparent 30%,
-                    rgba(255, 255, 255, 0.03) 50%,
-                    transparent 70%);
-            animation: brilho 4s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes brilho {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-
         body.tema-administracao {
             --primaria: var(--admin);
             --primaria-clara: var(--admin-claro);
@@ -1168,34 +777,6 @@
 
         body.tema-escuro .theme-btn {
             color: #fbbf24;
-            border-color: var(--escuro-borda);
-        }
-
-        .apresentacao-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--superficie);
-            border: 2px solid var(--borda);
-            color: var(--texto-secundario);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: var(--transicao);
-            box-shadow: var(--sombra-xs);
-        }
-
-        .apresentacao-btn:hover {
-            background: var(--fundo-alt);
-            transform: scale(1.1);
-            box-shadow: var(--sombra-md);
-            border-color: var(--primaria);
-            color: var(--primaria);
-        }
-
-        body.tema-escuro .apresentacao-btn {
             border-color: var(--escuro-borda);
         }
 
@@ -3101,13 +2682,6 @@
                 flex: 1;
                 text-align: center;
             }
-
-            .btn-sair-apresentacao {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-            }
         }
     </style>
 </head>
@@ -3239,18 +2813,11 @@
                 </div>
                 <div class="header-right">
                     <img src="https://eeep-irma-ana-zelia.netlify.app/img/logo-eeep.jpg" class="header-logo" alt="Logo">
-                    <button class="apresentacao-btn" id="botaoApresentacao" title="Modo Apresentação">
-                        <i class="fas fa-film" id="iconeApresentacao"></i>
-                    </button>
                     <button class="theme-btn" id="botaoAlternarTema" style="display:none;" title="Alternar tema">
                         <i class="fas fa-moon" id="iconeTema"></i>
                     </button>
                 </div>
             </header>
-
-            <button class="btn-sair-apresentacao" id="btnSairApresentacao" onclick="alternarModoApresentacao()">
-                <i class="fas fa-times-circle"></i> Sair da Apresentação
-            </button>
 
             <div class="conteudo">
 
@@ -3725,7 +3292,6 @@
         let backupVisivel = false;
         let modoCompacto = false;
         let atalhosVisivel = false;
-        let modoApresentacaoAtivo = false;
         let graficoPizza = null;
         let graficoBarrasMensal = null;
 
@@ -3752,44 +3318,6 @@
 
         function esconderBotaoTema() {
             document.getElementById('botaoAlternarTema').style.display = 'none';
-        }
-
-        function alternarModoApresentacao() {
-            modoApresentacaoAtivo = !modoApresentacaoAtivo;
-            document.body.classList.toggle('modo-apresentacao');
-            const icone = document.getElementById('iconeApresentacao');
-            if (modoApresentacaoAtivo) {
-                icone.className = 'fas fa-stop-circle';
-                mostrarNotificacao('🎬 Modo Apresentação ativado', 'info');
-                criarParticulas();
-            } else {
-                icone.className = 'fas fa-film';
-                mostrarNotificacao('Modo Apresentação desativado', 'info');
-                removerParticulas();
-            }
-        }
-
-        function criarParticulas() {
-            const container = document.createElement('div');
-            container.className = 'particulas-container';
-            container.id = 'particulasContainer';
-            for (let i = 0; i < 30; i++) {
-                const particula = document.createElement('div');
-                particula.className = 'particula';
-                particula.style.left = Math.random() * 100 + '%';
-                particula.style.animationDuration = (15 + Math.random() * 25) + 's';
-                particula.style.animationDelay = (Math.random() * 20) + 's';
-                particula.style.width = (2 + Math.random() * 4) + 'px';
-                particula.style.height = particula.style.width;
-                particula.style.background = `rgba(255, 255, 255, ${0.05 + Math.random() * 0.15})`;
-                container.appendChild(particula);
-            }
-            document.body.appendChild(container);
-        }
-
-        function removerParticulas() {
-            const container = document.getElementById('particulasContainer');
-            if (container) container.remove();
         }
 
         function alternarModoCompacto() {
@@ -3885,7 +3413,6 @@
             document.body.className = sistemaBloqueado ? 'sistema-bloqueado' : '';
             if (temaEscuroAtivo && !sistemaBloqueado) document.body.classList.add('tema-escuro');
             if (modoCompacto) document.body.classList.add('modo-compacto');
-            if (modoApresentacaoAtivo) document.body.classList.add('modo-apresentacao');
             fecharMenu();
             atualizarEstatisticasMenu();
             mostrarBotaoTema();
@@ -3912,13 +3439,12 @@
         function aplicarTemaCurso(curso) {
             const classes = Array.from(document.body.classList).filter(c =>
                 !c.startsWith('tema-') && c !== 'sistema-bloqueado' && c !== 'menu-aberto' && c !== 'tema-escuro' && c !==
-                'modo-compacto' && c !== 'modo-apresentacao'
+                'modo-compacto'
             );
             document.body.className = classes.join(' ') + ` tema-${curso}`;
             if (sistemaBloqueado) document.body.classList.add('sistema-bloqueado');
             if (temaEscuroAtivo && !sistemaBloqueado) document.body.classList.add('tema-escuro');
             if (modoCompacto) document.body.classList.add('modo-compacto');
-            if (modoApresentacaoAtivo) document.body.classList.add('modo-apresentacao');
         }
 
         function atualizarRelogio() {
@@ -4469,8 +3995,7 @@
 
             const atrasos = lista.filter(a => a.tipo === 'atraso').length;
             const saidas = lista.filter(a => a.tipo === 'saida').length;
-            const isDark = document.body.classList.contains('tema-escuro') || document.body.classList.contains(
-                'modo-apresentacao');
+            const isDark = document.body.classList.contains('tema-escuro');
             const textColor = isDark ? '#cbd5e1' : '#475569';
 
             if (graficoPizza) graficoPizza.destroy();
@@ -4959,7 +4484,6 @@
 
             document.getElementById('botaoMenu').addEventListener('click', alternarMenu);
             document.getElementById('sobreposicao').addEventListener('click', alternarMenu);
-            document.getElementById('botaoApresentacao').addEventListener('click', alternarModoApresentacao);
 
             document.querySelectorAll('.curso-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -5112,7 +4636,6 @@
         window.alternarRanking = alternarRanking;
         window.alternarBackup = alternarBackup;
         window.alternarModoCompacto = alternarModoCompacto;
-        window.alternarModoApresentacao = alternarModoApresentacao;
         window.alternarAtalhos = alternarAtalhos;
         window.filtrarPorTipo = filtrarPorTipo;
         window.fazerBackup = fazerBackup;
